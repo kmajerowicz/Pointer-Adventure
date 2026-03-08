@@ -3,8 +3,8 @@
 -- 6 tables with RLS enabled
 -- ============================================
 
--- Enable UUID generation
-create extension if not exists "uuid-ossp";
+-- pgcrypto for gen_random_bytes (used in invitation tokens)
+create extension if not exists "pgcrypto";
 
 -- ── Users ──
 create table public.users (
@@ -28,7 +28,7 @@ create policy "Users: insert own" on public.users
 
 -- ── Routes ──
 create table public.routes (
-  id uuid primary key default uuid_generate_v4(),
+  id uuid primary key default gen_random_uuid(),
   source_id text not null unique,
   name text,
   description text,
@@ -56,7 +56,7 @@ create policy "Routes: read by authenticated" on public.routes
 
 -- ── Search Areas (cache) ──
 create table public.search_areas (
-  id uuid primary key default uuid_generate_v4(),
+  id uuid primary key default gen_random_uuid(),
   bbox_hash text not null unique,
   north double precision not null,
   south double precision not null,
@@ -75,7 +75,7 @@ create policy "Search areas: read by all" on public.search_areas
 
 -- ── Favorites ──
 create table public.favorites (
-  id uuid primary key default uuid_generate_v4(),
+  id uuid primary key default gen_random_uuid(),
   user_id uuid not null references public.users(id) on delete cascade,
   route_id uuid not null references public.routes(id) on delete cascade,
   note text,
@@ -91,7 +91,7 @@ create policy "Favorites: CRUD own" on public.favorites
 
 -- ── Activity Log ──
 create table public.activity_log (
-  id uuid primary key default uuid_generate_v4(),
+  id uuid primary key default gen_random_uuid(),
   user_id uuid not null references public.users(id) on delete cascade,
   route_id uuid not null references public.routes(id) on delete cascade,
   walked_at timestamptz not null default now(),
@@ -108,8 +108,8 @@ create policy "Activity log: select own" on public.activity_log
 
 -- ── Invitations ──
 create table public.invitations (
-  id uuid primary key default uuid_generate_v4(),
-  token text not null unique default encode(gen_random_bytes(24), 'hex'),
+  id uuid primary key default gen_random_uuid(),
+  token text not null unique default encode(extensions.gen_random_bytes(24), 'hex'),
   created_by uuid not null references public.users(id) on delete cascade,
   used_by uuid references public.users(id),
   expires_at timestamptz not null default (now() + interval '30 days'),
