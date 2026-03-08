@@ -8,6 +8,7 @@
 - **State:** Zustand (client state) + Supabase hooks (server state)
 - **Hosting:** Vercel
 - **PRD:** `docs/PRD.md` — source of truth for all features
+- **Implementation Plan:** `docs/IMPLEMENTATION_PLAN.md` — phased build plan with skill mappings and acceptance criteria
 
 ## Commands
 - `npm run dev` — Start dev server
