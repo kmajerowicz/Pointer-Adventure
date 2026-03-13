@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Phase 7 context gathered
-last_updated: "2026-03-13T23:50:37.626Z"
+stopped_at: Completed 05-02-PLAN.md
+last_updated: "2026-03-13T23:55:52.857Z"
 last_activity: 2026-03-13 — Plan 01-01 complete (map core, geolocation, error boundary)
 progress:
   total_phases: 8
   completed_phases: 5
   total_plans: 17
-  completed_plans: 12
+  completed_plans: 13
   percent: 75
 ---
 
@@ -61,6 +61,7 @@ Progress: [████████░░] 75%
 | Phase 04-filters P01 | 1 | 1 tasks | 4 files |
 | Phase 04-filters P02 | 15 | 3 tasks | 6 files |
 | Phase 05-auth-and-onboarding P01 | 3 | 3 tasks | 14 files |
+| Phase 05-auth-and-onboarding P02 | 4 | 2 tasks | 11 files |
 
 ## Accumulated Context
 
@@ -109,6 +110,9 @@ Recent decisions affecting current work:
 - [Phase 05-auth-and-onboarding]: import type for supabase-js types required by verbatimModuleSyntax — use import type for all supabase type aliases
 - [Phase 05-auth-and-onboarding]: Auth init logic (getSession, onAuthStateChange) excluded from store — belongs in App.tsx; store is pure state+setters
 - [Phase 05-auth-and-onboarding]: Wave 0 test stubs use it.todo() not it.skip() — todos are skipped never fail
+- [Phase 05-auth-and-onboarding]: AuthPage always shows email login form — Dostep tylko przez zaproszenie is subtitle text not a blocking gate for returning users
+- [Phase 05-auth-and-onboarding]: Pending invite token stored in sessionStorage after OTP verification so App.tsx can consume it after onAuthStateChange fires
+- [Phase 05-auth-and-onboarding]: Protected tabs render as button elements (not NavLinks) for clean auth interception without preventDefault hacks
 
 ### Pending Todos
 
@@ -121,6 +125,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-13T23:50:37.623Z
-Stopped at: Phase 7 context gathered
-Resume file: .planning/phases/07-pwa-hardening/07-CONTEXT.md
+Last session: 2026-03-13T23:55:52.854Z
+Stopped at: Completed 05-02-PLAN.md
+Resume file: None

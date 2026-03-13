@@ -62,13 +62,13 @@
 ### Auth
 
 - [x] **AUTH-01**: New user arrives at `/invite?token=xyz`, token is validated server-side via Edge Function
-- [ ] **AUTH-02**: Valid token → registration form (name + email only) → magic link sent → token consumed on successful registration
+- [x] **AUTH-02**: Valid token → registration form (name + email only) → magic link sent → token consumed on successful registration
 - [x] **AUTH-03**: Expired or used token shows clear error message in Polish
-- [ ] **AUTH-04**: `/auth` without invite context shows "Dostęp tylko przez zaproszenie" — no registration form
-- [ ] **AUTH-05**: Magic link click → Supabase session established → redirect to onboarding (first login) or map (returning)
+- [x] **AUTH-04**: `/auth` without invite context shows "Dostęp tylko przez zaproszenie" — no registration form
+- [x] **AUTH-05**: Magic link click → Supabase session established → redirect to onboarding (first login) or map (returning)
 - [x] **AUTH-06**: Session persists across browser refresh via Supabase localStorage
 - [x] **AUTH-07**: Invite tokens expire after 30 days (`invitations.expires_at`)
-- [ ] **AUTH-08**: Unauthenticated users can browse trails and map but cannot favorite, log activity, or access profile
+- [x] **AUTH-08**: Unauthenticated users can browse trails and map but cannot favorite, log activity, or access profile
 
 ### Onboarding
 
@@ -199,13 +199,13 @@
 | FILT-09 | Phase 4 | Complete |
 | FILT-10 | Phase 4 | Complete |
 | AUTH-01 | Phase 5 | Complete |
-| AUTH-02 | Phase 5 | Pending |
+| AUTH-02 | Phase 5 | Complete |
 | AUTH-03 | Phase 5 | Complete |
-| AUTH-04 | Phase 5 | Pending |
-| AUTH-05 | Phase 5 | Pending |
+| AUTH-04 | Phase 5 | Complete |
+| AUTH-05 | Phase 5 | Complete |
 | AUTH-06 | Phase 5 | Complete |
 | AUTH-07 | Phase 5 | Complete |
-| AUTH-08 | Phase 5 | Pending |
+| AUTH-08 | Phase 5 | Complete |
 | ONBR-01 | Phase 5 | Pending |
 | ONBR-02 | Phase 5 | Pending |
 | ONBR-03 | Phase 5 | Pending |

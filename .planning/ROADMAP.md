@@ -171,6 +171,6 @@ Phases execute in numeric order: 0 → 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 2. Trail Data Pipeline | 2/2 | Complete   | 2026-03-13 |
 | 3. Trail Display and Browsing | 2/2 | Complete   | 2026-03-13 |
 | 4. Filters | 2/2 | Complete   | 2026-03-13 |
-| 5. Auth and Onboarding | 0/3 | Not started | - |
+| 5. Auth and Onboarding | 2/3 | In Progress|  |
 | 6. Favorites and Activity | 0/3 | Not started | - |
 | 7. PWA Hardening | 0/2 | Not started | - |
