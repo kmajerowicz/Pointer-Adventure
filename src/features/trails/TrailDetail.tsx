@@ -94,7 +94,7 @@ export function TrailDetail() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
 
-  const route = useTrailsStore((s) => s.routes.find((r) => r.id === id))
+  const route = useTrailsStore((s) => s.routes.find((r) => r.id === id || r.source_id === id))
 
   // Distance computation — same origin logic as TrailList
   const { state: geoState } = useGeolocation()

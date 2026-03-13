@@ -156,23 +156,21 @@ function normalizeElement(el: OverpassElement): NormalizedRoute | null {
       ? { type: 'LineString', coordinates: coordinates[0] }
       : { type: 'MultiLineString', coordinates }
 
-  // Compute rough length_km for LineString
-  let length_km: number | null = null
-  if (coordinates.length === 1) {
-    const pts = coordinates[0]
-    let dist = 0
-    for (let i = 1; i < pts.length; i++) {
-      const dLat = (pts[i][1] - pts[i - 1][1]) * (Math.PI / 180)
-      const dLon = (pts[i][0] - pts[i - 1][0]) * (Math.PI / 180)
+  // Compute rough length_km for all geometries
+  let dist = 0
+  for (const line of coordinates) {
+    for (let i = 1; i < line.length; i++) {
+      const dLat = (line[i][1] - line[i - 1][1]) * (Math.PI / 180)
+      const dLon = (line[i][0] - line[i - 1][0]) * (Math.PI / 180)
       const a =
         Math.sin(dLat / 2) ** 2 +
-        Math.cos(pts[i - 1][1] * (Math.PI / 180)) *
-          Math.cos(pts[i][1] * (Math.PI / 180)) *
+        Math.cos(line[i - 1][1] * (Math.PI / 180)) *
+          Math.cos(line[i][1] * (Math.PI / 180)) *
           Math.sin(dLon / 2) ** 2
       dist += 6371 * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
     }
-    length_km = Math.round(dist * 10) / 10
   }
+  const length_km = Math.round(dist * 10) / 10
 
   const pttk = isPTTK(tags)
   const trailColor = extractTrailColor(tags)
@@ -206,10 +204,13 @@ function buildOverpassQuery(bbox: Bbox): string {
   const b = `${south},${west},${north},${east}`
   return `[out:json][timeout:25];
 (
-  relation["type"="route"]["route"="hiking"](${b});
-  relation["type"="route"]["route"="foot"](${b});
-  way["highway"~"^(footway|path|track)$"][highway!=primary][highway!=secondary][highway!=tertiary][highway!=residential][highway!=service][dogs!=no](${b});
-  relation["leisure"="nature_reserve"](${b});
+  relation["type"="route"]["route"="hiking"]["network"="lwn"](${b});
+  relation["type"="route"]["route"="foot"]["network"="lwn"](${b});
+  relation["type"="route"]["route"="walking"]["network"="lwn"](${b});
+  relation["type"="route"]["route"="hiking"]["network"="rwn"](${b});
+  way["highway"="path"]["name"]["dogs"!="no"](${b});
+  way["highway"="track"]["name"]["dogs"!="no"](${b});
+  way["highway"="footway"]["name"]["footway"!="sidewalk"]["dogs"!="no"](${b});
 );
 out geom;`
 }
@@ -338,10 +339,11 @@ Deno.serve(async (req: Request) => {
       )
     }
 
-    // Normalize (PIPE-04)
+    // Normalize (PIPE-04) — filter out routes longer than 30km (not dog-walk friendly)
     const normalizedRoutes = overpassData.elements
       .map((el) => normalizeElement(el))
       .filter((r): r is NormalizedRoute => r !== null)
+      .filter((r) => r.length_km === null || r.length_km <= 30)
 
     // Upsert routes (PIPE-05)
     if (normalizedRoutes.length > 0) {

@@ -63,7 +63,7 @@ Each task was committed atomically:
 
 1. **Task 1: Replace dragstart useEffect with map.once in handleSelect** - `cb137db` (fix)
 
-**Plan metadata:** `(to be added after docs commit)`
+**Plan metadata:** `460533f` (docs: complete plan)
 
 ## Files Created/Modified
 

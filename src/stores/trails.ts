@@ -15,7 +15,7 @@ interface TrailsState {
   setRetry: (fn: (() => void) | null) => void
 }
 
-export const useTrailsStore = create<TrailsState>((set, get) => ({
+export const useTrailsStore = create<TrailsState>((set) => ({
   routes: [],
   loading: false,
   error: null,

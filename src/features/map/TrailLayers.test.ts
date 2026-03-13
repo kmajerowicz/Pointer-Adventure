@@ -1,7 +1,6 @@
-import { describe, test, expect, vi, beforeEach } from 'vitest'
+import { describe, test, expect, vi } from 'vitest'
 import { routesToPointFeatures, pttkToLineFeatures, initTrailLayers } from './TrailLayers'
 import type { Route } from '../../lib/types'
-import type { Feature, FeatureCollection, LineString, MultiLineString } from 'geojson'
 
 function makeRoute(overrides: Partial<Route> = {}): Route {
   return {
@@ -115,7 +114,7 @@ describe('initTrailLayers', () => {
     expect(mockMap.addLayer).toHaveBeenCalledTimes(5)
 
     const layerIds = (mockMap.addLayer as ReturnType<typeof vi.fn>).mock.calls.map(
-      (call: [{ id: string }]) => call[0].id
+      (call: unknown[]) => (call[0] as { id: string }).id
     )
     expect(layerIds).toContain('trail-clusters')
     expect(layerIds).toContain('trail-cluster-count')

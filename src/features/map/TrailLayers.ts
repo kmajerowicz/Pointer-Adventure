@@ -13,15 +13,15 @@ const ACCENT_GOLD = '#C9A84C'
 const DARK_CASING = '#1a1a1a'
 
 export function routesToPointFeatures(routes: Route[]): FeatureCollection<Point> {
-  const features: Feature<Point>[] = routes.map((r) => ({
+  const features: Feature<Point>[] = routes.map((r, i) => ({
     type: 'Feature',
-    id: r.id,
+    id: i,
     geometry: {
       type: 'Point',
       coordinates: [r.center_lon, r.center_lat],
     },
     properties: {
-      id: r.id,
+      routeId: r.id || r.source_id,
       name: r.name,
       trail_color: r.trail_color,
       source: r.source,
@@ -34,12 +34,12 @@ export function routesToPointFeatures(routes: Route[]): FeatureCollection<Point>
 export function pttkToLineFeatures(routes: Route[]): FeatureCollection {
   const features = routes
     .filter((r) => r.source === 'pttk' && r.geometry != null)
-    .map((r) => ({
+    .map((r, i) => ({
       type: 'Feature' as const,
-      id: r.id,
+      id: i,
       geometry: r.geometry,
       properties: {
-        id: r.id,
+        routeId: r.id || r.source_id,
         name: r.name,
         trail_color: r.trail_color,
       },
@@ -206,7 +206,8 @@ export function setupTrailInteractions(
   map.on('click', 'trail-unclustered', (e) => {
     if (!e.features || e.features.length === 0) return
     const feature = e.features[0]
-    const id = feature.properties?.id as string | undefined
+    // Properties may be stringified by Mapbox clustering — try both properties and feature id
+    const id = feature.properties?.routeId as string | undefined
 
     if (onTrailClick && id) {
       onTrailClick(id)
@@ -227,7 +228,7 @@ export function setupTrailInteractions(
   map.on('click', 'trail-line-fill', (e) => {
     if (!e.features || e.features.length === 0) return
     const feature = e.features[0]
-    const id = feature.properties?.id as string | undefined
+    const id = feature.properties?.routeId as string | undefined
 
     if (onTrailClick && id) {
       onTrailClick(id)

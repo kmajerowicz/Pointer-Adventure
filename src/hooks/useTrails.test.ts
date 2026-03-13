@@ -13,8 +13,6 @@ vi.mock('../lib/supabase', () => ({
 // Mock viewport store
 const mockBounds = { north: 51.0, south: 50.0, east: 20.0, west: 19.0 }
 let currentBounds: typeof mockBounds | null = null
-let boundsSubscribers: Array<(bounds: typeof mockBounds | null) => void> = []
-
 vi.mock('../stores/viewport', () => ({
   useViewportStore: vi.fn((selector: (state: { bounds: typeof mockBounds | null }) => unknown) => {
     return selector({ bounds: currentBounds })
@@ -91,7 +89,7 @@ describe('useTrails', () => {
   test('debounces: setting bounds does NOT immediately call Edge Function; advancing 400ms triggers call', async () => {
     currentBounds = mockBounds
 
-    const { rerender } = renderHook(() => useTrails())
+    renderHook(() => useTrails())
 
     // Before debounce fires
     expect(mockInvoke).not.toHaveBeenCalled()
@@ -178,7 +176,7 @@ describe('useTrails', () => {
     })
 
     // Get the retry fn that was set — first call sets null, second call sets the function
-    const retryFn = mockSetRetry.mock.calls.map((c: [unknown]) => c[0]).find((v: unknown) => typeof v === 'function') as (() => void) | undefined
+    const retryFn = mockSetRetry.mock.calls.map((c: unknown[]) => c[0]).find((v: unknown) => typeof v === 'function') as (() => void) | undefined
     expect(retryFn).toBeDefined()
     expect(typeof retryFn).toBe('function')
 
