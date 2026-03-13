@@ -15,7 +15,7 @@ Starting from a complete Phase 0 scaffolding, this roadmap builds the app in str
 - [x] **Phase 2: Trail Data Pipeline** - Edge Function caching proxy (Overpass → Supabase), `useTrails` hook, trail pins on map (completed 2026-03-13)
 - [x] **Phase 3: Trail Display and Browsing** - TrailCard, TrailList, TrailDetail, PTTK polylines, map/list toggle (completed 2026-03-13)
 - [x] **Phase 4: Filters** - 6-category filter panel (bottom sheet), client-side filter application, chip bar (completed 2026-03-13)
-- [ ] **Phase 5: Auth and Onboarding** - Invite-only magic link auth, 3-step onboarding, dog-name personalization, route guarding
+- [ ] **Phase 5: Auth and Onboarding** - Invite-only magic link auth, 4-step onboarding, dog-name personalization, route guarding
 - [ ] **Phase 6: Favorites and Activity** - Heart toggle with optimistic UI, private notes, "Przeszedlem!" log, profile page
 - [ ] **Phase 7: PWA Hardening** - Fixed Workbox tile cache, offline banner, NetworkFirst trail cache, PNG icons
 
@@ -115,14 +115,15 @@ Plans:
   1. Visiting `/invite?token=xyz` with a valid token shows the registration form (name + email); submitting sends a magic link and marks the token as consumed
   2. Visiting `/invite?token=xyz` with an expired or used token shows a clear Polish-language error — no registration form is offered
   3. Visiting `/auth` without an invite token shows "Dostep tylko przez zaproszenie" — no registration path exists
-  4. Clicking the magic link establishes a session and routes first-time users to the 3-step onboarding (name → dog name → geolocation); returning users go directly to the map
+  4. Clicking the magic link establishes a session and routes first-time users to the 4-step onboarding (welcome → dog name → preferences → geolocation); returning users go directly to the map
   5. Dog name entered during onboarding appears in personalized empty states throughout the app (e.g., "Znajdz cos dla [dog name]!")
   6. Session persists across browser refresh — user does not need to log in again
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 05-01: InviteGate, token validation Edge Function, MagicLinkHandler
-- [ ] 05-02: OnboardingFlow (3 steps), route guards, dog-name personalization
+- [ ] 05-01-PLAN.md — Auth store, types update, DB migration (walk_preferences, trigger, RPC), validate-invite Edge Function (AUTH-01, AUTH-03, AUTH-06, AUTH-07)
+- [ ] 05-02-PLAN.md — InvitePage, RegisterForm, MagicLinkSent with OTP, AuthPage, AuthGateSheet, BottomTabBar auth interception (AUTH-01, AUTH-02, AUTH-03, AUTH-04, AUTH-05, AUTH-08)
+- [ ] 05-03-PLAN.md — App.tsx auth init, OnboardingFlow (4 steps), route guards, dog-name personalization, filter tooltip (AUTH-02, AUTH-05, AUTH-06, AUTH-08, ONBR-01, ONBR-02, ONBR-03, ONBR-04)
 
 ### Phase 6: Favorites and Activity
 **Goal**: Authenticated users can save trails, add private notes, log completed walks, and view their history on their profile
@@ -170,6 +171,6 @@ Phases execute in numeric order: 0 → 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 2. Trail Data Pipeline | 2/2 | Complete   | 2026-03-13 |
 | 3. Trail Display and Browsing | 2/2 | Complete   | 2026-03-13 |
 | 4. Filters | 2/2 | Complete   | 2026-03-13 |
-| 5. Auth and Onboarding | 0/2 | Not started | - |
+| 5. Auth and Onboarding | 0/3 | Not started | - |
 | 6. Favorites and Activity | 0/3 | Not started | - |
 | 7. PWA Hardening | 0/2 | Not started | - |
