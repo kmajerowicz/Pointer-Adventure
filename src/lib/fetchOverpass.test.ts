@@ -13,27 +13,27 @@ describe('fetchOverpass', () => {
 
   it('returns parsed JSON on successful response', async () => {
     const mockData = { elements: [{ type: 'way', id: 1 }] }
-    global.fetch = vi.fn().mockResolvedValueOnce({
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValueOnce({
       ok: true,
       json: () => Promise.resolve(mockData),
-    } as Response)
+    } as Response))
 
     const promise = fetchOverpass('test query')
     await vi.runAllTimersAsync()
     const result = await promise
 
     expect(result).toEqual(mockData)
-    expect(global.fetch).toHaveBeenCalledOnce()
+    expect(fetch).toHaveBeenCalledOnce()
   })
 
   it('retries up to 2 times on network failure with exponential backoff', async () => {
-    global.fetch = vi.fn()
+    vi.stubGlobal('fetch', vi.fn()
       .mockRejectedValueOnce(new Error('Network error'))
       .mockRejectedValueOnce(new Error('Network error'))
       .mockResolvedValueOnce({
         ok: true,
         json: () => Promise.resolve({ elements: [] }),
-      } as Response)
+      } as Response))
 
     const promise = fetchOverpass('test query')
 
@@ -46,14 +46,14 @@ describe('fetchOverpass', () => {
 
     const result = await promise
     expect(result).toEqual({ elements: [] })
-    expect(global.fetch).toHaveBeenCalledTimes(3)
+    expect(fetch).toHaveBeenCalledTimes(3)
   })
 
   it('throws after exhausting retries', async () => {
-    global.fetch = vi.fn()
+    vi.stubGlobal('fetch', vi.fn()
       .mockRejectedValueOnce(new Error('Network error'))
       .mockRejectedValueOnce(new Error('Network error'))
-      .mockRejectedValueOnce(new Error('Network error'))
+      .mockRejectedValueOnce(new Error('Network error')))
 
     const promise = fetchOverpass('test query')
     // Catch eagerly to prevent unhandled rejection
@@ -66,7 +66,7 @@ describe('fetchOverpass', () => {
 
     const result = await caught
     expect((result as { error: Error }).error.message).toBe('Network error')
-    expect(global.fetch).toHaveBeenCalledTimes(3)
+    expect(fetch).toHaveBeenCalledTimes(3)
   })
 
   it('aborts request after 20s timeout', async () => {
@@ -83,7 +83,7 @@ describe('fetchOverpass', () => {
       return p
     }
 
-    global.fetch = vi.fn().mockImplementation(makeFetchMock)
+    vi.stubGlobal('fetch', vi.fn().mockImplementation(makeFetchMock))
 
     const promise = fetchOverpass('test query')
     // Eagerly catch to avoid unhandled rejection
