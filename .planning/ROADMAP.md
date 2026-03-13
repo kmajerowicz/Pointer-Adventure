@@ -83,11 +83,11 @@ Plans:
   2. TrailCard shows name, length (km), surface badge, water access icon, difficulty badge, and PTTK color indicator — all readable on a 375px screen with at least 2-3 cards visible without scrolling
   3. Tapping a TrailCard opens TrailDetail with full trail info, a map inset showing the route polyline, and action buttons
   4. When no trails are in the current area, an empty state with illustration, "Brak tras" message, and "Szukaj w promieniu 50 km" CTA appears instead of a blank list
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 03-01: TrailCard, TrailList, empty state
-- [ ] 03-02: TrailDetail page and route polyline
+- [ ] 03-01-PLAN.md — TrailCard, TrailList, EmptyTrailState, haversine utility, Trasy tab wiring (BROW-01, BROW-02, BROW-04, BROW-05)
+- [ ] 03-02-PLAN.md — TrailDetail page with map hero, route polyline, map pin navigation (BROW-03)
 
 ### Phase 4: Filters
 **Goal**: Users can filter trails by 6 attributes using a bottom-sheet panel, with instant client-side results when bounds are unchanged
