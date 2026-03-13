@@ -100,10 +100,11 @@ Plans:
   3. Setting filters and tapping "Zastosuj" updates the trail list instantly (client-side) without triggering a new Edge Function call if the map bounds have not changed
   4. "Wyczysc wszystko" clears all filters and restores the full trail list
   5. The water access filter "Mile widziana" boosts trails with water access to the top of the list without hiding others
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 04-01: FilterPanel bottom sheet, filter store wiring, chip bar
+- [ ] 04-01-PLAN.md — useFilteredRoutes hook (TDD), useActiveFilterCount, filter label constants (FILT-02, FILT-03, FILT-04, FILT-05, FILT-06, FILT-07, FILT-09, FILT-10)
+- [ ] 04-02-PLAN.md — FilterPanel bottom sheet, FilterButton, ActiveFilterChips, MapView/TrailList wiring (FILT-01, FILT-08, FILT-10)
 
 ### Phase 5: Auth and Onboarding
 **Goal**: New users can join via invite link and complete onboarding to reach their first personalized map view; existing users are recognized on return
@@ -168,7 +169,7 @@ Phases execute in numeric order: 0 → 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 1. Map Core | 3/3 | Complete   | 2026-03-13 |
 | 2. Trail Data Pipeline | 2/2 | Complete   | 2026-03-13 |
 | 3. Trail Display and Browsing | 2/2 | Complete   | 2026-03-13 |
-| 4. Filters | 0/1 | Not started | - |
+| 4. Filters | 0/2 | Not started | - |
 | 5. Auth and Onboarding | 0/2 | Not started | - |
 | 6. Favorites and Activity | 0/3 | Not started | - |
 | 7. PWA Hardening | 0/2 | Not started | - |
