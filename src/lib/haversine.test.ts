@@ -6,11 +6,12 @@ describe('haversineKm', () => {
     expect(haversineKm(0, 0, 0, 0)).toBe(0)
   })
 
-  it('returns ~292 km for Warsaw to Wroclaw', () => {
+  it('returns ~300 km for Warsaw to Wroclaw', () => {
     // Warsaw: 52.2297, 21.0122 | Wroclaw: 51.1079, 17.0385
+    // Actual haversine result: ~301 km straight-line distance
     const dist = haversineKm(52.2297, 21.0122, 51.1079, 17.0385)
-    expect(dist).toBeGreaterThan(288)
-    expect(dist).toBeLessThan(296)
+    expect(dist).toBeGreaterThan(295)
+    expect(dist).toBeLessThan(310)
   })
 
   it('returns same distance regardless of direction', () => {
