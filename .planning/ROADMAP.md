@@ -14,7 +14,7 @@ Starting from a complete Phase 0 scaffolding, this roadmap builds the app in str
 - [x] **Phase 1: Map Core** - Stable interactive map with geolocation, search, and WebGL lifecycle managed correctly from day one (completed 2026-03-13)
 - [x] **Phase 2: Trail Data Pipeline** - Edge Function caching proxy (Overpass → Supabase), `useTrails` hook, trail pins on map (completed 2026-03-13)
 - [x] **Phase 3: Trail Display and Browsing** - TrailCard, TrailList, TrailDetail, PTTK polylines, map/list toggle (completed 2026-03-13)
-- [ ] **Phase 4: Filters** - 6-category filter panel (bottom sheet), client-side filter application, chip bar
+- [x] **Phase 4: Filters** - 6-category filter panel (bottom sheet), client-side filter application, chip bar (completed 2026-03-13)
 - [ ] **Phase 5: Auth and Onboarding** - Invite-only magic link auth, 3-step onboarding, dog-name personalization, route guarding
 - [ ] **Phase 6: Favorites and Activity** - Heart toggle with optimistic UI, private notes, "Przeszedlem!" log, profile page
 - [ ] **Phase 7: PWA Hardening** - Fixed Workbox tile cache, offline banner, NetworkFirst trail cache, PNG icons
@@ -169,7 +169,7 @@ Phases execute in numeric order: 0 → 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 1. Map Core | 3/3 | Complete   | 2026-03-13 |
 | 2. Trail Data Pipeline | 2/2 | Complete   | 2026-03-13 |
 | 3. Trail Display and Browsing | 2/2 | Complete   | 2026-03-13 |
-| 4. Filters | 0/2 | Not started | - |
+| 4. Filters | 2/2 | Complete   | 2026-03-13 |
 | 5. Auth and Onboarding | 0/2 | Not started | - |
 | 6. Favorites and Activity | 0/3 | Not started | - |
 | 7. PWA Hardening | 0/2 | Not started | - |

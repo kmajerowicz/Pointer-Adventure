@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 04-filters/04-01-PLAN.md
-last_updated: "2026-03-13T22:47:36.935Z"
+stopped_at: Completed 04-filters/04-02-PLAN.md
+last_updated: "2026-03-13T23:07:42.945Z"
 last_activity: 2026-03-13 — Plan 01-01 complete (map core, geolocation, error boundary)
 progress:
   total_phases: 8
-  completed_phases: 4
+  completed_phases: 5
   total_plans: 11
-  completed_plans: 10
+  completed_plans: 11
   percent: 75
 ---
 
@@ -59,6 +59,7 @@ Progress: [████████░░] 75%
 | Phase 03-trail-display-and-browsing P01 | 4 | 2 tasks | 8 files |
 | Phase 03-trail-display-and-browsing P02 | 3 | 2 tasks | 6 files |
 | Phase 04-filters P01 | 1 | 1 tasks | 4 files |
+| Phase 04-filters P02 | 15 | 3 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -101,6 +102,9 @@ Recent decisions affecting current work:
 - [Phase 04-filters]: null length_km routes always pass the length filter — unknown lengths included in all buckets
 - [Phase 04-filters]: Water preferred sort uses spread-before-sort [...result].sort() to prevent Zustand store array mutation
 - [Phase 04-filters]: Distance filter silently skipped when geolocation status is not success — null lat/lon guard in useFilteredRoutes
+- [Phase 04-filters]: Draft state kept in FilterPanel local useState — not Zustand; committed only on Zastosuj, discarded on backdrop close
+- [Phase 04-filters]: ActiveFilterChips positioned absolute inside map container (top-[4.25rem]) not fixed — avoids z-index conflicts with tab bar
+- [Phase 04-filters]: Sheet exit animation uses isClosing flag + 200ms delay before DOM removal — smooth UX without CSS Animations API
 
 ### Pending Todos
 
@@ -113,6 +117,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-13T22:47:36.932Z
-Stopped at: Completed 04-filters/04-01-PLAN.md
+Last session: 2026-03-13T23:07:42.942Z
+Stopped at: Completed 04-filters/04-02-PLAN.md
 Resume file: None
