@@ -2,8 +2,13 @@ import { useEffect, useRef, useState } from 'react'
 import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { useViewportStore } from '../../stores/viewport'
+import { useTrailsStore } from '../../stores/trails'
+import { useTrails } from '../../hooks/useTrails'
+import { initTrailLayers, setupTrailInteractions, updateTrailData } from './TrailLayers'
 import { MapControls } from './MapControls'
 import { LocationSearch } from './LocationSearch'
+import { LoadingBar } from './LoadingBar'
+import { CacheTimestamp } from './CacheTimestamp'
 
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN
 
@@ -11,16 +16,37 @@ export function MapView() {
   const containerRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<mapboxgl.Map | null>(null)
   const [searchHighlighted, setSearchHighlighted] = useState(false)
+  const [errorToast, setErrorToast] = useState<string | null>(null)
+  const errorTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const setCenter = useViewportStore((s) => s.setCenter)
   const setZoom = useViewportStore((s) => s.setZoom)
   const setBounds = useViewportStore((s) => s.setBounds)
+
+  const routes = useTrailsStore((s) => s.routes)
+  const { loading, error, retry, forceRefresh } = useTrails()
 
   // Check WebGL support at render time — throw so MapErrorBoundary catches it
   if (!mapboxgl.supported()) {
     throw new Error('WebGL2 not supported on this device')
   }
 
+  // Show error toast when error changes
+  useEffect(() => {
+    if (error) {
+      setErrorToast(error)
+      if (errorTimerRef.current) clearTimeout(errorTimerRef.current)
+      errorTimerRef.current = setTimeout(() => setErrorToast(null), 5000)
+    }
+  }, [error])
+
+  useEffect(() => {
+    return () => {
+      if (errorTimerRef.current) clearTimeout(errorTimerRef.current)
+    }
+  }, [])
+
+  // Map initialization
   useEffect(() => {
     // Guard: Strict Mode double-init prevention (MAP-06)
     if (mapRef.current) return
@@ -58,6 +84,12 @@ export function MapView() {
       }
     })
 
+    // Initialize trail layers once map style is loaded
+    map.on('style.load', () => {
+      initTrailLayers(map)
+      setupTrailInteractions(map)
+    })
+
     mapRef.current = map
 
     return () => {
@@ -66,16 +98,49 @@ export function MapView() {
     }
   }, [setCenter, setZoom, setBounds])
 
+  // Update trail data whenever routes change
+  useEffect(() => {
+    const map = mapRef.current
+    if (!map) return
+    if (!map.getSource('trails')) return
+    updateTrailData(map, routes)
+  }, [routes])
+
   function handleGpsDenied() {
     setSearchHighlighted(true)
     setTimeout(() => setSearchHighlighted(false), 2000)
   }
 
+  function handleRetry() {
+    setErrorToast(null)
+    if (errorTimerRef.current) clearTimeout(errorTimerRef.current)
+    retry?.()
+  }
+
   return (
     <div className="relative w-full flex-1 h-full">
+      <LoadingBar visible={loading} />
       <div ref={containerRef} className="absolute inset-0 w-full h-full" />
       <LocationSearch mapRef={mapRef} searchHighlighted={searchHighlighted} />
       <MapControls mapRef={mapRef} onGpsDenied={handleGpsDenied} />
+      <CacheTimestamp forceRefresh={forceRefresh} />
+
+      {/* Error toast — trail fetch failure */}
+      {errorToast && (
+        <div
+          role="alert"
+          aria-live="assertive"
+          className="fixed bottom-[calc(var(--spacing-tab-bar)+5rem)] left-1/2 -translate-x-1/2 z-50 bg-bg-elevated text-text-primary text-sm px-4 py-3 rounded-lg shadow-lg flex items-center gap-3 animate-[fade-in_200ms]"
+        >
+          <span>{errorToast}</span>
+          <button
+            onClick={handleRetry}
+            className="text-accent font-medium hover:underline shrink-0"
+          >
+            Sprobuj ponownie
+          </button>
+        </div>
+      )}
     </div>
   )
 }
