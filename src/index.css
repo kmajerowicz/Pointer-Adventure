@@ -51,6 +51,16 @@
     50% { transform: translateX(0%); }
     100% { transform: translateX(100%); }
   }
+
+  @keyframes sheet-up {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+
+  @keyframes sheet-down {
+    from { transform: translateY(0); }
+    to { transform: translateY(100%); }
+  }
 }
 
 /* ── Base styles ── */
