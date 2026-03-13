@@ -46,11 +46,18 @@ export interface ActivityLogEntry {
   created_at: string
 }
 
+export interface WalkPreferences {
+  length: 'short' | 'medium' | 'long' | null
+  water: 'required' | 'preferred' | 'any'
+  surface: SurfaceType | null
+}
+
 export interface User {
   id: string
   display_name: string | null
   dog_name: string | null
   avatar_url: string | null
+  walk_preferences: WalkPreferences | null
   created_at: string
 }
 
