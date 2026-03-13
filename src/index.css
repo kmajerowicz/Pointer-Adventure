@@ -61,6 +61,15 @@
     from { transform: translateY(0); }
     to { transform: translateY(100%); }
   }
+
+  --animate-heart-pop: heart-pop 300ms ease-out;
+
+  @keyframes heart-pop {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.35); }
+    70%  { transform: scale(0.9); }
+    100% { transform: scale(1); }
+  }
 }
 
 /* ── Base styles ── */
