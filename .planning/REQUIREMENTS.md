@@ -27,12 +27,12 @@
 
 ### Trail Pipeline
 
-- [ ] **PIPE-01**: Edge Function `/search-trails` accepts POST with bounding box, checks `search_areas` by `bbox_hash`, returns cached routes on hit
-- [ ] **PIPE-02**: On cache miss, Edge Function queries Overpass API for hiking routes, footpaths, nature reserves, and PTTK relations within bbox
-- [ ] **PIPE-03**: Overpass query excludes: primary/secondary/tertiary roads, residential/commercial areas, `dogs=no` trails
-- [ ] **PIPE-04**: Edge Function normalizes results per schema: `surface_type`, `difficulty`, `water_access` (via Overpass `around:200`), `trail_color`, `source`, `water_type`
-- [ ] **PIPE-05**: Edge Function upserts to `routes` (dedupe on `source_id`), inserts to `search_areas` with 7-day TTL
-- [ ] **PIPE-06**: Overpass queries include `[timeout:25]`; Edge Function uses AbortController with 20s per attempt, max 2 retries with exponential backoff
+- [x] **PIPE-01**: Edge Function `/search-trails` accepts POST with bounding box, checks `search_areas` by `bbox_hash`, returns cached routes on hit
+- [x] **PIPE-02**: On cache miss, Edge Function queries Overpass API for hiking routes, footpaths, nature reserves, and PTTK relations within bbox
+- [x] **PIPE-03**: Overpass query excludes: primary/secondary/tertiary roads, residential/commercial areas, `dogs=no` trails
+- [x] **PIPE-04**: Edge Function normalizes results per schema: `surface_type`, `difficulty`, `water_access` (via Overpass `around:200`), `trail_color`, `source`, `water_type`
+- [x] **PIPE-05**: Edge Function upserts to `routes` (dedupe on `source_id`), inserts to `search_areas` with 7-day TTL
+- [x] **PIPE-06**: Overpass queries include `[timeout:25]`; Edge Function uses AbortController with 20s per attempt, max 2 retries with exponential backoff
 - [ ] **PIPE-07**: Frontend calls Edge Function on `moveend` with 400ms debounce via `useTrails` hook
 - [ ] **PIPE-08**: Trail markers render as clustered pins on map; clusters expand on zoom
 - [ ] **PIPE-09**: PTTK trails render as colored polylines matching `trail_color` (red/blue/yellow/green/black)
@@ -173,12 +173,12 @@
 | MAP-05 | Phase 1 | Complete |
 | MAP-06 | Phase 1 | Complete |
 | MAP-07 | Phase 1 | Complete |
-| PIPE-01 | Phase 2 | Pending |
-| PIPE-02 | Phase 2 | Pending |
-| PIPE-03 | Phase 2 | Pending |
-| PIPE-04 | Phase 2 | Pending |
-| PIPE-05 | Phase 2 | Pending |
-| PIPE-06 | Phase 2 | Pending |
+| PIPE-01 | Phase 2 | Complete |
+| PIPE-02 | Phase 2 | Complete |
+| PIPE-03 | Phase 2 | Complete |
+| PIPE-04 | Phase 2 | Complete |
+| PIPE-05 | Phase 2 | Complete |
+| PIPE-06 | Phase 2 | Complete |
 | PIPE-07 | Phase 2 | Pending |
 | PIPE-08 | Phase 2 | Pending |
 | PIPE-09 | Phase 2 | Pending |

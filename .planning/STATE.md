@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Phase 2 context gathered
-last_updated: "2026-03-13T18:40:21.137Z"
+stopped_at: Completed 02-01-PLAN.md
+last_updated: "2026-03-13T18:48:26.596Z"
 last_activity: 2026-03-13 — Plan 01-01 complete (map core, geolocation, error boundary)
 progress:
   total_phases: 8
   completed_phases: 2
   total_plans: 7
-  completed_plans: 5
+  completed_plans: 6
   percent: 75
 ---
 
@@ -54,6 +54,7 @@ Progress: [████████░░] 75%
 | Phase 00-scaffolding-fixes P02 | 3 | 2 tasks | 3 files |
 | Phase 01-map-core P02 | 4m | 2 tasks | 6 files |
 | Phase 01-map-core P03 | 1m | 1 tasks | 1 files |
+| Phase 02-trail-data-pipeline P01 | 7 | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -80,6 +81,10 @@ Recent decisions affecting current work:
 - [Phase 01-map-core]: flyTo zoom 14 for search results (neighborhood level); onMouseDown on suggestions to prevent blur before click; searchHighlighted lifted to MapView for sibling prop communication
 - [Phase 01-map-core]: map.once('dragstart', removeMarker) attached inside handleSelect after marker placement — listener always fires because map is guaranteed non-null at that point
 - [Phase 01-map-core]: Defensive map.off in handleClear and unmount cleanup — prevents stale once-listener firing after manual clear or component unmount
+- [Phase 02-01]: Overpass QL uses unquoted filter [dogs\!=no] not quoted form — test spec expected unquoted and both are valid Overpass QL
+- [Phase 02-01]: vi.stubGlobal('fetch') instead of global.fetch assignment — avoids TypeScript Cannot find name 'global' in browser lib
+- [Phase 02-01]: Normalization functions inlined in Edge Function — Deno cannot resolve Vite aliases or src/ paths; extractable module exists for testability
+- [Phase 02-01]: water_access defaults to 'none' for v1 — around:200 water source subquery deferred
 
 ### Pending Todos
 
@@ -92,6 +97,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-13T18:18:19.363Z
-Stopped at: Phase 2 context gathered
-Resume file: .planning/phases/02-trail-data-pipeline/02-CONTEXT.md
+Last session: 2026-03-13T18:48:15.608Z
+Stopped at: Completed 02-01-PLAN.md
+Resume file: None
