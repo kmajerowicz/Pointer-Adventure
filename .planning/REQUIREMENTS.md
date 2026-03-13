@@ -33,10 +33,10 @@
 - [x] **PIPE-04**: Edge Function normalizes results per schema: `surface_type`, `difficulty`, `water_access` (via Overpass `around:200`), `trail_color`, `source`, `water_type`
 - [x] **PIPE-05**: Edge Function upserts to `routes` (dedupe on `source_id`), inserts to `search_areas` with 7-day TTL
 - [x] **PIPE-06**: Overpass queries include `[timeout:25]`; Edge Function uses AbortController with 20s per attempt, max 2 retries with exponential backoff
-- [ ] **PIPE-07**: Frontend calls Edge Function on `moveend` with 400ms debounce via `useTrails` hook
-- [ ] **PIPE-08**: Trail markers render as clustered pins on map; clusters expand on zoom
-- [ ] **PIPE-09**: PTTK trails render as colored polylines matching `trail_color` (red/blue/yellow/green/black)
-- [ ] **PIPE-10**: Loading state shown during trail fetch; error state with retry button on failure
+- [x] **PIPE-07**: Frontend calls Edge Function on `moveend` with 400ms debounce via `useTrails` hook
+- [x] **PIPE-08**: Trail markers render as clustered pins on map; clusters expand on zoom
+- [x] **PIPE-09**: PTTK trails render as colored polylines matching `trail_color` (red/blue/yellow/green/black)
+- [x] **PIPE-10**: Loading state shown during trail fetch; error state with retry button on failure
 
 ### Browsing
 
@@ -179,10 +179,10 @@
 | PIPE-04 | Phase 2 | Complete |
 | PIPE-05 | Phase 2 | Complete |
 | PIPE-06 | Phase 2 | Complete |
-| PIPE-07 | Phase 2 | Pending |
-| PIPE-08 | Phase 2 | Pending |
-| PIPE-09 | Phase 2 | Pending |
-| PIPE-10 | Phase 2 | Pending |
+| PIPE-07 | Phase 2 | Complete |
+| PIPE-08 | Phase 2 | Complete |
+| PIPE-09 | Phase 2 | Complete |
+| PIPE-10 | Phase 2 | Complete |
 | BROW-01 | Phase 3 | Pending |
 | BROW-02 | Phase 3 | Pending |
 | BROW-03 | Phase 3 | Pending |

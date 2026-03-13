@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 02-01-PLAN.md
-last_updated: "2026-03-13T18:48:26.596Z"
+stopped_at: Completed 02-02-PLAN.md
+last_updated: "2026-03-13T18:55:50.535Z"
 last_activity: 2026-03-13 — Plan 01-01 complete (map core, geolocation, error boundary)
 progress:
   total_phases: 8
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 7
-  completed_plans: 6
+  completed_plans: 7
   percent: 75
 ---
 
@@ -55,6 +55,7 @@ Progress: [████████░░] 75%
 | Phase 01-map-core P02 | 4m | 2 tasks | 6 files |
 | Phase 01-map-core P03 | 1m | 1 tasks | 1 files |
 | Phase 02-trail-data-pipeline P01 | 7 | 2 tasks | 6 files |
+| Phase 02-trail-data-pipeline P02 | 5 | 2 tasks | 10 files |
 
 ## Accumulated Context
 
@@ -85,6 +86,9 @@ Recent decisions affecting current work:
 - [Phase 02-01]: vi.stubGlobal('fetch') instead of global.fetch assignment — avoids TypeScript Cannot find name 'global' in browser lib
 - [Phase 02-01]: Normalization functions inlined in Edge Function — Deno cannot resolve Vite aliases or src/ paths; extractable module exists for testability
 - [Phase 02-01]: water_access defaults to 'none' for v1 — around:200 water source subquery deferred
+- [Phase 02-02]: setRetry stores plain function reference, not thunk — Zustand would invoke () => fn at set time and store the return value
+- [Phase 02-02]: Trail layer init uses map.on('style.load') — ensures sources/layers added after style is fully loaded
+- [Phase 02-02]: Workbox maximumFileSizeToCacheInBytes raised to 4 MiB — Mapbox GL JS bundle exceeds 2 MiB default
 
 ### Pending Todos
 
@@ -97,6 +101,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-13T18:48:15.608Z
-Stopped at: Completed 02-01-PLAN.md
+Last session: 2026-03-13T18:55:50.532Z
+Stopped at: Completed 02-02-PLAN.md
 Resume file: None
