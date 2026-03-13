@@ -5,6 +5,7 @@ import { useGeolocation } from '../../hooks/useGeolocation'
 
 interface MapControlsProps {
   mapRef: RefObject<MapboxMap | null>
+  onGpsDenied?: () => void
 }
 
 interface ToastState {
@@ -12,7 +13,7 @@ interface ToastState {
   visible: boolean
 }
 
-export function MapControls({ mapRef }: MapControlsProps) {
+export function MapControls({ mapRef, onGpsDenied }: MapControlsProps) {
   const { state, locate } = useGeolocation()
   const [toast, setToast] = useState<ToastState | null>(null)
   const dismissTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -41,7 +42,7 @@ export function MapControls({ mapRef }: MapControlsProps) {
     } else if (state.status === 'error') {
       if (state.code === 1) {
         showToast('Brak dostepu do lokalizacji')
-        // TODO: Plan 02 — highlight search bar on GPS denial
+        onGpsDenied?.()
       } else if (state.code === 2 || state.code === 3) {
         showToast('Nie udalo sie znalezc lokalizacji')
       }

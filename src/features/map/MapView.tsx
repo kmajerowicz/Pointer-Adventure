@@ -1,14 +1,16 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { useViewportStore } from '../../stores/viewport'
 import { MapControls } from './MapControls'
+import { LocationSearch } from './LocationSearch'
 
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN
 
 export function MapView() {
   const containerRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<mapboxgl.Map | null>(null)
+  const [searchHighlighted, setSearchHighlighted] = useState(false)
 
   const setCenter = useViewportStore((s) => s.setCenter)
   const setZoom = useViewportStore((s) => s.setZoom)
@@ -64,10 +66,16 @@ export function MapView() {
     }
   }, [setCenter, setZoom, setBounds])
 
+  function handleGpsDenied() {
+    setSearchHighlighted(true)
+    setTimeout(() => setSearchHighlighted(false), 2000)
+  }
+
   return (
     <div className="relative w-full h-full">
       <div ref={containerRef} className="absolute inset-0" />
-      <MapControls mapRef={mapRef} />
+      <LocationSearch mapRef={mapRef} searchHighlighted={searchHighlighted} />
+      <MapControls mapRef={mapRef} onGpsDenied={handleGpsDenied} />
     </div>
   )
 }
