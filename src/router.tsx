@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import { AppLayout } from './components/layout/AppLayout'
 import { MapView, MapErrorBoundary } from './features/map'
 import { TrailList } from './features/trails/TrailList'
+import { TrailDetail } from './features/trails/TrailDetail'
 const FavoritesPage = () => <div className="flex-1 flex items-center justify-center text-text-secondary">Ulubione</div>
 const ProfilePage = () => <div className="flex-1 flex items-center justify-center text-text-secondary">Profil</div>
 const InvitePage = () => <div className="flex-1 flex items-center justify-center text-text-secondary">Zaproszenie</div>
@@ -20,4 +21,5 @@ export const router = createBrowserRouter([
   },
   { path: '/invite', element: <InvitePage /> },
   { path: '/auth', element: <AuthPage /> },
+  { path: '/trails/:id', element: <TrailDetail /> },
 ])

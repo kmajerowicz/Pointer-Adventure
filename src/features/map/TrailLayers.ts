@@ -180,8 +180,11 @@ export function updateTrailData(map: MapboxMap, routes: Route[]): void {
   }
 }
 
-export function setupTrailInteractions(map: MapboxMap): void {
-  // Cluster click — expand
+export function setupTrailInteractions(
+  map: MapboxMap,
+  onTrailClick?: (id: string) => void,
+): void {
+  // Cluster click — expand (no onTrailClick behavior, always zoom in)
   map.on('click', 'trail-clusters', (e) => {
     if (!e.features || e.features.length === 0) return
     const feature = e.features[0]
@@ -199,10 +202,18 @@ export function setupTrailInteractions(map: MapboxMap): void {
     })
   })
 
-  // Unclustered pin click — show popup
+  // Unclustered pin click — navigate to detail if callback provided, else show popup
   map.on('click', 'trail-unclustered', (e) => {
     if (!e.features || e.features.length === 0) return
     const feature = e.features[0]
+    const id = feature.properties?.id as string | undefined
+
+    if (onTrailClick && id) {
+      onTrailClick(id)
+      return
+    }
+
+    // Fallback: popup (backward-compatible)
     const name = feature.properties?.name as string | null
     if (feature.geometry.type === 'Point') {
       new mapboxgl.Popup()
@@ -212,10 +223,18 @@ export function setupTrailInteractions(map: MapboxMap): void {
     }
   })
 
-  // Line click — show popup
+  // Line click — navigate to detail if callback provided, else show popup
   map.on('click', 'trail-line-fill', (e) => {
     if (!e.features || e.features.length === 0) return
     const feature = e.features[0]
+    const id = feature.properties?.id as string | undefined
+
+    if (onTrailClick && id) {
+      onTrailClick(id)
+      return
+    }
+
+    // Fallback: popup (backward-compatible)
     const name = feature.properties?.name as string | null
     new mapboxgl.Popup()
       .setLngLat(e.lngLat)

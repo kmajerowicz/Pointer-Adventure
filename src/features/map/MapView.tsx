@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
+import { useNavigate } from 'react-router-dom'
 import { useViewportStore } from '../../stores/viewport'
 import { useTrailsStore } from '../../stores/trails'
 import { useTrails } from '../../hooks/useTrails'
@@ -15,6 +16,10 @@ mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN
 export function MapView() {
   const containerRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<mapboxgl.Map | null>(null)
+  const navigate = useNavigate()
+  // Store navigate in a ref so the style.load closure always has the latest stable reference
+  const navigateRef = useRef(navigate)
+  navigateRef.current = navigate
   const [searchHighlighted, setSearchHighlighted] = useState(false)
   const [errorToast, setErrorToast] = useState<string | null>(null)
   const errorTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -97,7 +102,7 @@ export function MapView() {
     // Initialize trail layers once map style is loaded
     map.on('style.load', () => {
       initTrailLayers(map)
-      setupTrailInteractions(map)
+      setupTrailInteractions(map, (id) => navigateRef.current(`/trails/${id}`))
     })
 
     mapRef.current = map
