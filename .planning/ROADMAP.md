@@ -136,12 +136,12 @@ Plans:
   3. User can add or edit a private note on any favorited trail from TrailDetail
   4. Tapping "Przeszedlem!" on TrailDetail creates an activity log entry and shows a "Zapisano spacer!" toast; a "walked" indicator appears on that TrailCard
   5. Profile page shows display name, dog name, activity history (walked trails with dates), and a button to generate new invite links with their status (pending/used)
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 06-01: Favorites toggle, FavoritesList, private notes
-- [ ] 06-02: Activity log, "Przeszedlem!" button, walked indicator
-- [ ] 06-03: Profile page, invite generation
+- [ ] 06-01-PLAN.md — Zustand stores (favorites, activity, invites), data-fetching hooks, useFilteredRoutes extension (FAV-01, FAV-02, ACT-02, ACT-03)
+- [ ] 06-02-PLAN.md — TrailCard heart/walked, TrailDetail heart + note + Przeszedlem, FavoritesList page, router wiring (FAV-01, FAV-02, FAV-03, FAV-04, FAV-05, ACT-01, ACT-02, ACT-03)
+- [ ] 06-03-PLAN.md — ProfileView with activity history, InviteGenerator, router wiring (ACT-04, PROF-01, PROF-02, PROF-03)
 
 ### Phase 7: PWA Hardening
 **Goal**: The app installs correctly on Android and iOS, works offline with the last 10 viewed trails, and never silently fails due to service worker storage issues
