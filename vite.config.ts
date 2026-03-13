@@ -19,9 +19,8 @@ export default defineConfig({
             handler: 'CacheFirst',
             options: {
               cacheName: 'psi-szlak-mapbox-tiles',
-              expiration: { maxEntries: 500, maxAgeSeconds: 60 * 60 * 24 * 7 },
+              expiration: { maxEntries: 500, maxAgeSeconds: 60 * 60 * 24 * 7, purgeOnQuotaError: true },
               cacheableResponse: { statuses: [0, 200] },
-              purgeOnQuotaError: true,
             },
           },
         ],
