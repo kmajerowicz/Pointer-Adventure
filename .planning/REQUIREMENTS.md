@@ -48,14 +48,14 @@
 
 ### Filters
 
-- [ ] **FILT-01**: Filter panel opens as bottom sheet with sticky "Zastosuj" button
+- [x] **FILT-01**: Filter panel opens as bottom sheet with sticky "Zastosuj" button
 - [x] **FILT-02**: Length filter: `< 5 km` / `5–15 km` / `> 15 km`
 - [x] **FILT-03**: Surface filter: Ziemia / Żwir / Asfalt / Mieszana / Nieznana
 - [x] **FILT-04**: Water access filter: Wymagana / Mile widziana / Obojętne — "Mile widziana" boosts water trails higher, does not exclude others
 - [x] **FILT-05**: Difficulty filter: Łatwa / Średnia / Trudna / Nieznana
 - [x] **FILT-06**: Distance from user filter: `< 10 km` / `< 30 km` / `< 50 km` (client-side Haversine on `center_lat`/`center_lon`)
 - [x] **FILT-07**: Marked trail filter: Tak / Obojętne
-- [ ] **FILT-08**: Active filter count badge shown on filter trigger button; horizontal chip bar shows applied filters with × to remove
+- [x] **FILT-08**: Active filter count badge shown on filter trigger button; horizontal chip bar shows applied filters with × to remove
 - [x] **FILT-09**: Filters applied client-side when bounds unchanged; Edge Function only re-invoked on bounds change
 - [x] **FILT-10**: "Wyczyść wszystko" reset link clears all filters
 
@@ -188,14 +188,14 @@
 | BROW-03 | Phase 3 | Complete |
 | BROW-04 | Phase 3 | Complete |
 | BROW-05 | Phase 3 | Complete |
-| FILT-01 | Phase 4 | Pending |
+| FILT-01 | Phase 4 | Complete |
 | FILT-02 | Phase 4 | Complete |
 | FILT-03 | Phase 4 | Complete |
 | FILT-04 | Phase 4 | Complete |
 | FILT-05 | Phase 4 | Complete |
 | FILT-06 | Phase 4 | Complete |
 | FILT-07 | Phase 4 | Complete |
-| FILT-08 | Phase 4 | Pending |
+| FILT-08 | Phase 4 | Complete |
 | FILT-09 | Phase 4 | Complete |
 | FILT-10 | Phase 4 | Complete |
 | AUTH-01 | Phase 5 | Pending |
