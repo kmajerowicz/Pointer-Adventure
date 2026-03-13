@@ -22,6 +22,8 @@ export function MapView() {
   const setCenter = useViewportStore((s) => s.setCenter)
   const setZoom = useViewportStore((s) => s.setZoom)
   const setBounds = useViewportStore((s) => s.setBounds)
+  const requestedZoom = useViewportStore((s) => s.requestedZoom)
+  const clearRequestedZoom = useViewportStore((s) => s.clearRequestedZoom)
 
   const routes = useTrailsStore((s) => s.routes)
   const { loading, error, retry, forceRefresh } = useTrails()
@@ -45,6 +47,14 @@ export function MapView() {
       if (errorTimerRef.current) clearTimeout(errorTimerRef.current)
     }
   }, [])
+
+  // Watch requestedZoom — dispatched by EmptyTrailState zoom-out CTA
+  useEffect(() => {
+    const map = mapRef.current
+    if (requestedZoom == null || !map) return
+    map.flyTo({ zoom: requestedZoom, center: map.getCenter() })
+    clearRequestedZoom()
+  }, [requestedZoom, clearRequestedZoom])
 
   // Map initialization
   useEffect(() => {

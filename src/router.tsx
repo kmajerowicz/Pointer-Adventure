@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { AppLayout } from './components/layout/AppLayout'
 import { MapView, MapErrorBoundary } from './features/map'
-const TrailsPage = () => <div className="flex-1 flex items-center justify-center text-text-secondary">Trasy</div>
+import { TrailList } from './features/trails/TrailList'
 const FavoritesPage = () => <div className="flex-1 flex items-center justify-center text-text-secondary">Ulubione</div>
 const ProfilePage = () => <div className="flex-1 flex items-center justify-center text-text-secondary">Profil</div>
 const InvitePage = () => <div className="flex-1 flex items-center justify-center text-text-secondary">Zaproszenie</div>
@@ -13,7 +13,7 @@ export const router = createBrowserRouter([
     element: <AppLayout />,
     children: [
       { index: true, element: <MapErrorBoundary><MapView /></MapErrorBoundary> },
-      { path: 'trails', element: <TrailsPage /> },
+      { path: 'trails', element: <TrailList /> },
       { path: 'favorites', element: <FavoritesPage /> },
       { path: 'profile', element: <ProfilePage /> },
     ],
