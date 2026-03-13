@@ -3,13 +3,17 @@ import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { useNavigate } from 'react-router-dom'
 import { useViewportStore } from '../../stores/viewport'
-import { useTrailsStore } from '../../stores/trails'
 import { useTrails } from '../../hooks/useTrails'
+import { useFilteredRoutes } from '../../hooks/useFilteredRoutes'
 import { initTrailLayers, setupTrailInteractions, updateTrailData } from './TrailLayers'
 import { MapControls } from './MapControls'
 import { LocationSearch } from './LocationSearch'
 import { LoadingBar } from './LoadingBar'
 import { CacheTimestamp } from './CacheTimestamp'
+import { FilterButton } from './FilterButton'
+import { FilterPanel } from './FilterPanel'
+import { ActiveFilterChips } from './ActiveFilterChips'
+import { useUIStore } from '../../stores/ui'
 
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN
 
@@ -30,8 +34,12 @@ export function MapView() {
   const requestedZoom = useViewportStore((s) => s.requestedZoom)
   const clearRequestedZoom = useViewportStore((s) => s.clearRequestedZoom)
 
-  const routes = useTrailsStore((s) => s.routes)
+  const filteredRoutes = useFilteredRoutes()
   const { loading, error, retry, forceRefresh } = useTrails()
+
+  const isFilterOpen = useUIStore((s) => s.isFilterOpen)
+  const setFilterOpen = useUIStore((s) => s.setFilterOpen)
+  const [scrollToCategory, setScrollToCategory] = useState<string | null>(null)
 
   // Check WebGL support at render time — throw so MapErrorBoundary catches it
   if (!mapboxgl.supported()) {
@@ -118,8 +126,13 @@ export function MapView() {
     const map = mapRef.current
     if (!map) return
     if (!map.getSource('trails')) return
-    updateTrailData(map, routes)
-  }, [routes])
+    updateTrailData(map, filteredRoutes)
+  }, [filteredRoutes])
+
+  function handleChipTap(category: string) {
+    setScrollToCategory(category)
+    setFilterOpen(true)
+  }
 
   function handleGpsDenied() {
     setSearchHighlighted(true)
@@ -137,8 +150,21 @@ export function MapView() {
       <LoadingBar visible={loading} />
       <div ref={containerRef} className="absolute inset-0 w-full h-full" />
       <LocationSearch mapRef={mapRef} searchHighlighted={searchHighlighted} />
+      {/* Active filter chips — positioned below the search bar */}
+      <div className="absolute top-[4.5rem] left-4 right-4 z-10">
+        <ActiveFilterChips onChipTap={handleChipTap} />
+      </div>
       <MapControls mapRef={mapRef} onGpsDenied={handleGpsDenied} />
+      <FilterButton onPress={() => setFilterOpen(true)} />
       <CacheTimestamp forceRefresh={forceRefresh} />
+      <FilterPanel
+        isOpen={isFilterOpen}
+        onClose={() => {
+          setFilterOpen(false)
+          setScrollToCategory(null)
+        }}
+        scrollToCategory={scrollToCategory}
+      />
 
       {/* Error toast — trail fetch failure */}
       {errorToast && (

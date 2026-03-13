@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useTrailsStore } from '../../stores/trails'
+import { useFilteredRoutes } from '../../hooks/useFilteredRoutes'
 import { useViewportStore } from '../../stores/viewport'
 import { useGeolocation } from '../../hooks/useGeolocation'
 import { haversineKm } from '../../lib/haversine'
@@ -9,7 +9,7 @@ import { EmptyTrailState } from './EmptyTrailState'
 
 export function TrailList() {
   const navigate = useNavigate()
-  const routes = useTrailsStore((s) => s.routes)
+  const routes = useFilteredRoutes()
 
   // Geolocation — best origin when available
   const { state: geoState } = useGeolocation()
