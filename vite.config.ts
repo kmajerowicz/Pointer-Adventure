@@ -18,8 +18,10 @@ export default defineConfig({
             urlPattern: /^https:\/\/api\.mapbox\.com\/.*/i,
             handler: 'CacheFirst',
             options: {
-              cacheName: 'mapbox-tiles',
+              cacheName: 'psi-szlak-mapbox-tiles',
               expiration: { maxEntries: 500, maxAgeSeconds: 60 * 60 * 24 * 7 },
+              cacheableResponse: { statuses: [0, 200] },
+              purgeOnQuotaError: true,
             },
           },
         ],
