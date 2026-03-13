@@ -72,8 +72,8 @@ export function MapView() {
   }
 
   return (
-    <div className="relative w-full h-full">
-      <div ref={containerRef} className="absolute inset-0" />
+    <div className="relative w-full flex-1 h-full">
+      <div ref={containerRef} className="absolute inset-0 w-full h-full" />
       <LocationSearch mapRef={mapRef} searchHighlighted={searchHighlighted} />
       <MapControls mapRef={mapRef} onGpsDenied={handleGpsDenied} />
     </div>
