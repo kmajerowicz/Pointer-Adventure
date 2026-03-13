@@ -17,13 +17,13 @@
 
 ### Map
 
-- [ ] **MAP-01**: User sees interactive Mapbox Outdoors map centered on Poland (`[19.145, 51.919]`, zoom 6) on app load
-- [ ] **MAP-02**: User can tap "Gdzie jestem" to center map on current GPS location with fly-to animation
+- [x] **MAP-01**: User sees interactive Mapbox Outdoors map centered on Poland (`[19.145, 51.919]`, zoom 6) on app load
+- [x] **MAP-02**: User can tap "Gdzie jestem" to center map on current GPS location with fly-to animation
 - [ ] **MAP-03**: User can search Polish locations via Mapbox Geocoding and map flies to result
-- [ ] **MAP-04**: Map viewport (center, zoom, bounds) syncs to Zustand store on `moveend` (not every frame)
-- [ ] **MAP-05**: When GPS is denied, user sees fallback message and search bar per PRD section 7
-- [ ] **MAP-06**: Map uses single-instance `useRef` pattern to prevent WebGL context leaks on tab navigation
-- [ ] **MAP-07**: Error boundary wraps map component — invalid token or WebGL failure shows recovery UI
+- [x] **MAP-04**: Map viewport (center, zoom, bounds) syncs to Zustand store on `moveend` (not every frame)
+- [x] **MAP-05**: When GPS is denied, user sees fallback message and search bar per PRD section 7
+- [x] **MAP-06**: Map uses single-instance `useRef` pattern to prevent WebGL context leaks on tab navigation
+- [x] **MAP-07**: Error boundary wraps map component — invalid token or WebGL failure shows recovery UI
 
 ### Trail Pipeline
 
@@ -166,13 +166,13 @@
 | FOUN-05 | Phase 0 | Complete |
 | FOUN-06 | Phase 0 | Complete |
 | FOUN-07 | Phase 0 | Complete |
-| MAP-01 | Phase 1 | Pending |
-| MAP-02 | Phase 1 | Pending |
+| MAP-01 | Phase 1 | Complete |
+| MAP-02 | Phase 1 | Complete |
 | MAP-03 | Phase 1 | Pending |
-| MAP-04 | Phase 1 | Pending |
-| MAP-05 | Phase 1 | Pending |
-| MAP-06 | Phase 1 | Pending |
-| MAP-07 | Phase 1 | Pending |
+| MAP-04 | Phase 1 | Complete |
+| MAP-05 | Phase 1 | Complete |
+| MAP-06 | Phase 1 | Complete |
+| MAP-07 | Phase 1 | Complete |
 | PIPE-01 | Phase 2 | Pending |
 | PIPE-02 | Phase 2 | Pending |
 | PIPE-03 | Phase 2 | Pending |

@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: completed
-stopped_at: Phase 1 context gathered
-last_updated: "2026-03-13T17:22:55.379Z"
-last_activity: 2026-03-13 — Plan 00-01 complete (schema + type fixes)
+status: in_progress
+stopped_at: Completed 01-map-core 01-01-PLAN.md
+last_updated: "2026-03-13T17:53:58Z"
+last_activity: 2026-03-13 — Plan 01-01 complete (map core, geolocation, error boundary)
 progress:
   total_phases: 8
   completed_phases: 1
-  total_plans: 2
-  completed_plans: 2
-  percent: 100
+  total_plans: 4
+  completed_plans: 4
+  percent: 75
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-11)
 
 **Core value:** Dog owners can instantly discover nearby trails with water access and natural surfaces — open map → see dog-friendly trails near me
-**Current focus:** Phase 0 — Scaffolding Fixes
+**Current focus:** Phase 1 — Map Core
 
 ## Current Position
 
-Phase: 0 of 8 (Scaffolding Fixes)
-Plan: 1 of 1 in current phase
-Status: Phase complete — ready for Phase 1
-Last activity: 2026-03-13 — Plan 00-01 complete (schema + type fixes)
+Phase: 1 of 8 (Map Core)
+Plan: 1 of 1 completed in current phase
+Status: Plan 01-01 complete — Phase 1 Map Core done
+Last activity: 2026-03-13 — Plan 01-01 complete (map core, geolocation, error boundary)
 
-Progress: [██████████] 100%
+Progress: [████████░░] 75%
 
 ## Performance Metrics
 
@@ -44,6 +44,7 @@ Progress: [██████████] 100%
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 0 — Scaffolding Fixes | 1 | 2m | 2m |
+| 1 — Map Core | 1 | 3m | 3m |
 
 **Recent Trend:**
 - Last 5 plans: 2m
@@ -70,6 +71,10 @@ Recent decisions affecting current work:
 - [Phase 5]: Invite token TTL is 30 days (`invitations.expires_at`); magic link email scanners pre-fetch links — OTP code fallback required
 - [Phase 00-scaffolding-fixes]: purgeOnQuotaError placed inside expiration object (ExpirationPluginOptions), not top-level options — required by Workbox type API
 - [Phase 00-scaffolding-fixes]: No replacement CSS added for attribution — compact:true AttributionControl deferred to Phase 1 MapView component
+- [Phase 1 Plan 01]: useRef lifecycle pattern for Mapbox map instance — map.remove() called exactly once in cleanup, Strict Mode double-init guard in useEffect
+- [Phase 1 Plan 01]: mapboxgl.supported() checked at render time and thrown to MapErrorBoundary — same boundary handles WebGL-unsupported and runtime map errors
+- [Phase 1 Plan 01]: MapControls imports Mapbox types as named import (not namespace) to avoid TypeScript unused-import error
+- [Phase 1 Plan 01]: vitest.config.ts updated to jsdom environment — required for @testing-library/react renderHook
 
 ### Pending Todos
 
@@ -82,6 +87,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-13T17:22:55.375Z
-Stopped at: Phase 1 context gathered
-Resume file: .planning/phases/01-map-core/01-CONTEXT.md
+Last session: 2026-03-13T17:53:58Z
+Stopped at: Completed 01-map-core 01-01-PLAN.md
+Resume file: .planning/phases/01-map-core/01-01-SUMMARY.md
