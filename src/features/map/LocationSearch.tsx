@@ -28,17 +28,6 @@ export function LocationSearch({ mapRef, searchHighlighted = false }: LocationSe
     }
   }, [])
 
-  // Wire dragstart on map to remove marker — set up once when mapRef is ready
-  useEffect(() => {
-    const map = mapRef.current
-    if (!map) return
-
-    map.on('dragstart', removeMarker)
-    return () => {
-      map.off('dragstart', removeMarker)
-    }
-  }, [mapRef, removeMarker])
-
   // Close dropdown on outside click/touch
   useEffect(() => {
     function handleOutsideInteraction(e: MouseEvent | TouchEvent) {
@@ -55,13 +44,17 @@ export function LocationSearch({ mapRef, searchHighlighted = false }: LocationSe
     }
   }, [])
 
-  // Cleanup debounce timer on unmount
+  // Cleanup debounce timer and dragstart listener on unmount
   useEffect(() => {
     return () => {
       if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current)
       if (abortControllerRef.current) abortControllerRef.current.abort()
+      const map = mapRef.current
+      if (map) {
+        map.off('dragstart', removeMarker)
+      }
     }
-  }, [])
+  }, [mapRef, removeMarker])
 
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.target.value
@@ -108,6 +101,9 @@ export function LocationSearch({ mapRef, searchHighlighted = false }: LocationSe
       markerRef.current = new mapboxgl.Marker({ color: '#C9A84C' })
         .setLngLat([lng, lat])
         .addTo(map)
+
+      // Remove marker on next user pan — once() self-cleans after firing
+      map.once('dragstart', removeMarker)
     }
   }
 
@@ -115,6 +111,10 @@ export function LocationSearch({ mapRef, searchHighlighted = false }: LocationSe
     setQuery('')
     setResults([])
     setIsOpen(false)
+    const map = mapRef.current
+    if (map) {
+      map.off('dragstart', removeMarker)
+    }
     removeMarker()
     inputRef.current?.focus()
   }
