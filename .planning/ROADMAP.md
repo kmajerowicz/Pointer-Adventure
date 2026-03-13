@@ -39,7 +39,7 @@ Plans:
 - [ ] 00-02-PLAN.md — CSS fix, Workbox config, dist/ verification, PRD column names (FOUN-03, FOUN-04, FOUN-05, FOUN-06)
 
 ### Phase 1: Map Core
-**Goal**: Users can open the app and see an interactive map centered on their location, with the map lifecycle managed correctly so no WebGL context leaks are possible
+**Goal**: Users can open the app and see an interactive map centered on Poland, with geolocation, location search, and WebGL lifecycle managed correctly so no context leaks are possible
 **Depends on**: Phase 0
 **Requirements**: MAP-01, MAP-02, MAP-03, MAP-04, MAP-05, MAP-06, MAP-07
 **Skills**: frontend-design + responsive-design + tailwind-design-system + vercel-react-best-practices
@@ -49,11 +49,11 @@ Plans:
   3. User types a Polish location into the search bar and the map flies to the geocoded result
   4. Switching between bottom tabs (Mapa / Trasy / Ulubione / Profil) and returning to Mapa does not degrade map rendering — no black screens after repeated navigation
   5. If the Mapbox token is invalid or WebGL fails, a recovery UI appears instead of a crash
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 01-01: Map instance, lifecycle, and geolocation
-- [ ] 01-02: Location search and error boundary
+- [ ] 01-01-PLAN.md — MapView lifecycle, geolocation button, viewport sync, error boundary (MAP-01, MAP-02, MAP-04, MAP-05, MAP-06, MAP-07)
+- [ ] 01-02-PLAN.md — Location search with Geocoding v6 autocomplete and temporary pin (MAP-03)
 
 ### Phase 2: Trail Data Pipeline
 **Goal**: Trail data from OpenStreetMap and PTTK is automatically fetched, cached, and surfaced on the map as the user pans
