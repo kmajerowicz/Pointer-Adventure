@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Phase 6 context gathered
-last_updated: "2026-03-13T23:30:39.015Z"
+stopped_at: Completed 05-01-PLAN.md
+last_updated: "2026-03-13T23:49:28.660Z"
 last_activity: 2026-03-13 — Plan 01-01 complete (map core, geolocation, error boundary)
 progress:
   total_phases: 8
   completed_phases: 5
-  total_plans: 12
-  completed_plans: 11
+  total_plans: 17
+  completed_plans: 12
   percent: 75
 ---
 
@@ -60,6 +60,7 @@ Progress: [████████░░] 75%
 | Phase 03-trail-display-and-browsing P02 | 3 | 2 tasks | 6 files |
 | Phase 04-filters P01 | 1 | 1 tasks | 4 files |
 | Phase 04-filters P02 | 15 | 3 tasks | 6 files |
+| Phase 05-auth-and-onboarding P01 | 3 | 3 tasks | 14 files |
 
 ## Accumulated Context
 
@@ -105,6 +106,9 @@ Recent decisions affecting current work:
 - [Phase 04-filters]: Draft state kept in FilterPanel local useState — not Zustand; committed only on Zastosuj, discarded on backdrop close
 - [Phase 04-filters]: ActiveFilterChips positioned absolute inside map container (top-[4.25rem]) not fixed — avoids z-index conflicts with tab bar
 - [Phase 04-filters]: Sheet exit animation uses isClosing flag + 200ms delay before DOM removal — smooth UX without CSS Animations API
+- [Phase 05-auth-and-onboarding]: import type for supabase-js types required by verbatimModuleSyntax — use import type for all supabase type aliases
+- [Phase 05-auth-and-onboarding]: Auth init logic (getSession, onAuthStateChange) excluded from store — belongs in App.tsx; store is pure state+setters
+- [Phase 05-auth-and-onboarding]: Wave 0 test stubs use it.todo() not it.skip() — todos are skipped never fail
 
 ### Pending Todos
 
@@ -117,6 +121,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-13T23:30:39.011Z
-Stopped at: Phase 6 context gathered
-Resume file: .planning/phases/06-favorites-and-activity/06-CONTEXT.md
+Last session: 2026-03-13T23:49:28.657Z
+Stopped at: Completed 05-01-PLAN.md
+Resume file: None
