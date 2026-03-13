@@ -7,7 +7,9 @@ export interface Route {
   length_km: number | null
   surface_type: 'dirt' | 'gravel' | 'asphalt' | 'mixed' | 'unknown'
   difficulty: 'easy' | 'moderate' | 'hard' | 'unknown'
-  water_access: boolean | null
+  water_access: 'none' | 'nearby' | 'on_route'
+  source: 'osm' | 'pttk' | null
+  water_type: 'river' | 'lake' | 'stream' | null
   dogs_allowed: boolean | null
   trail_color: 'red' | 'blue' | 'yellow' | 'green' | 'black' | null
   is_marked: boolean
@@ -57,6 +59,7 @@ export interface Invitation {
   token: string
   created_by: string
   used_by: string | null
+  used_at: string | null
   expires_at: string
   created_at: string
 }
@@ -64,3 +67,5 @@ export interface Invitation {
 export type SurfaceType = Route['surface_type']
 export type Difficulty = Route['difficulty']
 export type TrailColor = NonNullable<Route['trail_color']>
+export type WaterAccess = Route['water_access']
+export type WaterType = Route['water_type']
