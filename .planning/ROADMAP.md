@@ -11,7 +11,7 @@ Starting from a complete Phase 0 scaffolding, this roadmap builds the app in str
 - Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
 
 - [x] **Phase 0: Scaffolding Fixes** - Correctness prerequisites: schema migration, Workbox config, attribution ToS compliance, git cleanup (completed 2026-03-13)
-- [x] **Phase 1: Map Core** - Stable interactive map with geolocation, search, and WebGL lifecycle managed correctly from day one (completed 2026-03-13)
+- [ ] **Phase 1: Map Core** - Stable interactive map with geolocation, search, and WebGL lifecycle managed correctly from day one
 - [ ] **Phase 2: Trail Data Pipeline** - Edge Function caching proxy (Overpass → Supabase), `useTrails` hook, trail pins on map
 - [ ] **Phase 3: Trail Display and Browsing** - TrailCard, TrailList, TrailDetail, PTTK polylines, map/list toggle
 - [ ] **Phase 4: Filters** - 6-category filter panel (bottom sheet), client-side filter application, chip bar
@@ -49,11 +49,12 @@ Plans:
   3. User types a Polish location into the search bar and the map flies to the geocoded result
   4. Switching between bottom tabs (Mapa / Trasy / Ulubione / Profil) and returning to Mapa does not degrade map rendering — no black screens after repeated navigation
   5. If the Mapbox token is invalid or WebGL fails, a recovery UI appears instead of a crash
-**Plans**: 2 plans
+**Plans**: 3 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — MapView lifecycle, geolocation button, viewport sync, error boundary (MAP-01, MAP-02, MAP-04, MAP-05, MAP-06, MAP-07)
-- [ ] 01-02-PLAN.md — Location search with Geocoding v6 autocomplete and temporary pin (MAP-03)
+- [x] 01-01-PLAN.md — MapView lifecycle, geolocation button, viewport sync, error boundary (MAP-01, MAP-02, MAP-04, MAP-05, MAP-06, MAP-07)
+- [x] 01-02-PLAN.md — Location search with Geocoding v6 autocomplete and temporary pin (MAP-03)
+- [ ] 01-03-PLAN.md — Gap closure: fix dragstart listener timing bug for search pin removal (MAP-03)
 
 ### Phase 2: Trail Data Pipeline
 **Goal**: Trail data from OpenStreetMap and PTTK is automatically fetched, cached, and surfaced on the map as the user pans
@@ -164,7 +165,7 @@ Phases execute in numeric order: 0 → 1 → 2 → 3 → 4 → 5 → 6 → 7
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 0. Scaffolding Fixes | 2/2 | Complete    | 2026-03-13 |
-| 1. Map Core | 2/2 | Complete   | 2026-03-13 |
+| 1. Map Core | 2/3 | Gap closure   | - |
 | 2. Trail Data Pipeline | 0/2 | Not started | - |
 | 3. Trail Display and Browsing | 0/2 | Not started | - |
 | 4. Filters | 0/1 | Not started | - |
