@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Phase 4 context gathered
-last_updated: "2026-03-13T19:12:37.304Z"
+stopped_at: Completed 03-trail-display-and-browsing/03-01-PLAN.md
+last_updated: "2026-03-13T19:15:43.113Z"
 last_activity: 2026-03-13 — Plan 01-01 complete (map core, geolocation, error boundary)
 progress:
   total_phases: 8
   completed_phases: 3
   total_plans: 9
-  completed_plans: 7
+  completed_plans: 8
   percent: 75
 ---
 
@@ -56,6 +56,7 @@ Progress: [████████░░] 75%
 | Phase 01-map-core P03 | 1m | 1 tasks | 1 files |
 | Phase 02-trail-data-pipeline P01 | 7 | 2 tasks | 6 files |
 | Phase 02-trail-data-pipeline P02 | 5 | 2 tasks | 10 files |
+| Phase 03-trail-display-and-browsing P01 | 4 | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -89,6 +90,9 @@ Recent decisions affecting current work:
 - [Phase 02-02]: setRetry stores plain function reference, not thunk — Zustand would invoke () => fn at set time and store the return value
 - [Phase 02-02]: Trail layer init uses map.on('style.load') — ensures sources/layers added after style is fully loaded
 - [Phase 02-02]: Workbox maximumFileSizeToCacheInBytes raised to 4 MiB — Mapbox GL JS bundle exceeds 2 MiB default
+- [Phase 03-trail-display-and-browsing]: Explicit class map for PTTK border colors — dynamic string interpolation purged by Tailwind v4
+- [Phase 03-trail-display-and-browsing]: trail_color black uses border-l-[#808080] — #1A1A1A is invisible on dark bg-bg-surface
+- [Phase 03-trail-display-and-browsing]: Warsaw-Wroclaw haversine result is ~301km straight-line, not ~292km — test range corrected to 295-310
 
 ### Pending Todos
 
@@ -101,6 +105,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-13T19:12:37.299Z
-Stopped at: Phase 4 context gathered
-Resume file: .planning/phases/04-filters/04-CONTEXT.md
+Last session: 2026-03-13T19:15:43.110Z
+Stopped at: Completed 03-trail-display-and-browsing/03-01-PLAN.md
+Resume file: None
