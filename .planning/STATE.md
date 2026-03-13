@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 03-trail-display-and-browsing/03-01-PLAN.md
-last_updated: "2026-03-13T19:15:43.113Z"
+stopped_at: Completed 03-trail-display-and-browsing/03-02-PLAN.md
+last_updated: "2026-03-13T19:20:03.527Z"
 last_activity: 2026-03-13 — Plan 01-01 complete (map core, geolocation, error boundary)
 progress:
   total_phases: 8
-  completed_phases: 3
+  completed_phases: 4
   total_plans: 9
-  completed_plans: 8
+  completed_plans: 9
   percent: 75
 ---
 
@@ -57,6 +57,7 @@ Progress: [████████░░] 75%
 | Phase 02-trail-data-pipeline P01 | 7 | 2 tasks | 6 files |
 | Phase 02-trail-data-pipeline P02 | 5 | 2 tasks | 10 files |
 | Phase 03-trail-display-and-browsing P01 | 4 | 2 tasks | 8 files |
+| Phase 03-trail-display-and-browsing P02 | 3 | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -93,6 +94,9 @@ Recent decisions affecting current work:
 - [Phase 03-trail-display-and-browsing]: Explicit class map for PTTK border colors — dynamic string interpolation purged by Tailwind v4
 - [Phase 03-trail-display-and-browsing]: trail_color black uses border-l-[#808080] — #1A1A1A is invisible on dark bg-bg-surface
 - [Phase 03-trail-display-and-browsing]: Warsaw-Wroclaw haversine result is ~301km straight-line, not ~292km — test range corrected to 295-310
+- [Phase 03-trail-display-and-browsing]: navigateRef pattern in MapView: navigate stored in ref so style.load closure accesses latest stable function
+- [Phase 03-trail-display-and-browsing]: setupTrailInteractions onTrailClick is optional with popup fallback for backward compatibility
+- [Phase 03-trail-display-and-browsing]: /trails/:id added as top-level standalone route (not inside AppLayout) — no tab bar on detail page
 
 ### Pending Todos
 
@@ -105,6 +109,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-13T19:15:43.110Z
-Stopped at: Completed 03-trail-display-and-browsing/03-01-PLAN.md
+Last session: 2026-03-13T19:20:03.522Z
+Stopped at: Completed 03-trail-display-and-browsing/03-02-PLAN.md
 Resume file: None

@@ -40,11 +40,11 @@
 
 ### Browsing
 
-- [ ] **BROW-01**: User can toggle between map view and list view
-- [ ] **BROW-02**: TrailCard displays: name, length (km), surface badge, water access icon, difficulty badge, trail color indicator (if PTTK)
-- [ ] **BROW-03**: TrailDetail page shows full trail info, map with route polyline, and action buttons
-- [ ] **BROW-04**: Empty state shows illustration + "Brak tras" message + "Szukaj w promieniu 50 km" CTA
-- [ ] **BROW-05**: 2-3 TrailCards visible without scrolling on 375px screen width
+- [x] **BROW-01**: User can toggle between map view and list view
+- [x] **BROW-02**: TrailCard displays: name, length (km), surface badge, water access icon, difficulty badge, trail color indicator (if PTTK)
+- [x] **BROW-03**: TrailDetail page shows full trail info, map with route polyline, and action buttons
+- [x] **BROW-04**: Empty state shows illustration + "Brak tras" message + "Szukaj w promieniu 50 km" CTA
+- [x] **BROW-05**: 2-3 TrailCards visible without scrolling on 375px screen width
 
 ### Filters
 
@@ -183,11 +183,11 @@
 | PIPE-08 | Phase 2 | Complete |
 | PIPE-09 | Phase 2 | Complete |
 | PIPE-10 | Phase 2 | Complete |
-| BROW-01 | Phase 3 | Pending |
-| BROW-02 | Phase 3 | Pending |
-| BROW-03 | Phase 3 | Pending |
-| BROW-04 | Phase 3 | Pending |
-| BROW-05 | Phase 3 | Pending |
+| BROW-01 | Phase 3 | Complete |
+| BROW-02 | Phase 3 | Complete |
+| BROW-03 | Phase 3 | Complete |
+| BROW-04 | Phase 3 | Complete |
+| BROW-05 | Phase 3 | Complete |
 | FILT-01 | Phase 4 | Pending |
 | FILT-02 | Phase 4 | Pending |
 | FILT-03 | Phase 4 | Pending |
