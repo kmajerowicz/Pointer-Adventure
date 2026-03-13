@@ -92,7 +92,7 @@ Wszystkie źródła sprowadzane do wspólnego schematu przed zapisem:
 
 ```
 surface_type:    "dirt" | "gravel" | "asphalt" | "mixed" | null
-difficulty:      "easy" | "medium" | "hard" | null
+difficulty:      "easy" | "moderate" | "hard" | null
 water_access:    "none" | "nearby" | "on_route"
 water_type:      "river" | "lake" | "stream" | null
 dogs_allowed:    boolean
@@ -103,7 +103,7 @@ source:          "osm" | "pttk"
 **Mapowanie atrybutów OSM:**
 
 - `surface_type`: z tagu `surface=*` (`dirt`, `gravel`, `asphalt`, `mixed`). Brak tagu → `null` (wyświetlane jako „Nieznana" w UI)
-- `difficulty`: z tagu `sac_scale`: `hiking` → `easy`, `mountain_hiking` → `medium`, `demanding_mountain_hiking` i wyżej → `hard`. Brak tagu → `null` (wyświetlane jako „Nieznana" w UI)
+- `difficulty`: z tagu `sac_scale`: `hiking` → `easy`, `mountain_hiking` → `moderate`, `demanding_mountain_hiking` i wyżej → `hard`. Brak tagu → `null` (wyświetlane jako „Nieznana" w UI)
 - `water_access`: **obliczane** przez Edge Function via Overpass `around:200` query do obiektów `waterway=*` / `natural=water`. `on_route` jeśli trasa przecina wodę, `nearby` jeśli w buforze 200m, `none` w pozostałych przypadkach. Brak spatial math w naszym kodzie — logika proximity delegowana do Overpass
 - `dogs_allowed`: brak tagu `dogs=no` → `true`
 - `trail_color`: z tagów `colour=*` lub `osmc:symbol=*` na relacjach PTTK
@@ -151,12 +151,12 @@ routes
   description     text
   length_km       numeric
   surface_type    text        -- dirt / gravel / asphalt / mixed / null
-  difficulty      text        -- easy / medium / hard / null
+  difficulty      text        -- easy / moderate / hard / null
   water_access    text        -- none / nearby / on_route
   water_type      text        -- river / lake / stream / null
   dogs_allowed    boolean
   trail_color     text        -- dla szlaków PTTK
-  geojson         jsonb       -- przebieg trasy
+  geometry        jsonb       -- przebieg trasy
   center_lat      float       -- środek trasy (do query przestrzennych)
   center_lon      float
   bbox_south      float       -- bounding box trasy
