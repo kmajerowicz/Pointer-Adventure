@@ -32,10 +32,11 @@ Starting from a complete Phase 0 scaffolding, this roadmap builds the app in str
   3. Workbox tile cache is named `psi-szlak-mapbox-tiles` with `cacheableResponse: { statuses: [0, 200] }` and `purgeOnQuotaError: true` — opaque tile responses do not exhaust storage quota
   4. `dist/` does not appear in `git status` as tracked — build artifacts are excluded from version control
   5. `REQUIREMENTS.md` types.ts and PRD reflect final column names (`geometry`, `moderate`, `water_access` text enum)
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 00-01: Schema migrations and type fixes
+- [ ] 00-01-PLAN.md — Schema migration, TypeScript types, and vitest setup (FOUN-01, FOUN-02, FOUN-07)
+- [ ] 00-02-PLAN.md — CSS fix, Workbox config, dist/ verification, PRD column names (FOUN-03, FOUN-04, FOUN-05, FOUN-06)
 
 ### Phase 1: Map Core
 **Goal**: Users can open the app and see an interactive map centered on their location, with the map lifecycle managed correctly so no WebGL context leaks are possible
@@ -162,7 +163,7 @@ Phases execute in numeric order: 0 → 1 → 2 → 3 → 4 → 5 → 6 → 7
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 0. Scaffolding Fixes | 0/1 | Not started | - |
+| 0. Scaffolding Fixes | 0/2 | Not started | - |
 | 1. Map Core | 0/2 | Not started | - |
 | 2. Trail Data Pipeline | 0/2 | Not started | - |
 | 3. Trail Display and Browsing | 0/2 | Not started | - |
