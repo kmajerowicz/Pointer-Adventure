@@ -1,3 +1,19 @@
+---
+gsd_state_version: 1.0
+milestone: v1.0
+milestone_name: milestone
+status: completed
+stopped_at: Completed 00-02-PLAN.md
+last_updated: "2026-03-13T11:26:38.948Z"
+last_activity: 2026-03-13 — Plan 00-01 complete (schema + type fixes)
+progress:
+  total_phases: 8
+  completed_phases: 1
+  total_plans: 2
+  completed_plans: 2
+  percent: 100
+---
+
 # Project State
 
 ## Project Reference
@@ -10,30 +26,31 @@ See: .planning/PROJECT.md (updated 2026-03-11)
 ## Current Position
 
 Phase: 0 of 8 (Scaffolding Fixes)
-Plan: 0 of 1 in current phase
-Status: Ready to plan
-Last activity: 2026-03-11 — Roadmap created; Phase 0 is next
+Plan: 1 of 1 in current phase
+Status: Phase complete — ready for Phase 1
+Last activity: 2026-03-13 — Plan 00-01 complete (schema + type fixes)
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 0
-- Average duration: —
-- Total execution time: —
+- Total plans completed: 1
+- Average duration: 2m
+- Total execution time: 2m
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| - | - | - | - |
+| 0 — Scaffolding Fixes | 1 | 2m | 2m |
 
 **Recent Trend:**
-- Last 5 plans: —
+- Last 5 plans: 2m
 - Trend: —
 
 *Updated after each plan completion*
+| Phase 00-scaffolding-fixes P02 | 3 | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -42,12 +59,17 @@ Progress: [░░░░░░░░░░] 0%
 Decisions are logged in PROJECT.md Key Decisions table.
 Recent decisions affecting current work:
 
+- [Phase 0 Plan 01]: `water_access` changed from `boolean | null` to `'none' | 'nearby' | 'on_route'` text enum — migration uses DROP+ADD (no production data)
+- [Phase 0 Plan 01]: Migration uses `ADD COLUMN IF NOT EXISTS` for `source`, `water_type`, `used_at` — safe idempotent additions
+- [Phase 0 Plan 01]: `WaterAccess` and `WaterType` exported as type aliases for downstream trail pipeline use
 - [Phase 0]: `water_access` must be text enum (`none`/`nearby`/`on_route`) before any trail pipeline code — hard blocker
 - [Phase 0]: Mapbox CSS override for attribution is a ToS violation — must be replaced with `compact: true` AttributionControl option
 - [Phase 0]: Workbox cache name `mapbox-tiles` conflicts with Mapbox GL internal 50 MB tile cache — rename to `psi-szlak-mapbox-tiles`
 - [Phase 1]: Map instance must live in `useRef`, never `useState`; `map.remove()` called exactly once in cleanup — WebGL context leak is impossible to retrofit
 - [Phase 2]: Overpass debounce 400ms + `[timeout:25]` in QL + AbortController 20s + max 2 retries — must be wired from day one
 - [Phase 5]: Invite token TTL is 30 days (`invitations.expires_at`); magic link email scanners pre-fetch links — OTP code fallback required
+- [Phase 00-scaffolding-fixes]: purgeOnQuotaError placed inside expiration object (ExpirationPluginOptions), not top-level options — required by Workbox type API
+- [Phase 00-scaffolding-fixes]: No replacement CSS added for attribution — compact:true AttributionControl deferred to Phase 1 MapView component
 
 ### Pending Todos
 
@@ -60,6 +82,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-11
-Stopped at: Roadmap and STATE.md created; REQUIREMENTS.md traceability updated
+Last session: 2026-03-13T11:26:38.945Z
+Stopped at: Completed 00-02-PLAN.md
 Resume file: None

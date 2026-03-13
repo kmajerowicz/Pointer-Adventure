@@ -7,13 +7,13 @@
 
 ### Foundation
 
-- [ ] **FOUN-01**: Schema migration fixes `water_access` from boolean to text enum (`none`/`nearby`/`on_route`)
-- [ ] **FOUN-02**: Schema migration adds `routes.source` (`osm`/`pttk`), `routes.water_type` (`river`/`lake`/`stream`/null), `invitations.used_at` columns
-- [ ] **FOUN-03**: Mapbox attribution CSS override removed; compact attribution used instead
-- [ ] **FOUN-04**: Workbox config fixed: `cacheableResponse: { statuses: [0, 200] }`, `purgeOnQuotaError: true`, cache name changed from `mapbox-tiles` to `psi-szlak-mapbox-tiles`
-- [ ] **FOUN-05**: `dist/` directory removed from git tracking
-- [ ] **FOUN-06**: PRD updated to match schema: `difficulty` uses `moderate` (not `medium`), `geojson` column renamed to `geometry`
-- [ ] **FOUN-07**: `types.ts` updated: `water_access` becomes `'none' | 'nearby' | 'on_route'`, `source` and `water_type` fields added
+- [x] **FOUN-01**: Schema migration fixes `water_access` from boolean to text enum (`none`/`nearby`/`on_route`)
+- [x] **FOUN-02**: Schema migration adds `routes.source` (`osm`/`pttk`), `routes.water_type` (`river`/`lake`/`stream`/null), `invitations.used_at` columns
+- [x] **FOUN-03**: Mapbox attribution CSS override removed; compact attribution used instead
+- [x] **FOUN-04**: Workbox config fixed: `cacheableResponse: { statuses: [0, 200] }`, `purgeOnQuotaError: true`, cache name changed from `mapbox-tiles` to `psi-szlak-mapbox-tiles`
+- [x] **FOUN-05**: `dist/` directory removed from git tracking
+- [x] **FOUN-06**: PRD updated to match schema: `difficulty` uses `moderate` (not `medium`), `geojson` column renamed to `geometry`
+- [x] **FOUN-07**: `types.ts` updated: `water_access` becomes `'none' | 'nearby' | 'on_route'`, `source` and `water_type` fields added
 
 ### Map
 
@@ -159,13 +159,13 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FOUN-01 | Phase 0 | Pending |
-| FOUN-02 | Phase 0 | Pending |
-| FOUN-03 | Phase 0 | Pending |
-| FOUN-04 | Phase 0 | Pending |
-| FOUN-05 | Phase 0 | Pending |
-| FOUN-06 | Phase 0 | Pending |
-| FOUN-07 | Phase 0 | Pending |
+| FOUN-01 | Phase 0 | Complete |
+| FOUN-02 | Phase 0 | Complete |
+| FOUN-03 | Phase 0 | Complete |
+| FOUN-04 | Phase 0 | Complete |
+| FOUN-05 | Phase 0 | Complete |
+| FOUN-06 | Phase 0 | Complete |
+| FOUN-07 | Phase 0 | Complete |
 | MAP-01 | Phase 1 | Pending |
 | MAP-02 | Phase 1 | Pending |
 | MAP-03 | Phase 1 | Pending |

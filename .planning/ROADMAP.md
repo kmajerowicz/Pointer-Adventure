@@ -10,7 +10,7 @@ Starting from a complete Phase 0 scaffolding, this roadmap builds the app in str
 - Integer phases (0, 1, 2, ...): Planned milestone work
 - Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
 
-- [ ] **Phase 0: Scaffolding Fixes** - Correctness prerequisites: schema migration, Workbox config, attribution ToS compliance, git cleanup
+- [x] **Phase 0: Scaffolding Fixes** - Correctness prerequisites: schema migration, Workbox config, attribution ToS compliance, git cleanup (completed 2026-03-13)
 - [ ] **Phase 1: Map Core** - Stable interactive map with geolocation, search, and WebGL lifecycle managed correctly from day one
 - [ ] **Phase 2: Trail Data Pipeline** - Edge Function caching proxy (Overpass → Supabase), `useTrails` hook, trail pins on map
 - [ ] **Phase 3: Trail Display and Browsing** - TrailCard, TrailList, TrailDetail, PTTK polylines, map/list toggle
@@ -35,7 +35,7 @@ Starting from a complete Phase 0 scaffolding, this roadmap builds the app in str
 **Plans**: 2 plans
 
 Plans:
-- [ ] 00-01-PLAN.md — Schema migration, TypeScript types, and vitest setup (FOUN-01, FOUN-02, FOUN-07)
+- [x] 00-01-PLAN.md — Schema migration, TypeScript types, and vitest setup (FOUN-01, FOUN-02, FOUN-07)
 - [ ] 00-02-PLAN.md — CSS fix, Workbox config, dist/ verification, PRD column names (FOUN-03, FOUN-04, FOUN-05, FOUN-06)
 
 ### Phase 1: Map Core
@@ -163,7 +163,7 @@ Phases execute in numeric order: 0 → 1 → 2 → 3 → 4 → 5 → 6 → 7
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 0. Scaffolding Fixes | 0/2 | Not started | - |
+| 0. Scaffolding Fixes | 2/2 | Complete   | 2026-03-13 |
 | 1. Map Core | 0/2 | Not started | - |
 | 2. Trail Data Pipeline | 0/2 | Not started | - |
 | 3. Trail Display and Browsing | 0/2 | Not started | - |
