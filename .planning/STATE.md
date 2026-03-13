@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 01-map-core 01-02-PLAN.md
-last_updated: "2026-03-13T17:58:09.675Z"
+stopped_at: Completed 01-map-core 01-03-PLAN.md
+last_updated: "2026-03-13T18:09:40.478Z"
 last_activity: 2026-03-13 — Plan 01-01 complete (map core, geolocation, error boundary)
 progress:
   total_phases: 8
   completed_phases: 2
-  total_plans: 4
-  completed_plans: 4
+  total_plans: 5
+  completed_plans: 5
   percent: 75
 ---
 
@@ -53,6 +53,7 @@ Progress: [████████░░] 75%
 *Updated after each plan completion*
 | Phase 00-scaffolding-fixes P02 | 3 | 2 tasks | 3 files |
 | Phase 01-map-core P02 | 4m | 2 tasks | 6 files |
+| Phase 01-map-core P03 | 1m | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -77,6 +78,8 @@ Recent decisions affecting current work:
 - [Phase 1 Plan 01]: MapControls imports Mapbox types as named import (not namespace) to avoid TypeScript unused-import error
 - [Phase 1 Plan 01]: vitest.config.ts updated to jsdom environment — required for @testing-library/react renderHook
 - [Phase 01-map-core]: flyTo zoom 14 for search results (neighborhood level); onMouseDown on suggestions to prevent blur before click; searchHighlighted lifted to MapView for sibling prop communication
+- [Phase 01-map-core]: map.once('dragstart', removeMarker) attached inside handleSelect after marker placement — listener always fires because map is guaranteed non-null at that point
+- [Phase 01-map-core]: Defensive map.off in handleClear and unmount cleanup — prevents stale once-listener firing after manual clear or component unmount
 
 ### Pending Todos
 
@@ -89,6 +92,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-13T17:58:09.672Z
-Stopped at: Completed 01-map-core 01-02-PLAN.md
+Last session: 2026-03-13T18:09:40.475Z
+Stopped at: Completed 01-map-core 01-03-PLAN.md
 Resume file: None

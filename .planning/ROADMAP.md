@@ -11,7 +11,7 @@ Starting from a complete Phase 0 scaffolding, this roadmap builds the app in str
 - Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
 
 - [x] **Phase 0: Scaffolding Fixes** - Correctness prerequisites: schema migration, Workbox config, attribution ToS compliance, git cleanup (completed 2026-03-13)
-- [ ] **Phase 1: Map Core** - Stable interactive map with geolocation, search, and WebGL lifecycle managed correctly from day one
+- [x] **Phase 1: Map Core** - Stable interactive map with geolocation, search, and WebGL lifecycle managed correctly from day one (completed 2026-03-13)
 - [ ] **Phase 2: Trail Data Pipeline** - Edge Function caching proxy (Overpass → Supabase), `useTrails` hook, trail pins on map
 - [ ] **Phase 3: Trail Display and Browsing** - TrailCard, TrailList, TrailDetail, PTTK polylines, map/list toggle
 - [ ] **Phase 4: Filters** - 6-category filter panel (bottom sheet), client-side filter application, chip bar
@@ -165,7 +165,7 @@ Phases execute in numeric order: 0 → 1 → 2 → 3 → 4 → 5 → 6 → 7
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 0. Scaffolding Fixes | 2/2 | Complete    | 2026-03-13 |
-| 1. Map Core | 2/3 | Gap closure   | - |
+| 1. Map Core | 3/3 | Complete   | 2026-03-13 |
 | 2. Trail Data Pipeline | 0/2 | Not started | - |
 | 3. Trail Display and Browsing | 0/2 | Not started | - |
 | 4. Filters | 0/1 | Not started | - |
