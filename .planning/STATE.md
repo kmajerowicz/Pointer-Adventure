@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 03-trail-display-and-browsing/03-02-PLAN.md
-last_updated: "2026-03-13T21:05:06.074Z"
+stopped_at: Completed 04-filters/04-01-PLAN.md
+last_updated: "2026-03-13T22:47:36.935Z"
 last_activity: 2026-03-13 — Plan 01-01 complete (map core, geolocation, error boundary)
 progress:
   total_phases: 8
   completed_phases: 4
   total_plans: 11
-  completed_plans: 9
+  completed_plans: 10
   percent: 75
 ---
 
@@ -58,6 +58,7 @@ Progress: [████████░░] 75%
 | Phase 02-trail-data-pipeline P02 | 5 | 2 tasks | 10 files |
 | Phase 03-trail-display-and-browsing P01 | 4 | 2 tasks | 8 files |
 | Phase 03-trail-display-and-browsing P02 | 3 | 2 tasks | 6 files |
+| Phase 04-filters P01 | 1 | 1 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -97,6 +98,9 @@ Recent decisions affecting current work:
 - [Phase 03-trail-display-and-browsing]: navigateRef pattern in MapView: navigate stored in ref so style.load closure accesses latest stable function
 - [Phase 03-trail-display-and-browsing]: setupTrailInteractions onTrailClick is optional with popup fallback for backward compatibility
 - [Phase 03-trail-display-and-browsing]: /trails/:id added as top-level standalone route (not inside AppLayout) — no tab bar on detail page
+- [Phase 04-filters]: null length_km routes always pass the length filter — unknown lengths included in all buckets
+- [Phase 04-filters]: Water preferred sort uses spread-before-sort [...result].sort() to prevent Zustand store array mutation
+- [Phase 04-filters]: Distance filter silently skipped when geolocation status is not success — null lat/lon guard in useFilteredRoutes
 
 ### Pending Todos
 
@@ -109,6 +113,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-13T19:20:03.522Z
-Stopped at: Completed 03-trail-display-and-browsing/03-02-PLAN.md
+Last session: 2026-03-13T22:47:36.932Z
+Stopped at: Completed 04-filters/04-01-PLAN.md
 Resume file: None
