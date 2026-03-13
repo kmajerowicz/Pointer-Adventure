@@ -67,11 +67,11 @@ Plans:
   3. PTTK trails render as colored polylines on the map matching their `trail_color` (red/blue/yellow/green/black)
   4. Dog-unfriendly trails (`dogs=no`) and roads (primary/secondary/tertiary) do not appear on the map
   5. A loading indicator appears during trail fetch; if the fetch fails a retry button appears — the app does not hang silently
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 02-01: `search-trails` Edge Function (Overpass fetch, normalization, bbox cache)
-- [ ] 02-02: `useTrails` hook, map GeoJSON layer, cluster pins, PTTK polylines
+- [ ] 02-01-PLAN.md — Edge Function search-trails: Overpass fetch, normalization, bbox cache, upsert (PIPE-01, PIPE-02, PIPE-03, PIPE-04, PIPE-05, PIPE-06)
+- [ ] 02-02-PLAN.md — useTrails hook, Zustand trail store, map GeoJSON layers, cluster pins, PTTK polylines, loading/error UI (PIPE-07, PIPE-08, PIPE-09, PIPE-10)
 
 ### Phase 3: Trail Display and Browsing
 **Goal**: Users can browse trails in both map and list views, see full trail details, and understand each trail's key attributes at a glance
