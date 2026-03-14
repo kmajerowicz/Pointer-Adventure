@@ -33,7 +33,7 @@ Aplikacja do odkrywania i planowania tras spacerowych oraz hikingowych przyjazny
 ### Backend
 
 - **Supabase** (darmowy tier) — PostgreSQL + auth + storage
-    - Konta użytkowników (rejestracja tylko przez zaproszenie)
+    - Konta użytkowników (otwarta rejestracja, magic link)
     - Zapisywanie ulubionych tras
     - Baza tras zasilana automatycznie
 
@@ -196,7 +196,7 @@ users
   dog_name        text
   avatar_url      text
 
-invitations
+invitations (archiwalna — nie używana w bieżącym flow)
   id              uuid PRIMARY KEY
   token           text UNIQUE
   created_by      uuid REFERENCES auth.users
@@ -258,10 +258,9 @@ Sortowanie wyników:
 
 ### 5.5 Konta użytkowników
 
-- Rejestracja wyłącznie przez jednorazowy link zaproszeniowy
+- Otwarta rejestracja: imię + email → magic link (OTP) → konto utworzone
 - Logowanie: magic link (email) — jedyna metoda autentykacji
 - Profil: imię, imię psa, avatar
-- Generowanie linków zaproszeniowych przez właściciela konta
 
 ### 5.6 Przeszedłem! (logowanie aktywności)
 
@@ -274,12 +273,12 @@ Sortowanie wyników:
 
 ## 6. Onboarding użytkownika
 
-### Ścieżka: nowy użytkownik z zaproszeniem
+### Ścieżka: nowy użytkownik
 
 ```
-1. Otrzymuje link zaproszeniowy: [vercel-url]/invite?token=xyz (custom domain psiszlak.pl w v1.1)
-2. Otwiera link → ekran rejestracji z pre-wypełnionym tokenem
-3. Podaje imię i email → otrzymuje magic link do logowania
+1. Otwiera /app/auth?mode=register (lub klika „Załóż konto" na stronie głównej/logowaniu)
+2. Podaje imię i email → otrzymuje magic link / kod OTP
+3. Weryfikuje email → konto utworzone
 4. Ekran powitalny: „Cześć [imię]! Jak ma na imię Twój pies?"
 5. Podaje imię psa → zapisywane w profilu
 6. Prośba o zgodę na geolokalizację (z wyjaśnieniem po co)

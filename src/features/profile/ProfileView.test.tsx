@@ -13,10 +13,6 @@ vi.mock('../../hooks/useActivity', () => ({
   useActivity: vi.fn(),
 }))
 
-vi.mock('./InviteGenerator', () => ({
-  InviteGenerator: () => <div data-testid="invite-generator" />,
-}))
-
 import { useAuthStore } from '../../stores/auth'
 import { useActivity } from '../../hooks/useActivity'
 

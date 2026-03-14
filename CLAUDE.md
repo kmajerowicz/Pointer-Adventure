@@ -35,7 +35,7 @@
 ### React Router v6
 - Routes defined in `src/router.tsx`
 - `AppLayout` wraps tabbed pages (/, /trails, /favorites, /profile)
-- Standalone routes: /invite, /auth
+- Standalone routes: /auth
 
 ### Supabase
 - Client: `src/lib/supabase.ts`
@@ -124,4 +124,4 @@ pointer-adventure/
 - Every action gets feedback (toast, animation)
 - No empty states without guidance
 - Polish language UI
-- Invite-only access (magic link auth)
+- Open registration (magic link auth)

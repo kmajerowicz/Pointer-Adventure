@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { MapPin, SlidersHorizontal, Heart, WifiOff, ArrowRight, Mail, Map, Footprints, Share, PlusSquare, Download, MoreVertical } from 'lucide-react'
+import { MapPin, SlidersHorizontal, Heart, WifiOff, ArrowRight, UserPlus, Map, Footprints, Share, PlusSquare, Download, MoreVertical } from 'lucide-react'
 
 /* ── Subtle topo texture ── */
 const topoSvg = `url("data:image/svg+xml,%3Csvg width='400' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23D4D8DC' stroke-width='1' opacity='0.3'%3E%3Cpath d='M0 80 Q100 60 200 90 T400 70'/%3E%3Cpath d='M0 140 Q80 120 180 150 T400 130'/%3E%3Cpath d='M0 200 Q120 180 220 210 T400 190'/%3E%3Cpath d='M0 260 Q90 240 190 270 T400 250'/%3E%3Cpath d='M0 320 Q110 300 210 330 T400 310'/%3E%3Cpath d='M0 380 Q100 360 200 390 T400 370'/%3E%3C/g%3E%3C/svg%3E")`
@@ -22,7 +22,7 @@ const trailColors = [
 ]
 
 const steps = [
-  { num: '1', icon: Mail, title: 'Otrzymaj zaproszenie', desc: 'Poproś znajomego o link — społeczność rośnie organicznie.' },
+  { num: '1', icon: UserPlus, title: 'Załóż konto', desc: 'Podaj imię i email — w minutę masz dostęp do wszystkich szlaków.' },
   { num: '2', icon: Map, title: 'Odkryj szlaki', desc: 'Otwórz mapę, włącz GPS i przeglądaj trasy w okolicy.' },
   { num: '3', icon: Footprints, title: 'Ruszaj na szlak', desc: 'Wybierz trasę, zabierz psa i odkrywaj nowe miejsca.' },
 ]
@@ -85,7 +85,7 @@ export function LandingPage() {
               </div>
 
               <p className="mt-6 text-sm text-text-muted">
-                Dostęp przez zaproszenie — poproś znajomego o&nbsp;link lub <Link to="/app/auth" className="text-accent hover:text-accent-hover underline underline-offset-2">zaloguj się</Link> jeśli masz konto.
+                Darmowa aplikacja — <Link to="/app/auth?mode=register" className="text-accent hover:text-accent-hover underline underline-offset-2">załóż konto</Link> i odkrywaj szlaki z&nbsp;Twoim psem.
               </p>
             </div>
 

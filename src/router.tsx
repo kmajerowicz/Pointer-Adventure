@@ -5,7 +5,6 @@ import { MapView, MapErrorBoundary } from './features/map'
 import { TrailList } from './features/trails/TrailList'
 import { TrailDetail } from './features/trails/TrailDetail'
 import { FavoritesList } from './features/favorites'
-import { InvitePage } from './features/auth/InvitePage'
 import { AuthPage } from './features/auth/AuthPage'
 import { OnboardingFlow } from './features/onboarding/OnboardingFlow'
 import { ProfileView } from './features/profile'
@@ -20,7 +19,7 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 
 export const router = createBrowserRouter([
   { path: '/', element: <LandingPage /> },
-  { path: '/invite', element: <InvitePage /> },
+  { path: '/invite', element: <Navigate to="/" replace /> },
   {
     path: '/app',
     element: <AuthLayout />,

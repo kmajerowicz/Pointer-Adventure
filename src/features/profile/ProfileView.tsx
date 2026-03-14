@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../../stores/auth'
 import { useActivity } from '../../hooks/useActivity'
-import { InviteGenerator } from './InviteGenerator'
 import type { ActivityHistoryEntry } from '../../lib/types'
 
 export function ProfileView() {
@@ -102,8 +101,6 @@ export function ProfileView() {
           )}
         </div>
 
-        {/* Invite generator */}
-        <InviteGenerator />
       </div>
     </div>
   )

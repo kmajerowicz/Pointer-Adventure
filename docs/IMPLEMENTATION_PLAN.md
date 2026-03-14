@@ -142,34 +142,34 @@ PRD is complete and pushed to `github.com/kmajerowicz/Pointer-Adventure`. Now we
 
 ---
 
-## Phase 4: Auth + Invites + Onboarding
+## Phase 4: Auth + Open Registration + Onboarding
 
 **What gets built:**
 - Supabase Auth: magic link only, no password
-- Invite flow: `/invite?token=xyz` → validate token → register (name + email) → magic link → token consumed
+- Open registration: `/app/auth?mode=register` → name + email → magic link (OTP) → account created
+- Login: `/app/auth` → email → magic link (OTP) → session
+- Toggle between login/register on AuthPage
 - Onboarding (post first-login): welcome → dog name → geolocation request → map with trails
 - Session persistence (Supabase auto-login)
 - `useAuth` hook, auth context/provider
-- Protected routes (favorites, profile, invite generation)
+- Protected routes (favorites, profile)
 - RLS policies:
   - `favorites`: CRUD own rows only
   - `activity_log`: INSERT/SELECT own rows only
   - `users`: read all, update own only
-  - `invitations`: create by auth users, validate by service role
 - Profile page: name, dog name, avatar placeholder
-- Invite generation: create link → share
-- Seed: owner account + 5 initial invite tokens
 
 **Skills:** `supabase-postgres-best-practices` + `frontend-design` + `responsive-design` + `tailwind-design-system` + `vercel-react-best-practices`
 **Plugins:** `supabase`, `security-guidance`, `vercel`
 
 **Acceptance:**
-- Valid invite → registration → magic link → login works
-- Expired/used token shows error
+- Registration (name + email) → magic link → login works
+- Login (email only) → magic link → login works
 - First-time user sees full onboarding
 - Returning user auto-logs in
 - RLS prevents cross-user access (tested with 2 users)
 - Unauthenticated can browse but not favorite/log
+- `/invite` redirects to `/`
 
 ---
 

@@ -2,7 +2,7 @@
 
 ## What This Is
 
-A PWA trail discovery app for dog owners in Poland. Helps find dog-friendly hiking and walking trails — prioritizing natural surfaces, water access, and open spaces. Excludes urban trails and roads. Invite-only access for a small, closed group of friends. Fully functional as an installable PWA with offline support.
+A PWA trail discovery app for dog owners in Poland. Helps find dog-friendly hiking and walking trails — prioritizing natural surfaces, water access, and open spaces. Excludes urban trails and roads. Open registration for anyone. Fully functional as an installable PWA with offline support.
 
 ## Core Value
 
@@ -25,11 +25,11 @@ Dog owners can instantly discover nearby trails with water access and natural su
 - ✓ PTTK colored trail polylines on map — v1.0
 - ✓ Trail browsing (map/list toggle, TrailCard, TrailDetail with map hero) — v1.0
 - ✓ 6-category filter system (length, surface, water, difficulty, distance, marked) — v1.0
-- ✓ Invite-only auth (magic link with OTP, invite token validation) — v1.0
+- ✓ Open registration auth (magic link with OTP) — v1.0
 - ✓ Onboarding flow (welcome, dog name, preferences, geolocation) — v1.0
 - ✓ Favorites with private notes and optimistic UI — v1.0
 - ✓ "Przeszedlem!" activity logging with toast confirmation — v1.0
-- ✓ Profile with activity history and invite generation — v1.0
+- ✓ Profile with activity history — v1.0
 - ✓ PWA offline support (last 10 trails cached, offline banner, disabled search) — v1.0
 - ✓ Install prompt (Android native + iOS manual instructions) — v1.0
 - ✓ PNG icons (192x192 + 512x512) for iOS compatibility — v1.0
@@ -64,7 +64,7 @@ Dog owners can instantly discover nearby trails with water access and natural su
 
 **Data sources:** Trails sourced automatically from OpenStreetMap/Overpass API (hiking routes, footpaths, nature reserves) and Polish PTTK marked trails (colored waymarks). No manual trail entry. Water access defaults to 'none' for v1 — around:200 water source subquery deferred.
 
-**Target users:** Owner + small group of friends (5-10 people). All dog owners, primarily with Vizslas. Invite-only access.
+**Target users:** Dog owners in Poland, primarily with Vizslas. Open registration.
 
 **PRD:** Complete in `docs/PRD.md` (Polish language). Implementation plan in `docs/IMPLEMENTATION_PLAN.md`.
 
@@ -74,7 +74,7 @@ Dog owners can instantly discover nearby trails with water access and natural su
 
 - **Tech stack**: React + Vite + TypeScript + Tailwind CSS 4 + Supabase + Mapbox GL JS
 - **Budget**: $0/month — all services on free tiers (Supabase, Mapbox 50k loads, Vercel, OSM/Overpass)
-- **Auth model**: Invite-only, magic link only — no passwords, no OAuth
+- **Auth model**: Open registration, magic link only — no passwords, no OAuth
 - **Design**: Dark mode only, mobile-first PWA, Strava-inspired
 - **Data**: No manual trail entry — all automated from OSM/Overpass
 - **Skills**: MUST read `.agents/skills/*/SKILL.md` before implementing each phase (mapped in CLAUDE.md)
@@ -87,7 +87,7 @@ Dog owners can instantly discover nearby trails with water access and natural su
 | Keep `moderate` over `medium` | Matches OSM sac_scale terminology, already in schema | ✓ Good |
 | Skip `duration_min` in v1 | No capture UI, distance matters more than time for dog walks | ✓ Good |
 | Exact bbox_hash for cache | Simple, fast, no PostGIS needed. Redundant fetches cheap for small group | ✓ Good |
-| Block `/auth` without invite | Enforces invite-only model, clear UX | ✓ Good — AuthGateSheet pattern works |
+| Open registration with login/register toggle | Simple UX, no invite friction | ✓ Good — single AuthPage with mode toggle |
 | Design decisions per phase | Skills + /gsd:discuss-phase, not upfront specs. Avoids premature design | ✓ Good — each phase got tailored context |
 | Compact Mapbox attribution | Comply with ToS, use `compact: true` option | ✓ Good |
 | Overpass backoff in Edge Function | Debounce frontend, max 1 concurrent, exponential backoff | ✓ Good |
