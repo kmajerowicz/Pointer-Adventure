@@ -124,4 +124,4 @@ pointer-adventure/
 - Every action gets feedback (toast, animation)
 - No empty states without guidance
 - Polish language UI
-- Open registration (magic link auth)
+- Open registration (email + password)

@@ -145,9 +145,9 @@ PRD is complete and pushed to `github.com/kmajerowicz/Pointer-Adventure`. Now we
 ## Phase 4: Auth + Open Registration + Onboarding
 
 **What gets built:**
-- Supabase Auth: magic link only, no password
-- Open registration: `/app/auth?mode=register` → name + email → magic link (OTP) → account created
-- Login: `/app/auth` → email → magic link (OTP) → session
+- Supabase Auth: email + password, no OAuth
+- Open registration: `/app/auth?mode=register` → name + email + password → account created
+- Login: `/app/auth` → email + password → session
 - Toggle between login/register on AuthPage
 - Onboarding (post first-login): welcome → dog name → geolocation request → map with trails
 - Session persistence (Supabase auto-login)
@@ -163,8 +163,8 @@ PRD is complete and pushed to `github.com/kmajerowicz/Pointer-Adventure`. Now we
 **Plugins:** `supabase`, `security-guidance`, `vercel`
 
 **Acceptance:**
-- Registration (name + email) → magic link → login works
-- Login (email only) → magic link → login works
+- Registration (name + email + password) → login works
+- Login (email + password) → login works
 - First-time user sees full onboarding
 - Returning user auto-logs in
 - RLS prevents cross-user access (tested with 2 users)

@@ -7,7 +7,8 @@ import { AuthPage } from './AuthPage'
 vi.mock('../../lib/supabase', () => ({
   supabase: {
     auth: {
-      signInWithOtp: vi.fn(),
+      signUp: vi.fn(),
+      signInWithPassword: vi.fn(),
     },
   },
 }))
@@ -27,9 +28,10 @@ describe('AuthPage', () => {
 
   it('shows login form by default', () => {
     renderAuthPage()
-    expect(screen.getByText('Zaloguj się')).toBeTruthy()
+    expect(screen.getByRole('heading', { name: 'Zaloguj się' })).toBeTruthy()
     expect(screen.getByLabelText('Adres email')).toBeTruthy()
-    expect(screen.getByRole('button', { name: /Wyślij link logowania/i })).toBeTruthy()
+    expect(screen.getByLabelText('Hasło')).toBeTruthy()
+    expect(screen.getByRole('button', { name: /Zaloguj się/i })).toBeTruthy()
   })
 
   it('shows register form when mode=register', () => {
@@ -37,6 +39,13 @@ describe('AuthPage', () => {
     expect(screen.getByRole('heading', { name: 'Załóż konto' })).toBeTruthy()
     expect(screen.getByLabelText('Twoje imię')).toBeTruthy()
     expect(screen.getByLabelText('Adres email')).toBeTruthy()
+    expect(screen.getByLabelText('Hasło')).toBeTruthy()
+    expect(screen.getByLabelText('Powtórz hasło')).toBeTruthy()
+  })
+
+  it('does not show confirm password in login mode', () => {
+    renderAuthPage()
+    expect(screen.queryByLabelText('Powtórz hasło')).toBeNull()
   })
 
   it('shows toggle to switch between login and register', () => {
@@ -49,6 +58,7 @@ describe('AuthPage', () => {
     fireEvent.click(screen.getByText('Nie masz konta? Załóż konto'))
     expect(screen.getByText('Masz konto? Zaloguj się')).toBeTruthy()
     expect(screen.getByLabelText('Twoje imię')).toBeTruthy()
+    expect(screen.getByLabelText('Powtórz hasło')).toBeTruthy()
   })
 
   it('shows subtitle without invite-only messaging', () => {

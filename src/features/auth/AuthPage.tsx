@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useSearchParams, Link } from 'react-router-dom'
 import { supabase } from '../../lib/supabase'
-import { MagicLinkSent } from './MagicLinkSent'
 
 type AuthMode = 'login' | 'register'
 
@@ -11,50 +10,60 @@ export function AuthPage() {
     searchParams.get('mode') === 'register' ? 'register' : 'login'
   )
   const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [displayName, setDisplayName] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [sent, setSent] = useState(false)
-
-  if (sent) {
-    return <MagicLinkSent email={email} shouldCreateUser={mode === 'register'} />
-  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!email.trim()) return
+    if (!email.trim() || !password) return
     if (mode === 'register' && !displayName.trim()) return
+    if (mode === 'register' && password !== confirmPassword) {
+      setError('Hasła nie są identyczne')
+      return
+    }
 
     setLoading(true)
     setError(null)
 
-    const { error: otpError } = await supabase.auth.signInWithOtp({
-      email: email.trim(),
-      options: {
-        shouldCreateUser: mode === 'register',
-        emailRedirectTo: window.location.origin + '/app',
-        ...(mode === 'register' && {
+    if (mode === 'register') {
+      const { error: signUpError } = await supabase.auth.signUp({
+        email: email.trim(),
+        password,
+        options: {
           data: { display_name: displayName.trim() },
-        }),
-      },
-    })
+        },
+      })
 
-    setLoading(false)
+      setLoading(false)
 
-    if (otpError) {
-      const isSignupBlocked = mode === 'login' && otpError.status === 422
-      const isRateLimited = otpError.status === 429
-      setError(
-        isRateLimited
-          ? 'Zbyt wiele prób. Odczekaj chwilę i spróbuj ponownie.'
-          : isSignupBlocked
-            ? 'Nie znaleziono konta z tym adresem. Może chcesz założyć konto?'
-            : `Nie można wysłać emaila. Upewnij się, że adres jest poprawny i spróbuj ponownie. (${otpError.message})`
-      )
-      return
+      if (signUpError) {
+        if (signUpError.status === 429) {
+          setError('Zbyt wiele prób. Odczekaj chwilę i spróbuj ponownie.')
+        } else if (signUpError.status === 422 || signUpError.message?.includes('already registered')) {
+          setError('Konto z tym adresem już istnieje. Zaloguj się.')
+        } else {
+          setError(signUpError.message)
+        }
+      }
+    } else {
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email: email.trim(),
+        password,
+      })
+
+      setLoading(false)
+
+      if (signInError) {
+        if (signInError.status === 429) {
+          setError('Zbyt wiele prób. Odczekaj chwilę i spróbuj ponownie.')
+        } else {
+          setError('Nieprawidłowy email lub hasło')
+        }
+      }
     }
-
-    setSent(true)
   }
 
   const isRegister = mode === 'register'
@@ -105,27 +114,66 @@ export function AuthPage() {
             />
           </div>
 
+          <div className="space-y-1.5">
+            <label htmlFor="auth-password" className="text-sm font-medium text-text-secondary">
+              Hasło
+            </label>
+            <input
+              id="auth-password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Min. 6 znaków"
+              required
+              minLength={6}
+              className="w-full h-12 px-4 rounded-xl bg-bg-surface border border-bg-elevated text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors"
+            />
+          </div>
+
+          {isRegister && (
+            <div className="space-y-1.5">
+              <label htmlFor="auth-confirm-password" className="text-sm font-medium text-text-secondary">
+                Powtórz hasło
+              </label>
+              <input
+                id="auth-confirm-password"
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="Powtórz hasło"
+                required
+                minLength={6}
+                className="w-full h-12 px-4 rounded-xl bg-bg-surface border border-bg-elevated text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors"
+              />
+            </div>
+          )}
+
           {error && (
             <p className="text-red-400 text-sm">{error}</p>
           )}
 
           <button
             type="submit"
-            disabled={loading || !email.trim() || (isRegister && !displayName.trim())}
+            disabled={loading || !email.trim() || !password || (isRegister && !displayName.trim())}
             className="w-full min-h-[48px] rounded-xl bg-accent text-bg-base font-semibold text-base hover:opacity-90 active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading
-              ? 'Wysyłanie...'
+              ? 'Ładowanie...'
               : isRegister
                 ? 'Załóż konto'
-                : 'Wyślij link logowania'}
+                : 'Zaloguj się'}
           </button>
         </form>
 
         <div className="text-center space-y-3">
           <button
             type="button"
-            onClick={() => setMode(isRegister ? 'login' : 'register')}
+            onClick={() => {
+              setMode(isRegister ? 'login' : 'register')
+              setError(null)
+              setPassword('')
+              setConfirmPassword('')
+            }}
             className="text-sm text-accent hover:text-accent-hover transition-colors"
           >
             {isRegister ? 'Masz konto? Zaloguj się' : 'Nie masz konta? Załóż konto'}

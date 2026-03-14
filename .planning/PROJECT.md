@@ -25,7 +25,7 @@ Dog owners can instantly discover nearby trails with water access and natural su
 - ✓ PTTK colored trail polylines on map — v1.0
 - ✓ Trail browsing (map/list toggle, TrailCard, TrailDetail with map hero) — v1.0
 - ✓ 6-category filter system (length, surface, water, difficulty, distance, marked) — v1.0
-- ✓ Open registration auth (magic link with OTP) — v1.0
+- ✓ Open registration auth (email + password) — v1.0
 - ✓ Onboarding flow (welcome, dog name, preferences, geolocation) — v1.0
 - ✓ Favorites with private notes and optimistic UI — v1.0
 - ✓ "Przeszedlem!" activity logging with toast confirmation — v1.0
@@ -74,7 +74,7 @@ Dog owners can instantly discover nearby trails with water access and natural su
 
 - **Tech stack**: React + Vite + TypeScript + Tailwind CSS 4 + Supabase + Mapbox GL JS
 - **Budget**: $0/month — all services on free tiers (Supabase, Mapbox 50k loads, Vercel, OSM/Overpass)
-- **Auth model**: Open registration, magic link only — no passwords, no OAuth
+- **Auth model**: Open registration, email + password — no OAuth
 - **Design**: Dark mode only, mobile-first PWA, Strava-inspired
 - **Data**: No manual trail entry — all automated from OSM/Overpass
 - **Skills**: MUST read `.agents/skills/*/SKILL.md` before implementing each phase (mapped in CLAUDE.md)
@@ -87,14 +87,14 @@ Dog owners can instantly discover nearby trails with water access and natural su
 | Keep `moderate` over `medium` | Matches OSM sac_scale terminology, already in schema | ✓ Good |
 | Skip `duration_min` in v1 | No capture UI, distance matters more than time for dog walks | ✓ Good |
 | Exact bbox_hash for cache | Simple, fast, no PostGIS needed. Redundant fetches cheap for small group | ✓ Good |
-| Open registration with login/register toggle | Simple UX, no invite friction | ✓ Good — single AuthPage with mode toggle |
+| Open registration with email + password | Simple UX, no invite friction, no email delivery dependency | ✓ Good — single AuthPage with mode toggle |
 | Design decisions per phase | Skills + /gsd:discuss-phase, not upfront specs. Avoids premature design | ✓ Good — each phase got tailored context |
 | Compact Mapbox attribution | Comply with ToS, use `compact: true` option | ✓ Good |
 | Overpass backoff in Edge Function | Debounce frontend, max 1 concurrent, exponential backoff | ✓ Good |
 | Map useRef lifecycle | map.remove() exactly once in cleanup, Strict Mode guard | ✓ Good — no WebGL leaks |
 | Mapbox tile cache 50 entries | 500 caused opaque response quota exhaustion (7MB each) | ✓ Good — safe quota |
 | NetworkFirst for trail cache | Workbox runtime cache, 10-entry LRU, 3s timeout | ✓ Good — automatic on view |
-| OTP code fallback for magic links | Email scanners pre-fetch links, OTP avoids false consumption | ✓ Good |
+| Email + password auth (replaced magic link) | Magic link OTP unreliable on Supabase free tier (2 email/hr limit) | ✓ Good — instant login, no email dependency |
 | OfflineBanner in AuthLayout | Covers all routes including standalone TrailDetail | ✓ Good |
 | Install prompt after 3 trail views | Contextual, not aggressive. iOS manual instructions included | ✓ Good |
 

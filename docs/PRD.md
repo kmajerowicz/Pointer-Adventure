@@ -33,7 +33,7 @@ Aplikacja do odkrywania i planowania tras spacerowych oraz hikingowych przyjazny
 ### Backend
 
 - **Supabase** (darmowy tier) — PostgreSQL + auth + storage
-    - Konta użytkowników (otwarta rejestracja, magic link)
+    - Konta użytkowników (otwarta rejestracja, email + hasło)
     - Zapisywanie ulubionych tras
     - Baza tras zasilana automatycznie
 
@@ -258,8 +258,8 @@ Sortowanie wyników:
 
 ### 5.5 Konta użytkowników
 
-- Otwarta rejestracja: imię + email → magic link (OTP) → konto utworzone
-- Logowanie: magic link (email) — jedyna metoda autentykacji
+- Otwarta rejestracja: imię + email + hasło → konto utworzone
+- Logowanie: email + hasło
 - Profil: imię, imię psa, avatar
 
 ### 5.6 Przeszedłem! (logowanie aktywności)
@@ -277,8 +277,7 @@ Sortowanie wyników:
 
 ```
 1. Otwiera /app/auth?mode=register (lub klika „Załóż konto" na stronie głównej/logowaniu)
-2. Podaje imię i email → otrzymuje magic link / kod OTP
-3. Weryfikuje email → konto utworzone
+2. Podaje imię, email i hasło → konto utworzone
 4. Ekran powitalny: „Cześć [imię]! Jak ma na imię Twój pies?"
 5. Podaje imię psa → zapisywane w profilu
 6. Prośba o zgodę na geolokalizację (z wyjaśnieniem po co)
@@ -416,7 +415,7 @@ Rekomendacje oparte o historię i lokalizację. Wymaga danych z `activity_log` z
 5. Warstwa szlaków PTTK z kolorowym znakowaniem
 6. Implementacja filtrów i widoku listy tras
 7. Widok ulubionych + system zaproszeń
-8. Onboarding flow (magic link only)
+8. Onboarding flow (email + hasło)
 9. PWA manifest + Service Worker
 10. Testy na urządzeniach mobilnych
 11. Udostępnienie znajomym
