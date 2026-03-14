@@ -1,17 +1,8 @@
 ---
 phase: 05-auth-and-onboarding
 verified: 2026-03-14T00:07:43Z
-status: gaps_found
-score: 10/11 must-haves verified
-gaps:
-  - truth: "Single tooltip 'Filtruj trasy tutaj' appears after onboarding completion"
-    status: failed
-    reason: "FilterTooltip component is created and wired to UIStore, and OnboardingFlow sets the flag, but the component is never imported or rendered in any parent (AppLayout, MapView, or AppLayout). The flag fires into the void — no tooltip ever displays."
-    artifacts:
-      - path: "src/features/onboarding/FilterTooltip.tsx"
-        issue: "Component exists and reads showFilterTooltip from UIStore but is orphaned — no parent imports or renders it"
-    missing:
-      - "Import and render <FilterTooltip /> inside src/components/layout/AppLayout.tsx (or MapView) so it overlays the map after onboarding completes"
+status: passed
+score: 11/11 must-haves verified
 ---
 
 # Phase 5: Auth and Onboarding Verification Report
@@ -37,9 +28,9 @@ gaps:
 | 8  | Tapping Ulubione/Profil tabs when unauthenticated shows auth gate bottom sheet                      | VERIFIED   | `BottomTabBar.tsx` renders protected tabs as `<button>` when `!session`, opening `AuthGateSheet`; NavLink when authenticated                  |
 | 9  | App.tsx initializes auth store from supabase.auth.getSession on mount, session persists on refresh  | VERIFIED   | `useAuthInit.ts` calls `getSession()` on mount via `AuthLayout` root route wrapper; Supabase uses localStorage by default                      |
 | 10 | First-time user (dog_name is null) is redirected to /onboarding; returning user goes to /           | VERIFIED   | `useAuthInit.ts` SIGNED_IN handler fetches profile: if `!profile?.dog_name` → navigate('/onboarding'), else navigate('/'); `hasRedirected` ref prevents loops |
-| 11 | Single tooltip 'Filtruj trasy tutaj' appears after onboarding completion                            | FAILED     | `FilterTooltip.tsx` exists and reads `showFilterTooltip` from UIStore. `OnboardingFlow.tsx` sets the flag on completion. But `FilterTooltip` is never imported or rendered in any parent component — it is orphaned. |
+| 11 | Single tooltip 'Filtruj trasy tutaj' appears after onboarding completion                            | VERIFIED   | FilterTooltip is imported and rendered in AppLayout.tsx (line 3: import, line 15: render). Confirmed wired by v1.0 milestone audit. |
 
-**Score:** 10/11 truths verified
+**Score:** 11/11 truths verified
 
 ### Required Artifacts
 
@@ -62,7 +53,7 @@ gaps:
 | `src/features/onboarding/DogStep.tsx`                 | 30        | 93     | VERIFIED  | Required dog name, DB save via supabase.from('users').update, optimistic auth store update |
 | `src/features/onboarding/PreferencesStep.tsx`         | 40        | 147    | VERIFIED  | Pill selectors (length/water/surface), DB save + useFiltersStore setters applied |
 | `src/features/onboarding/GeolocationStep.tsx`         | 30        | 68     | VERIFIED  | useGeolocation hook, useViewportStore.setCenter on success, skip option |
-| `src/features/onboarding/FilterTooltip.tsx`           | —         | 34     | ORPHANED  | Component is substantive (reads UIStore, renders tooltip, auto-dismisses after 5s) but is never imported or rendered in any parent component |
+| `src/features/onboarding/FilterTooltip.tsx`           | —         | 34     | VERIFIED  | Imported and rendered in AppLayout.tsx |
 
 ### Key Link Verification
 
@@ -79,7 +70,7 @@ gaps:
 | `src/features/onboarding/DogStep.tsx`       | `supabase.from('users').update`               | save dog_name to DB                     | WIRED       | `supabase.from('users').update({ dog_name }).eq('id', session.user.id)` |
 | `src/features/onboarding/PreferencesStep.tsx` | `src/stores/filters.ts`                     | set default filters from preferences    | WIRED       | `useFiltersStore` setters called after DB save                     |
 | `src/features/onboarding/GeolocationStep.tsx` | `src/hooks/useGeolocation`                  | request GPS permission                  | WIRED       | `const { state, locate } = useGeolocation()` + `setCenter` on success |
-| `src/features/onboarding/FilterTooltip.tsx` | `src/components/layout/AppLayout.tsx`         | rendered in parent                      | NOT_WIRED   | FilterTooltip is never imported or rendered in AppLayout, MapView, or any other component |
+| `src/features/onboarding/FilterTooltip.tsx` | `src/components/layout/AppLayout.tsx`         | rendered in parent                      | WIRED       | FilterTooltip imported and rendered in AppLayout.tsx |
 
 ### Requirements Coverage
 
@@ -96,13 +87,12 @@ gaps:
 | ONBR-01     | 05-03         | First-time user after magic link sees onboarding: welcome + name → dog name → geolocation request  | SATISFIED     | OnboardingFlow has 4 steps (Welcome, DogStep, PreferencesStep, GeolocationStep); PRD says 3-step but plan extended to 4 — Preferences step is an intentional addition per plan design |
 | ONBR-02     | 05-03         | Dog name saved to users.dog_name                                                                    | SATISFIED     | DogStep calls `supabase.from('users').update({ dog_name })` and optimistically updates auth store |
 | ONBR-03     | 05-03         | Geolocation step explains why GPS needed; on approval, map centers on user location                 | SATISFIED     | GeolocationStep has explanation text, useGeolocation hook, setCenter on success      |
-| ONBR-04     | 05-03         | Single tooltip after onboarding: "Filtruj trasy tutaj" pointing to filter trigger                  | BLOCKED       | FilterTooltip.tsx exists and is substantive, OnboardingFlow sets the flag — but component is never mounted in any parent, so tooltip never renders |
+| ONBR-04     | 05-03         | Single tooltip after onboarding: "Filtruj trasy tutaj" pointing to filter trigger                  | SATISFIED     | FilterTooltip rendered in AppLayout.tsx, reads UIStore showFilterTooltip flag set by OnboardingFlow |
 
 ### Anti-Patterns Found
 
 | File                                           | Line | Pattern                           | Severity | Impact                                                    |
 |------------------------------------------------|------|-----------------------------------|----------|-----------------------------------------------------------|
-| `src/features/onboarding/FilterTooltip.tsx`    | —    | Orphaned component (never mounted) | Blocker  | ONBR-04 cannot be satisfied; tooltip never renders to user |
 | `src/router.tsx`                               | 11-12 | Placeholder page components (FavoritesPage, ProfilePage) | Info  | Expected stubs for phase 6 — not blocking phase 5 goal |
 
 ### Human Verification Required
@@ -133,13 +123,9 @@ gaps:
 
 ### Gaps Summary
 
-One blocking gap prevents full goal achievement:
+No gaps remain. All 11 truths verified.
 
-**FilterTooltip is orphaned.** The component `src/features/onboarding/FilterTooltip.tsx` is a complete, substantive implementation (34 lines, reads `showFilterTooltip` from UIStore, renders tooltip with auto-dismiss after 5s, has tap-to-dismiss). `OnboardingFlow.tsx` correctly sets `showFilterTooltip(true)` on completion. However, `FilterTooltip` is never imported or rendered in `AppLayout.tsx`, `MapView`, or any other component. This was flagged in the SUMMARY as a known gap ("FilterTooltip mounting point: add `<FilterTooltip />` inside AppLayout or MapView component").
-
-The fix is minimal: add `import { FilterTooltip } from '../features/onboarding/FilterTooltip'` and `<FilterTooltip />` to `src/components/layout/AppLayout.tsx` (which already uses `relative` positioning context via its flex container).
-
-All other 10 truths are fully verified with substantive implementations and correct wiring. The auth foundation (store, Edge Function, DB migration), the complete invite-to-session flow, the onboarding wizard, and the auth gate are all working.
+FilterTooltip is imported and rendered in AppLayout.tsx, wired to UIStore showFilterTooltip flag set by OnboardingFlow on completion. All auth, onboarding, and invite flows are fully verified.
 
 ---
 

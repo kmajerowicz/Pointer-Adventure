@@ -110,12 +110,12 @@
 
 ### Design System
 
-- [ ] **DS-01**: All components use design tokens from `src/index.css` — no hardcoded colors
-- [ ] **DS-02**: Touch targets minimum 48px throughout the app
-- [ ] **DS-03**: Bottom tab bar: Mapa / Trasy / Ulubione / Profil with `var(--spacing-tab-bar)` height
-- [ ] **DS-04**: Trail color indicators use: `trail-red`, `trail-blue`, `trail-yellow`, `trail-green`, `trail-black` token classes
-- [ ] **DS-05**: Every user action gets feedback (toast, animation, or state change)
-- [ ] **DS-06**: All UI text in Polish
+- [x] **DS-01**: All components use design tokens from `src/index.css` — no hardcoded colors
+- [x] **DS-02**: Touch targets minimum 48px throughout the app
+- [x] **DS-03**: Bottom tab bar: Mapa / Trasy / Ulubione / Profil with `var(--spacing-tab-bar)` height
+- [x] **DS-04**: Trail color indicators use: `trail-red`, `trail-blue`, `trail-yellow`, `trail-green`, `trail-black` token classes
+- [x] **DS-05**: Every user action gets feedback (toast, animation, or state change)
+- [x] **DS-06**: All UI text in Polish
 
 ## v2 Requirements
 
@@ -229,12 +229,12 @@
 | PWA-05 | Phase 7 | Complete |
 | PWA-06 | Phase 7 | Complete |
 | PWA-07 | Phase 7 | Complete |
-| DS-01 | All | Pending |
-| DS-02 | All | Pending |
-| DS-03 | All | Pending |
-| DS-04 | All | Pending |
-| DS-05 | All | Pending |
-| DS-06 | All | Pending |
+| DS-01 | All | Complete |
+| DS-02 | All | Complete |
+| DS-03 | All | Complete |
+| DS-04 | All | Complete |
+| DS-05 | All | Complete |
+| DS-06 | All | Complete |
 
 **Coverage:**
 - v1 requirements: 73 total
