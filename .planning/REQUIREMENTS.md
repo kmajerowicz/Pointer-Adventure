@@ -101,12 +101,12 @@
 ### PWA
 
 - [ ] **PWA-01**: App installable on Android and iOS home screen with proper icon, name, and splash
-- [ ] **PWA-02**: Service worker precaches app shell and bundles
-- [ ] **PWA-03**: Last 10 viewed trail details cached via NetworkFirst strategy for offline access
+- [x] **PWA-02**: Service worker precaches app shell and bundles
+- [x] **PWA-03**: Last 10 viewed trail details cached via NetworkFirst strategy for offline access
 - [x] **PWA-04**: Persistent top banner "Tryb offline — wyświetlam zapisane trasy" when `navigator.onLine === false`; disappears on reconnect
 - [x] **PWA-05**: Geocoding search disabled in offline mode with grayed-out state
-- [ ] **PWA-06**: PNG icons (192x192, 512x512) replace SVG placeholders for iOS compatibility
-- [ ] **PWA-07**: Manifest: `display: standalone`, theme color `#111318`, portrait orientation
+- [x] **PWA-06**: PNG icons (192x192, 512x512) replace SVG placeholders for iOS compatibility
+- [x] **PWA-07**: Manifest: `display: standalone`, theme color `#111318`, portrait orientation
 
 ### Design System
 
@@ -223,12 +223,12 @@
 | PROF-02 | Phase 6 | Complete |
 | PROF-03 | Phase 6 | Complete |
 | PWA-01 | Phase 7 | Pending |
-| PWA-02 | Phase 7 | Pending |
-| PWA-03 | Phase 7 | Pending |
+| PWA-02 | Phase 7 | Complete |
+| PWA-03 | Phase 7 | Complete |
 | PWA-04 | Phase 7 | Complete |
 | PWA-05 | Phase 7 | Complete |
-| PWA-06 | Phase 7 | Pending |
-| PWA-07 | Phase 7 | Pending |
+| PWA-06 | Phase 7 | Complete |
+| PWA-07 | Phase 7 | Complete |
 | DS-01 | All | Pending |
 | DS-02 | All | Pending |
 | DS-03 | All | Pending |

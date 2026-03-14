@@ -3,8 +3,8 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 07-02-PLAN.md
-last_updated: "2026-03-14T10:31:24.982Z"
+stopped_at: Completed 07-01-PLAN.md
+last_updated: "2026-03-14T10:32:01.193Z"
 last_activity: 2026-03-13 — Plan 01-01 complete (map core, geolocation, error boundary)
 progress:
   total_phases: 8
@@ -67,6 +67,7 @@ Progress: [████████░░] 75%
 | Phase 06-favorites-and-activity P03 | 4 | 2 tasks | 8 files |
 | Phase 06-favorites-and-activity P02 | 4 | 2 tasks | 9 files |
 | Phase 07-pwa-hardening P02 | 2 | 2 tasks | 6 files |
+| Phase 07-pwa-hardening P01 | 2 | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -132,6 +133,10 @@ Recent decisions affecting current work:
 - [Phase 07-pwa-hardening]: OfflineBanner mounted in AuthLayout (wraps all routes) not AppLayout — ensures TrailDetail and standalone routes also show the banner
 - [Phase 07-pwa-hardening]: AppLayout adds pt-9 top padding when offline — prevents content overlap with fixed banner without re-mounting banner in AppLayout
 - [Phase 07-pwa-hardening]: LocationSearch outer div uses opacity-50 pointer-events-none for disabled state — clean visual gray-out for offline mode
+- [Phase 07-pwa-hardening]: Mapbox CacheFirst maxEntries reduced from 500 to 50 — opaque responses attribute full quota, 500 entries risks 3.5GB attribution causing QuotaExceededError
+- [Phase 07-pwa-hardening]: Supabase NetworkFirst with 3s networkTimeoutSeconds — fresh data preferred but falls back to cache for offline/slow network users
+- [Phase 07-pwa-hardening]: PNG icons generated via Node.js built-in zlib (raw PNG binary) — avoids adding canvas/sharp dev dependency for one-time icon generation
+- [Phase 07-pwa-hardening]: BeforeInstallPromptEvent declared in vite-env.d.ts alongside ImportMetaEnv — single file for all global type augmentations
 
 ### Pending Todos
 
@@ -144,6 +149,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-14T10:31:24.979Z
-Stopped at: Completed 07-02-PLAN.md
+Last session: 2026-03-14T10:32:01.189Z
+Stopped at: Completed 07-01-PLAN.md
 Resume file: None
