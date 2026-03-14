@@ -17,7 +17,7 @@ Starting from a complete Phase 0 scaffolding, this roadmap builds the app in str
 - [x] **Phase 4: Filters** - 6-category filter panel (bottom sheet), client-side filter application, chip bar (completed 2026-03-13)
 - [x] **Phase 5: Auth and Onboarding** - Invite-only magic link auth, 4-step onboarding, dog-name personalization, route guarding (completed 2026-03-14)
 - [x] **Phase 6: Favorites and Activity** - Heart toggle with optimistic UI, private notes, "Przeszedlem!" log, profile page (completed 2026-03-14)
-- [ ] **Phase 7: PWA Hardening** - Fixed Workbox tile cache, offline banner, NetworkFirst trail cache, PNG icons
+- [x] **Phase 7: PWA Hardening** - Fixed Workbox tile cache, offline banner, NetworkFirst trail cache, PNG icons (completed 2026-03-14)
 
 ## Phase Details
 
@@ -174,4 +174,4 @@ Phases execute in numeric order: 0 → 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 4. Filters | 2/2 | Complete   | 2026-03-13 |
 | 5. Auth and Onboarding | 3/3 | Complete   | 2026-03-14 |
 | 6. Favorites and Activity | 3/3 | Complete   | 2026-03-14 |
-| 7. PWA Hardening | 2/3 | In Progress|  |
+| 7. PWA Hardening | 3/3 | Complete   | 2026-03-14 |

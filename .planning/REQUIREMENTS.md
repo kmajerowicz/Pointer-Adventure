@@ -100,7 +100,7 @@
 
 ### PWA
 
-- [ ] **PWA-01**: App installable on Android and iOS home screen with proper icon, name, and splash
+- [x] **PWA-01**: App installable on Android and iOS home screen with proper icon, name, and splash
 - [x] **PWA-02**: Service worker precaches app shell and bundles
 - [x] **PWA-03**: Last 10 viewed trail details cached via NetworkFirst strategy for offline access
 - [x] **PWA-04**: Persistent top banner "Tryb offline — wyświetlam zapisane trasy" when `navigator.onLine === false`; disappears on reconnect
@@ -222,7 +222,7 @@
 | PROF-01 | Phase 6 | Complete |
 | PROF-02 | Phase 6 | Complete |
 | PROF-03 | Phase 6 | Complete |
-| PWA-01 | Phase 7 | Pending |
+| PWA-01 | Phase 7 | Complete |
 | PWA-02 | Phase 7 | Complete |
 | PWA-03 | Phase 7 | Complete |
 | PWA-04 | Phase 7 | Complete |
