@@ -90,13 +90,13 @@
 - [ ] **ACT-01**: TrailDetail shows "Przeszedłem!" button for authenticated users
 - [x] **ACT-02**: Tap creates `activity_log` entry (user_id, route_id, walked_at = now) and shows toast "Zapisano spacer!"
 - [x] **ACT-03**: Visual "walked" indicator shown on TrailCards for trails in user's activity log
-- [ ] **ACT-04**: Profile page shows activity history (list of walked trails with dates)
+- [x] **ACT-04**: Profile page shows activity history (list of walked trails with dates)
 
 ### Profile
 
-- [ ] **PROF-01**: Profile page displays: display name, dog name, avatar placeholder
-- [ ] **PROF-02**: User can generate new invite links (creates row in `invitations` table)
-- [ ] **PROF-03**: User can see status of generated invites (pending/used with `used_at`)
+- [x] **PROF-01**: Profile page displays: display name, dog name, avatar placeholder
+- [x] **PROF-02**: User can generate new invite links (creates row in `invitations` table)
+- [x] **PROF-03**: User can see status of generated invites (pending/used with `used_at`)
 
 ### PWA
 
@@ -218,10 +218,10 @@
 | ACT-01 | Phase 6 | Pending |
 | ACT-02 | Phase 6 | Complete |
 | ACT-03 | Phase 6 | Complete |
-| ACT-04 | Phase 6 | Pending |
-| PROF-01 | Phase 6 | Pending |
-| PROF-02 | Phase 6 | Pending |
-| PROF-03 | Phase 6 | Pending |
+| ACT-04 | Phase 6 | Complete |
+| PROF-01 | Phase 6 | Complete |
+| PROF-02 | Phase 6 | Complete |
+| PROF-03 | Phase 6 | Complete |
 | PWA-01 | Phase 7 | Pending |
 | PWA-02 | Phase 7 | Pending |
 | PWA-03 | Phase 7 | Pending |
