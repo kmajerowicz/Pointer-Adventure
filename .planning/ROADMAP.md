@@ -171,10 +171,10 @@ Plans:
   1. Tapping "Przeszedlem!" on TrailDetail shows a visible toast "Zapisano spacer!" that auto-dismisses — user receives confirmation
   2. DS-01 through DS-06 traceability checkboxes are marked complete in REQUIREMENTS.md
   3. Phase 5 VERIFICATION.md status reflects current reality (ONBR-04 resolved)
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 08-01: Toast renderer component, stale docs fix, traceability update
+- [ ] 08-01-PLAN.md — Toast renderer component, stale docs fix, DS traceability update (ACT-02, DS-05)
 
 ## Progress
 
