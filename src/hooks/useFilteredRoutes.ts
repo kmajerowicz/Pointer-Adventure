@@ -12,8 +12,9 @@ import type { Route } from '../lib/types'
  * Filter chain order: length → surface → difficulty → water(required) → marked → distance
  * Water 'preferred' sort applied after all filters (never mutates original array).
  */
-export function useFilteredRoutes(): Route[] {
-  const routes = useTrailsStore((s) => s.routes)
+export function useFilteredRoutes(sourceRoutes?: Route[]): Route[] {
+  const storeRoutes = useTrailsStore((s) => s.routes)
+  const routes = sourceRoutes ?? storeRoutes
   const { length, surface, water, difficulty, distance, marked } = useFiltersStore((s) => s)
   const { state: geoState } = useGeolocation()
 
@@ -72,5 +73,5 @@ export function useFilteredRoutes(): Route[] {
     }
 
     return result
-  }, [routes, length, surface, water, difficulty, distance, marked, userLat, userLon])
+  }, [routes, sourceRoutes, length, surface, water, difficulty, distance, marked, userLat, userLon])
 }

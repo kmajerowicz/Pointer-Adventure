@@ -46,6 +46,10 @@ export interface ActivityLogEntry {
   created_at: string
 }
 
+export type ActivityHistoryEntry = ActivityLogEntry & {
+  route?: { id: string; name: string | null; length_km: number | null }
+}
+
 export interface WalkPreferences {
   length: 'short' | 'medium' | 'long' | null
   water: 'required' | 'preferred' | 'any'
