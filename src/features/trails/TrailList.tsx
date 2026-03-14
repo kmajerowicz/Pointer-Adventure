@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { useFilteredRoutes } from '../../hooks/useFilteredRoutes'
 import { useViewportStore } from '../../stores/viewport'
 import { useGeolocation } from '../../hooks/useGeolocation'
+import { useActivityStore } from '../../stores/activity'
+import { useFavorites } from '../../hooks/useFavorites'
 import { haversineKm } from '../../lib/haversine'
 import { TrailCard } from './TrailCard'
 import { EmptyTrailState } from './EmptyTrailState'
@@ -10,6 +12,12 @@ import { EmptyTrailState } from './EmptyTrailState'
 export function TrailList() {
   const navigate = useNavigate()
   const routes = useFilteredRoutes()
+
+  // Favorites
+  const { favoriteIds, toggleFavorite } = useFavorites()
+
+  // Activity
+  const walkedIds = useActivityStore((s) => s.walkedIds)
 
   // Geolocation — best origin when available
   const { state: geoState } = useGeolocation()
@@ -53,6 +61,9 @@ export function TrailList() {
           route={route}
           distanceKm={distanceKm}
           onClick={() => navigate(`/trails/${route.id}`)}
+          isFavorited={favoriteIds.has(route.id)}
+          isWalked={walkedIds.has(route.id)}
+          onFavoriteToggle={() => toggleFavorite(route.id)}
         />
       ))}
     </div>

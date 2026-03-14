@@ -1,11 +1,15 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { ArrowLeft, Droplet, MapPin } from 'lucide-react'
+import { ArrowLeft, Droplet, Heart, MapPin } from 'lucide-react'
 import { useTrailsStore } from '../../stores/trails'
 import { useViewportStore } from '../../stores/viewport'
 import { useGeolocation } from '../../hooks/useGeolocation'
+import { useFavorites } from '../../hooks/useFavorites'
+import { useActivity } from '../../hooks/useActivity'
+import { useAuthStore } from '../../stores/auth'
 import { haversineKm } from '../../lib/haversine'
 import type { Route } from '../../lib/types'
 import { TrailDetailMap } from './TrailDetailMap'
+import { FavoriteNote } from '../favorites/FavoriteNote'
 
 // --- Label maps (same as TrailCard) ---
 
@@ -107,9 +111,22 @@ export function TrailDetail() {
   const originLon =
     geoState.status === 'success' ? geoState.position.coords.longitude : viewportLon
 
+  // Favorites
+  const { favoriteIds, favorites, toggleFavorite, updateNote } = useFavorites()
+
+  // Activity
+  const { walkedIds, logWalk } = useActivity()
+
+  // Auth
+  const profile = useAuthStore((s) => s.profile)
+
   if (!route) {
     return <TrailNotFound />
   }
+
+  const isFavorited = favoriteIds.has(route.id)
+  const isWalked = walkedIds.has(route.id)
+  const favorite = favorites.find((f) => f.route_id === route.id)
 
   const distanceKm = haversineKm(originLat, originLon, route.center_lat, route.center_lon)
 
@@ -129,6 +146,20 @@ export function TrailDetail() {
           className="absolute top-4 left-4 z-10 flex items-center justify-center size-11 rounded-full bg-bg-elevated/80 text-text-primary backdrop-blur-sm active:bg-bg-elevated transition-colors shadow-md"
         >
           <ArrowLeft size={20} />
+        </button>
+
+        {/* Heart favorite button overlay -- top-right, mirrors back button */}
+        <button
+          type="button"
+          onClick={() => route && toggleFavorite(route.id)}
+          aria-label={isFavorited ? 'Usun z ulubionych' : 'Dodaj do ulubionych'}
+          className="absolute top-4 right-4 z-10 flex items-center justify-center size-11 rounded-full bg-bg-elevated/80 text-text-primary backdrop-blur-sm active:bg-bg-elevated transition-colors shadow-md"
+        >
+          <Heart
+            size={20}
+            className={`transition-colors ${isFavorited ? 'text-accent animate-[heart-pop_300ms_ease-out]' : 'text-text-muted'}`}
+            fill={isFavorited ? 'currentColor' : 'none'}
+          />
         </button>
       </div>
 
@@ -215,7 +246,31 @@ export function TrailDetail() {
             </div>
           )}
         </div>
+
+        {/* Private note -- only when favorited and authenticated */}
+        {isFavorited && profile && (
+          <div className="px-4 pb-4">
+            <FavoriteNote
+              routeId={route.id}
+              initialNote={favorite?.note ?? null}
+              onSave={updateNote}
+            />
+          </div>
+        )}
       </div>
+
+      {/* Sticky bottom bar -- Przeszedlem! CTA for authenticated users */}
+      {profile && (
+        <div className="shrink-0 px-4 py-3 border-t border-bg-elevated bg-bg-base">
+          <button
+            type="button"
+            onClick={() => route && logWalk(route.id)}
+            className="w-full py-3 rounded-xl bg-accent text-bg-base font-semibold text-base min-h-[48px] active:bg-accent/80 transition-colors"
+          >
+            {isWalked ? 'Przeszedlem! (ponownie)' : 'Przeszedlem!'}
+          </button>
+        </div>
+      )}
     </div>
   )
 }

@@ -1,10 +1,13 @@
-import { ChevronRight, Droplet } from 'lucide-react'
+import { ChevronRight, Check, Droplet, Heart } from 'lucide-react'
 import type { Route } from '../../lib/types'
 
 interface TrailCardProps {
   route: Route
   distanceKm: number | null
   onClick: () => void
+  isFavorited?: boolean
+  isWalked?: boolean
+  onFavoriteToggle?: (e: React.MouseEvent) => void
 }
 
 // Explicit class map — NEVER dynamic string interpolation (Tailwind v4 purges it)
@@ -13,7 +16,7 @@ const TRAIL_COLOR_BORDER: Record<NonNullable<Route['trail_color']>, string> = {
   blue: 'border-l-trail-blue',
   yellow: 'border-l-trail-yellow',
   green: 'border-l-trail-green',
-  // trail-black (#1A1A1A) is too dark for dark bg — use a visible gray-600 equivalent
+  // trail-black (#1A1A1A) is too dark for dark bg-bg-surface — use a visible gray-600 equivalent
   black: 'border-l-[#808080]',
 }
 
@@ -39,7 +42,14 @@ const DIFFICULTY_COLOR: Record<Route['difficulty'], string> = {
   unknown: 'text-text-muted',
 }
 
-export function TrailCard({ route, distanceKm, onClick }: TrailCardProps) {
+export function TrailCard({
+  route,
+  distanceKm,
+  onClick,
+  isFavorited = false,
+  isWalked = false,
+  onFavoriteToggle,
+}: TrailCardProps) {
   const borderClass =
     route.trail_color ? TRAIL_COLOR_BORDER[route.trail_color] : 'border-l-transparent'
 
@@ -53,11 +63,16 @@ export function TrailCard({ route, distanceKm, onClick }: TrailCardProps) {
     >
       {/* Main content */}
       <div className="flex-1 px-4 py-3 flex flex-col justify-center gap-1 min-w-0">
-        {/* Line 1: trail name + length */}
+        {/* Line 1: trail name + walked indicator + length */}
         <div className="flex items-center justify-between gap-2">
           <span className="text-text-primary text-sm font-medium truncate">
             {route.name ?? 'Trasa bez nazwy'}
           </span>
+          {isWalked && (
+            <span title="Przeszedlem te trase" className="shrink-0">
+              <Check size={14} className="text-success" />
+            </span>
+          )}
           {route.length_km != null && (
             <span className="text-text-secondary text-sm shrink-0">
               {route.length_km.toFixed(1)} km
@@ -109,9 +124,29 @@ export function TrailCard({ route, distanceKm, onClick }: TrailCardProps) {
         </div>
       </div>
 
-      {/* Chevron */}
-      <div className="flex items-center pr-3 pl-1 text-text-muted">
-        <ChevronRight size={16} />
+      {/* Heart or Chevron */}
+      <div className="flex items-center pr-3 pl-1">
+        {isFavorited ? (
+          <button
+            type="button"
+            onClick={(e) => { e.stopPropagation(); onFavoriteToggle?.(e) }}
+            aria-label="Usun z ulubionych"
+            className="flex items-center justify-center size-12 text-accent"
+          >
+            <Heart size={18} fill="currentColor" />
+          </button>
+        ) : onFavoriteToggle ? (
+          <button
+            type="button"
+            onClick={(e) => { e.stopPropagation(); onFavoriteToggle?.(e) }}
+            aria-label="Dodaj do ulubionych"
+            className="flex items-center justify-center size-12 text-text-muted"
+          >
+            <Heart size={18} />
+          </button>
+        ) : (
+          <ChevronRight size={16} className="text-text-muted" />
+        )}
       </div>
     </button>
   )
