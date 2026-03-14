@@ -226,19 +226,7 @@ otp_expiry = 3600
 # admin_email = "admin@email.com"
 # sender_name = "Admin"
 
-[auth.email.template.magic_link]
-subject = "Psi Szlak — Twój kod logowania"
-content_path = "./supabase/templates/magic_link.html"
-
-[auth.email.template.confirmation]
-subject = "Psi Szlak — Potwierdź email"
-content_path = "./supabase/templates/confirmation.html"
-
-# Uncomment to customize notification email template
-# [auth.email.notification.password_changed]
-# enabled = true
-# subject = "Your password has been changed"
-# content_path = "./templates/password_changed_notification.html"
+# Email templates removed — using email + password auth without confirmations
 
 [auth.sms]
 # Allow/disallow new user signups via SMS to your project.
