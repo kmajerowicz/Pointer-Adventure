@@ -56,10 +56,14 @@ export function TrailCard({
   const difficultyLabel = DIFFICULTY_LABEL[route.difficulty]
 
   return (
-    <button
-      type="button"
+    // Use a div + role=button to avoid nesting <button> inside <button>
+    // Heart action is a separate <button> that stops propagation
+    <div
+      role="button"
+      tabIndex={0}
       onClick={onClick}
-      className={`w-full flex items-stretch text-left bg-bg-surface active:bg-bg-elevated transition-colors border-l-4 ${borderClass} min-h-[72px]`}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onClick() }}
+      className={`w-full flex items-stretch text-left bg-bg-surface active:bg-bg-elevated transition-colors border-l-4 ${borderClass} min-h-[72px] cursor-pointer`}
     >
       {/* Main content */}
       <div className="flex-1 px-4 py-3 flex flex-col justify-center gap-1 min-w-0">
@@ -80,7 +84,7 @@ export function TrailCard({
           )}
         </div>
 
-        {/* Line 2: badges + distance + chevron area */}
+        {/* Line 2: badges + distance */}
         <div className="flex items-center gap-1.5">
           {/* Surface badge */}
           <span className="text-xs bg-bg-elevated text-text-secondary rounded px-1.5 py-0.5 shrink-0">
@@ -148,6 +152,6 @@ export function TrailCard({
           <ChevronRight size={16} className="text-text-muted" />
         )}
       </div>
-    </button>
+    </div>
   )
 }
