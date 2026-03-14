@@ -79,8 +79,8 @@
 
 ### Favorites
 
-- [ ] **FAV-01**: User can toggle favorite via heart icon on TrailCard and TrailDetail
-- [ ] **FAV-02**: Heart toggle uses optimistic UI (instant visual feedback, rollback on error)
+- [x] **FAV-01**: User can toggle favorite via heart icon on TrailCard and TrailDetail
+- [x] **FAV-02**: Heart toggle uses optimistic UI (instant visual feedback, rollback on error)
 - [ ] **FAV-03**: Favorites page lists all saved trails with reusable filter controls
 - [ ] **FAV-04**: User can add/edit private note per favorite trail
 - [ ] **FAV-05**: Empty favorites shows personalized message: "Nie masz jeszcze ulubionych tras. Znajdź coś dla [dog name]!" + CTA
@@ -88,8 +88,8 @@
 ### Activity
 
 - [ ] **ACT-01**: TrailDetail shows "Przeszedłem!" button for authenticated users
-- [ ] **ACT-02**: Tap creates `activity_log` entry (user_id, route_id, walked_at = now) and shows toast "Zapisano spacer!"
-- [ ] **ACT-03**: Visual "walked" indicator shown on TrailCards for trails in user's activity log
+- [x] **ACT-02**: Tap creates `activity_log` entry (user_id, route_id, walked_at = now) and shows toast "Zapisano spacer!"
+- [x] **ACT-03**: Visual "walked" indicator shown on TrailCards for trails in user's activity log
 - [ ] **ACT-04**: Profile page shows activity history (list of walked trails with dates)
 
 ### Profile
@@ -210,14 +210,14 @@
 | ONBR-02 | Phase 5 | Complete |
 | ONBR-03 | Phase 5 | Complete |
 | ONBR-04 | Phase 5 | Complete |
-| FAV-01 | Phase 6 | Pending |
-| FAV-02 | Phase 6 | Pending |
+| FAV-01 | Phase 6 | Complete |
+| FAV-02 | Phase 6 | Complete |
 | FAV-03 | Phase 6 | Pending |
 | FAV-04 | Phase 6 | Pending |
 | FAV-05 | Phase 6 | Pending |
 | ACT-01 | Phase 6 | Pending |
-| ACT-02 | Phase 6 | Pending |
-| ACT-03 | Phase 6 | Pending |
+| ACT-02 | Phase 6 | Complete |
+| ACT-03 | Phase 6 | Complete |
 | ACT-04 | Phase 6 | Pending |
 | PROF-01 | Phase 6 | Pending |
 | PROF-02 | Phase 6 | Pending |

@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 05-03-PLAN.md
-last_updated: "2026-03-14T00:04:27.185Z"
+stopped_at: Completed 06-01-PLAN.md
+last_updated: "2026-03-14T00:06:44.939Z"
 last_activity: 2026-03-13 — Plan 01-01 complete (map core, geolocation, error boundary)
 progress:
   total_phases: 8
   completed_phases: 6
   total_plans: 20
-  completed_plans: 14
+  completed_plans: 15
   percent: 75
 ---
 
@@ -63,6 +63,7 @@ Progress: [████████░░] 75%
 | Phase 05-auth-and-onboarding P01 | 3 | 3 tasks | 14 files |
 | Phase 05-auth-and-onboarding P02 | 4 | 2 tasks | 11 files |
 | Phase 05-auth-and-onboarding P03 | 6 | 2 tasks | 10 files |
+| Phase 06-favorites-and-activity P01 | 7 | 2 tasks | 16 files |
 
 ## Accumulated Context
 
@@ -117,6 +118,9 @@ Recent decisions affecting current work:
 - [Phase 05-auth-and-onboarding]: AuthLayout wraps all routes as parent route element so useAuthInit runs inside Router context with useNavigate access
 - [Phase 05-auth-and-onboarding]: hasRedirected ref in useAuthInit prevents SIGNED_IN from re-redirecting after onboarding completion; DogStep optimistic profile update breaks redirect loop
 - [Phase 05-auth-and-onboarding]: consumeInviteToken is async helper (not .catch() chaining) because Supabase rpc() returns PromiseLike without .catch() method
+- [Phase 06-favorites-and-activity]: showToast added to useUIStore — hooks call store action directly, App renders toast widget from store state
+- [Phase 06-favorites-and-activity]: ActivityHistoryEntry = ActivityLogEntry & route join intersection type — avoids duplication while keeping ActivityLogEntry clean
+- [Phase 06-favorites-and-activity]: useFavorites.toggleFavorite optimistic pattern: mutate store immediately (new Set spread), rollback on catch
 
 ### Pending Todos
 
@@ -129,6 +133,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-14T00:04:27.181Z
-Stopped at: Completed 05-03-PLAN.md
+Last session: 2026-03-14T00:06:44.935Z
+Stopped at: Completed 06-01-PLAN.md
 Resume file: None
