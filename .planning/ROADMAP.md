@@ -153,11 +153,12 @@ Plans:
   2. With network disabled, previously viewed trail details are accessible — the app shows a persistent top banner "Tryb offline — wyswietlam zapisane trasy"
   3. With network disabled, the geocoding search bar is visibly grayed out and non-functional
   4. Mapbox tile caching does not exhaust PWA storage quota in a typical map session (verified in Chrome DevTools with opaque response accounting)
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 07-01: Workbox config fix, NetworkFirst trail cache, offline banner
-- [ ] 07-02: PNG icons, manifest polish, iOS compatibility
+- [ ] 07-01-PLAN.md — Workbox config fix (Mapbox 50 entries, Supabase NetworkFirst), PNG icons, manifest + index.html update (PWA-02, PWA-03, PWA-06, PWA-07)
+- [ ] 07-02-PLAN.md — useOnlineStatus hook, OfflineBanner, LocationSearch disabled when offline (PWA-04, PWA-05)
+- [ ] 07-03-PLAN.md — Install prompt bottom sheet with Android native + iOS manual instructions (PWA-01)
 
 ## Progress
 
@@ -173,4 +174,4 @@ Phases execute in numeric order: 0 → 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 4. Filters | 2/2 | Complete   | 2026-03-13 |
 | 5. Auth and Onboarding | 2/3 | In Progress|  |
 | 6. Favorites and Activity | 0/3 | Not started | - |
-| 7. PWA Hardening | 0/2 | Not started | - |
+| 7. PWA Hardening | 0/3 | Not started | - |
