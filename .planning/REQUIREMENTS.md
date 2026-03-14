@@ -72,10 +72,10 @@
 
 ### Onboarding
 
-- [ ] **ONBR-01**: First-time user after magic link sees 3-step onboarding: welcome + name → dog name → geolocation request
-- [ ] **ONBR-02**: Dog name saved to `users.dog_name` and used in personalized empty states throughout app
-- [ ] **ONBR-03**: Geolocation step explains why GPS is needed; on approval, map centers on user location with first trails loaded
-- [ ] **ONBR-04**: Single tooltip after onboarding: "Filtruj trasy tutaj" pointing to filter trigger
+- [x] **ONBR-01**: First-time user after magic link sees 3-step onboarding: welcome + name → dog name → geolocation request
+- [x] **ONBR-02**: Dog name saved to `users.dog_name` and used in personalized empty states throughout app
+- [x] **ONBR-03**: Geolocation step explains why GPS is needed; on approval, map centers on user location with first trails loaded
+- [x] **ONBR-04**: Single tooltip after onboarding: "Filtruj trasy tutaj" pointing to filter trigger
 
 ### Favorites
 
@@ -206,10 +206,10 @@
 | AUTH-06 | Phase 5 | Complete |
 | AUTH-07 | Phase 5 | Complete |
 | AUTH-08 | Phase 5 | Complete |
-| ONBR-01 | Phase 5 | Pending |
-| ONBR-02 | Phase 5 | Pending |
-| ONBR-03 | Phase 5 | Pending |
-| ONBR-04 | Phase 5 | Pending |
+| ONBR-01 | Phase 5 | Complete |
+| ONBR-02 | Phase 5 | Complete |
+| ONBR-03 | Phase 5 | Complete |
+| ONBR-04 | Phase 5 | Complete |
 | FAV-01 | Phase 6 | Pending |
 | FAV-02 | Phase 6 | Pending |
 | FAV-03 | Phase 6 | Pending |
