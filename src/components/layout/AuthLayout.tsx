@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom'
 import { useAuthInit } from '../../hooks/useAuthInit'
 import { useAuthStore } from '../../stores/auth'
 import { OfflineBanner } from '../ui/OfflineBanner'
+import { ToastRenderer } from '../ui/ToastRenderer'
 
 export function AuthLayout() {
   useAuthInit()
@@ -25,6 +26,7 @@ export function AuthLayout() {
   return (
     <>
       <OfflineBanner />
+      <ToastRenderer />
       <Outlet />
     </>
   )
