@@ -9,8 +9,8 @@ score: 11/11 must-haves verified
 
 **Phase Goal:** New users can join via invite link and complete onboarding to reach their first personalized map view; existing users are recognized on return
 **Verified:** 2026-03-14T00:07:43Z
-**Status:** gaps_found
-**Re-verification:** No — initial verification
+**Status:** passed
+**Re-verification:** Yes — ONBR-04 resolved, status updated 2026-03-14
 
 ## Goal Achievement
 
