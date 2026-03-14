@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Psi Szlak — Kod logowania</title>
+</head>
+<body style="margin:0; padding:0; background:#111318; font-family:'Inter',system-ui,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#111318; padding:40px 16px;">
+    <tr>
+      <td align="center">
+        <table width="100%" cellpadding="0" cellspacing="0" style="max-width:440px; background:#1C1F26; border-radius:16px; padding:40px 32px;">
+          <tr>
+            <td align="center" style="padding-bottom:24px; font-size:32px;">
+              &#128062;
+            </td>
+          </tr>
+          <tr>
+            <td align="center" style="color:#F5F5F5; font-size:22px; font-weight:600; padding-bottom:8px;">
+              Twoj kod logowania
+            </td>
+          </tr>
+          <tr>
+            <td align="center" style="color:#A0A0A0; font-size:14px; padding-bottom:24px;">
+              Wpisz ten kod w aplikacji Psi Szlak
+            </td>
+          </tr>
+          <tr>
+            <td align="center" style="padding-bottom:32px;">
+              <div style="display:inline-block; background:#252930; border-radius:12px; padding:16px 32px; letter-spacing:10px; font-size:32px; font-weight:700; color:#C9A84C; font-family:monospace;">
+                {{ .Token }}
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" style="padding-bottom:24px;">
+              <a href="{{ .SiteURL }}/app" style="display:inline-block; background:#C9A84C; color:#111318; font-weight:600; font-size:15px; text-decoration:none; padding:14px 32px; border-radius:12px; min-width:200px; text-align:center;">
+                Otworz Psi Szlak
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" style="color:#666; font-size:12px; line-height:1.5;">
+              Kod wazny 60 minut.<br/>
+              Jesli nie zakladales konta w Psi Szlak — zignoruj te wiadomosc.
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
