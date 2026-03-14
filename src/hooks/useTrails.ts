@@ -2,9 +2,11 @@ import { useEffect, useRef, useCallback } from 'react'
 import { supabase } from '../lib/supabase'
 import { useViewportStore } from '../stores/viewport'
 import { useTrailsStore } from '../stores/trails'
+import { useAuthStore } from '../stores/auth'
 
 export function useTrails() {
   const bounds = useViewportStore((s) => s.bounds)
+  const session = useAuthStore((s) => s.session)
   const boundsRef = useRef(bounds)
 
   const appendRoutes = useTrailsStore((s) => s.appendRoutes)
@@ -52,7 +54,7 @@ export function useTrails() {
   )
 
   useEffect(() => {
-    if (!bounds) return
+    if (!bounds || !session) return
 
     const timer = setTimeout(() => {
       const latestBounds = boundsRef.current
@@ -63,7 +65,7 @@ export function useTrails() {
 
     return () => clearTimeout(timer)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [bounds])
+  }, [bounds, session])
 
   const forceRefresh = useCallback(() => {
     const latestBounds = boundsRef.current

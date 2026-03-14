@@ -9,6 +9,7 @@ import { InvitePage } from './features/auth/InvitePage'
 import { AuthPage } from './features/auth/AuthPage'
 import { OnboardingFlow } from './features/onboarding/OnboardingFlow'
 import { ProfileView } from './features/profile'
+import { WelcomePage } from './features/auth/WelcomePage'
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ export const router = createBrowserRouter([
           { path: 'profile', element: <ProfileView /> },
         ],
       },
+      { path: '/welcome', element: <WelcomePage /> },
       { path: '/invite', element: <InvitePage /> },
       { path: '/auth', element: <AuthPage /> },
       { path: '/trails/:id', element: <TrailDetail /> },

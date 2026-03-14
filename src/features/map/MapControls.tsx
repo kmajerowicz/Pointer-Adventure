@@ -23,7 +23,7 @@ export function MapControls({ mapRef, onGpsDenied }: MapControlsProps) {
     setToast({ message, visible: true })
     dismissTimerRef.current = setTimeout(() => {
       setToast(null)
-    }, 3000)
+    }, 5000)
   }
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export function MapControls({ mapRef, onGpsDenied }: MapControlsProps) {
       }
     } else if (state.status === 'error') {
       if (state.code === 1) {
-        showToast('Brak dostepu do lokalizacji')
+        showToast('Brak dostepu do lokalizacji. Wlacz usluge lokalizacji w ustawieniach przegladarki i sprobuj ponownie.')
         onGpsDenied?.()
       } else if (state.code === 2 || state.code === 3) {
         showToast('Nie udalo sie znalezc lokalizacji')

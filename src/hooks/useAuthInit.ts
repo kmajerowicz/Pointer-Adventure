@@ -49,6 +49,12 @@ export function useAuthInit() {
       } else {
         setLoading(false)
         setInitialized()
+        // Redirect unauthenticated users to welcome (one-time)
+        const path = window.location.pathname
+        const skipPaths = ['/invite', '/auth', '/welcome']
+        if (!skipPaths.includes(path) && !localStorage.getItem('psi_szlak_welcomed')) {
+          navigate('/welcome')
+        }
       }
     })
 
