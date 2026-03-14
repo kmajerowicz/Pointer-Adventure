@@ -55,11 +55,14 @@ export function useAuthInit() {
       } else {
         setLoading(false)
         setInitialized()
-        // Redirect unauthenticated users to welcome (one-time)
+        // Redirect unauthenticated users to auth page within /app
         const path = window.location.pathname
-        const skipPaths = ['/invite', '/auth', '/welcome']
-        if (!skipPaths.includes(path) && !localStorage.getItem('psi_szlak_welcomed')) {
-          navigate('/welcome')
+        if (path.startsWith('/app') && path !== '/app/auth') {
+          // Save intended destination so we can restore after login
+          if (path !== '/app') {
+            sessionStorage.setItem('psi_szlak_return_url', path)
+          }
+          navigate('/app/auth')
         }
       }
     })
@@ -84,9 +87,12 @@ export function useAuthInit() {
             if (!mounted) return
             setProfile(profile)
             if (!profile?.dog_name) {
-              navigate('/onboarding')
+              navigate('/app/onboarding')
             } else {
-              navigate('/')
+              // Restore deep link destination if one was saved before auth redirect
+              const returnUrl = sessionStorage.getItem('psi_szlak_return_url')
+              sessionStorage.removeItem('psi_szlak_return_url')
+              navigate(returnUrl ?? '/app')
             }
           })
         }
@@ -101,7 +107,7 @@ export function useAuthInit() {
         useActivityStore.getState().reset()
         useInvitesStore.getState().reset()
         hasRedirected.current = false
-        navigate('/auth')
+        navigate('/app/auth')
       }
     })
 

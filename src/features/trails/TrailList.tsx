@@ -60,7 +60,7 @@ export function TrailList() {
           key={route.id}
           route={route}
           distanceKm={distanceKm}
-          onClick={() => navigate(`/trails/${route.id}`)}
+          onClick={() => navigate(`/app/trails/${route.id}`)}
           isFavorited={favoriteIds.has(route.id)}
           isWalked={walkedIds.has(route.id)}
           onFavoriteToggle={() => toggleFavorite(route.id)}

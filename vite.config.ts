@@ -12,6 +12,7 @@ export default defineConfig({
       includeAssets: ['vite.svg'],
       manifest: false, // using public/manifest.json
       workbox: {
+        navigateFallbackAllowlist: [/^\/app/],
         maximumFileSizeToCacheInBytes: 4 * 1024 * 1024, // 4 MiB — Mapbox GL JS is ~2 MiB
         globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
         runtimeCaching: [

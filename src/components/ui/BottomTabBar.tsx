@@ -5,10 +5,10 @@ import { useAuthStore } from '../../stores/auth'
 import { AuthGateSheet } from '../../features/auth/AuthGateSheet'
 
 const tabs = [
-  { to: '/', label: 'Mapa', icon: Map, protected: false },
-  { to: '/trails', label: 'Trasy', icon: Route, protected: false },
-  { to: '/favorites', label: 'Ulubione', icon: Heart, protected: true },
-  { to: '/profile', label: 'Profil', icon: User, protected: true },
+  { to: '/app', label: 'Mapa', icon: Map, protected: false },
+  { to: '/app/trails', label: 'Trasy', icon: Route, protected: false },
+  { to: '/app/favorites', label: 'Ulubione', icon: Heart, protected: true },
+  { to: '/app/profile', label: 'Profil', icon: User, protected: true },
 ] as const
 
 export function BottomTabBar() {
@@ -37,7 +37,7 @@ export function BottomTabBar() {
           <NavLink
             key={to}
             to={to}
-            end={to === '/'}
+            end={to === '/app'}
             className={({ isActive }) =>
               `flex flex-col items-center justify-center gap-0.5 min-w-[3rem] min-h-[3rem] rounded-lg transition-colors ${
                 isActive ? 'text-accent' : 'text-text-muted hover:text-text-secondary'

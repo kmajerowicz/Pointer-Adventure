@@ -77,7 +77,7 @@ export function FavoritesList() {
           </p>
           <button
             type="button"
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/app')}
             className="mt-2 px-6 py-3 rounded-full bg-accent text-bg-base font-semibold text-sm min-h-[48px] active:bg-accent/80 transition-colors"
           >
             Przeglądaj trasy
@@ -109,7 +109,7 @@ export function FavoritesList() {
                 <TrailCard
                   route={route}
                   distanceKm={distanceKm}
-                  onClick={() => navigate(`/trails/${route.id}`)}
+                  onClick={() => navigate(`/app/trails/${route.id}`)}
                   isFavorited={true}
                   isWalked={walkedIds.has(route.id)}
                   onFavoriteToggle={() => toggleFavorite(route.id)}

@@ -38,7 +38,7 @@ export function OnboardingFlow() {
   function handleComplete() {
     try { sessionStorage.removeItem(STEP_KEY) } catch { /* ignore */ }
     setShowFilterTooltip(true)
-    navigate('/')
+    navigate('/app')
   }
 
   return (

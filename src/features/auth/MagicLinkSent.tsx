@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { supabase } from '../../lib/supabase'
 
 interface MagicLinkSentProps {
@@ -12,6 +13,7 @@ const MAX_RESENDS = 3
 const OTP_LENGTH = 6
 
 export function MagicLinkSent({ email, token, invitationId }: MagicLinkSentProps) {
+  const navigate = useNavigate()
   const [otp, setOtp] = useState<string[]>(Array(OTP_LENGTH).fill(''))
   const [verifying, setVerifying] = useState(false)
   const [otpError, setOtpError] = useState<string | null>(null)
@@ -51,12 +53,14 @@ export function MagicLinkSent({ email, token, invitationId }: MagicLinkSentProps
         setOtp(Array(OTP_LENGTH).fill(''))
         inputRefs.current[0]?.focus()
       } else {
-        // Session established via onAuthStateChange — invite token was already
-        // stored in sessionStorage by RegisterForm before the OTP flow started.
-        // Store invitation ID for any post-session handling.
+        // Session established — invite token was already stored in sessionStorage
+        // by RegisterForm before the OTP flow started.
         if (invitationId) {
           sessionStorage.setItem('pending_invitation_id', invitationId)
         }
+        // If rendered outside AuthLayout (e.g. /invite), onAuthStateChange
+        // won't fire from useAuthInit — navigate into the app manually.
+        navigate('/app')
       }
     } finally {
       setVerifying(false)
@@ -97,7 +101,7 @@ export function MagicLinkSent({ email, token, invitationId }: MagicLinkSentProps
     setResendError(null)
     const { error } = await supabase.auth.signInWithOtp({
       email,
-      options: { shouldCreateUser: true, emailRedirectTo: window.location.origin },
+      options: { shouldCreateUser: true, emailRedirectTo: window.location.origin + '/app' },
     })
     if (error) {
       setResendError('Nie można wysłać emaila. Spróbuj później.')

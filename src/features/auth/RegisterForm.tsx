@@ -35,7 +35,7 @@ export function RegisterForm({ invitationId, token }: RegisterFormProps) {
       email: email.trim(),
       options: {
         shouldCreateUser: true,
-        emailRedirectTo: window.location.origin,
+        emailRedirectTo: window.location.origin + '/app',
         data: { display_name: name.trim() },
       },
     })

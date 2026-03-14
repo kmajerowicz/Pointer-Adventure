@@ -27,7 +27,7 @@ export function AuthGateSheet({ isOpen, onClose }: AuthGateSheetProps) {
   }
 
   const handleLogin = () => {
-    navigate('/auth')
+    navigate('/app/auth')
     handleClose()
   }
 

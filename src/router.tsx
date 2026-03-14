@@ -9,21 +9,23 @@ import { InvitePage } from './features/auth/InvitePage'
 import { AuthPage } from './features/auth/AuthPage'
 import { OnboardingFlow } from './features/onboarding/OnboardingFlow'
 import { ProfileView } from './features/profile'
-import { WelcomePage } from './features/auth/WelcomePage'
+import { LandingPage } from './features/landing'
 import { useAuthStore } from './stores/auth'
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const session = useAuthStore((s) => s.session)
-  if (!session) return <Navigate to="/auth" replace />
+  if (!session) return <Navigate to="/app/auth" replace />
   return <>{children}</>
 }
 
 export const router = createBrowserRouter([
+  { path: '/', element: <LandingPage /> },
+  { path: '/invite', element: <InvitePage /> },
   {
+    path: '/app',
     element: <AuthLayout />,
     children: [
       {
-        path: '/',
         element: <AppLayout />,
         children: [
           { index: true, element: <MapErrorBoundary><MapView /></MapErrorBoundary> },
@@ -32,11 +34,9 @@ export const router = createBrowserRouter([
           { path: 'profile', element: <ProfileView /> },
         ],
       },
-      { path: '/welcome', element: <WelcomePage /> },
-      { path: '/invite', element: <InvitePage /> },
-      { path: '/auth', element: <AuthPage /> },
-      { path: '/trails/:id', element: <TrailDetail /> },
-      { path: '/onboarding', element: <ProtectedRoute><OnboardingFlow /></ProtectedRoute> },
+      { path: 'auth', element: <AuthPage /> },
+      { path: 'trails/:id', element: <TrailDetail /> },
+      { path: 'onboarding', element: <ProtectedRoute><OnboardingFlow /></ProtectedRoute> },
     ],
   },
 ])

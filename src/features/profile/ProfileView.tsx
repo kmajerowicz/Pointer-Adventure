@@ -24,7 +24,7 @@ export function ProfileView() {
           </p>
           <button
             type="button"
-            onClick={() => navigate('/auth')}
+            onClick={() => navigate('/app/auth')}
             className="px-6 py-3 rounded-full bg-accent text-bg-base font-semibold min-h-[48px] active:bg-accent/80 transition-colors"
           >
             Zaloguj się
@@ -75,7 +75,7 @@ export function ProfileView() {
                   <button
                     key={entry.id}
                     type="button"
-                    onClick={() => navigate(`/trails/${entry.route_id}`)}
+                    onClick={() => navigate(`/app/trails/${entry.route_id}`)}
                     className="w-full flex items-center justify-between px-4 py-3 text-left active:bg-bg-elevated transition-colors min-h-[48px]"
                   >
                     <div className="min-w-0 flex-1">

@@ -2,7 +2,7 @@
   "name": "Psi Szlak",
   "short_name": "Psi Szlak",
   "description": "Odkryj trasy spacerowe z psem w Polsce",
-  "start_url": "/",
+  "start_url": "/app",
   "display": "standalone",
   "background_color": "#111318",
   "theme_color": "#111318",

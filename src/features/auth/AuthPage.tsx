@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams, Link } from 'react-router-dom'
 import { supabase } from '../../lib/supabase'
 import { MagicLinkSent } from './MagicLinkSent'
 
@@ -28,7 +28,7 @@ export function AuthPage() {
       email: email.trim(),
       options: {
         shouldCreateUser: false,
-        emailRedirectTo: window.location.origin,
+        emailRedirectTo: window.location.origin + '/app',
       },
     })
 
@@ -81,6 +81,13 @@ export function AuthPage() {
             {loading ? 'Wysyłanie...' : 'Wyślij link logowania'}
           </button>
         </form>
+
+        <Link
+          to="/"
+          className="block text-center text-sm text-text-secondary hover:text-text-primary transition-colors"
+        >
+          Wróć na stronę główną
+        </Link>
       </div>
     </div>
   )
