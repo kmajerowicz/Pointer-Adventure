@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 06-03-PLAN.md
-last_updated: "2026-03-14T00:12:47.851Z"
+stopped_at: Completed 06-02-PLAN.md
+last_updated: "2026-03-14T00:13:17.330Z"
 last_activity: 2026-03-13 — Plan 01-01 complete (map core, geolocation, error boundary)
 progress:
   total_phases: 8
-  completed_phases: 6
+  completed_phases: 7
   total_plans: 20
-  completed_plans: 16
+  completed_plans: 17
   percent: 75
 ---
 
@@ -65,6 +65,7 @@ Progress: [████████░░] 75%
 | Phase 05-auth-and-onboarding P03 | 6 | 2 tasks | 10 files |
 | Phase 06-favorites-and-activity P01 | 7 | 2 tasks | 16 files |
 | Phase 06-favorites-and-activity P03 | 4 | 2 tasks | 8 files |
+| Phase 06-favorites-and-activity P02 | 4 | 2 tasks | 9 files |
 
 ## Accumulated Context
 
@@ -125,6 +126,8 @@ Recent decisions affecting current work:
 - [Phase 06-favorites-and-activity]: Avatar uses letter initial circle (accent/20 bg) instead of icon — cleaner for user profile context
 - [Phase 06-favorites-and-activity]: vitest globals:true added so @testing-library/jest-dom can extend global expect without explicit imports per test file
 - [Phase 06-favorites-and-activity]: InviteGenerator copy: navigator.share first (mobile PWA UX), clipboard fallback for desktop
+- [Phase 06-02]: TrailCard changed from button wrapper to div+role=button — HTML forbids button-inside-button; heart action remains proper button with stopPropagation
+- [Phase 06-02]: FavoritesList manages its own FilterPanel state via local useState — avoids coupling to global UIStore.isFilterOpen shared with MapView
 
 ### Pending Todos
 
@@ -137,6 +140,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-14T00:12:47.848Z
-Stopped at: Completed 06-03-PLAN.md
+Last session: 2026-03-14T00:13:17.327Z
+Stopped at: Completed 06-02-PLAN.md
 Resume file: None
