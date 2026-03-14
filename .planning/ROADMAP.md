@@ -174,4 +174,4 @@ Phases execute in numeric order: 0 → 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 4. Filters | 2/2 | Complete   | 2026-03-13 |
 | 5. Auth and Onboarding | 3/3 | Complete   | 2026-03-14 |
 | 6. Favorites and Activity | 3/3 | Complete   | 2026-03-14 |
-| 7. PWA Hardening | 0/3 | Not started | - |
+| 7. PWA Hardening | 2/3 | In Progress|  |
