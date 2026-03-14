@@ -18,6 +18,7 @@ Starting from a complete Phase 0 scaffolding, this roadmap builds the app in str
 - [x] **Phase 5: Auth and Onboarding** - Invite-only magic link auth, 4-step onboarding, dog-name personalization, route guarding (completed 2026-03-14)
 - [x] **Phase 6: Favorites and Activity** - Heart toggle with optimistic UI, private notes, "Przeszedlem!" log, profile page (completed 2026-03-14)
 - [x] **Phase 7: PWA Hardening** - Fixed Workbox tile cache, offline banner, NetworkFirst trail cache, PNG icons (completed 2026-03-14)
+- [ ] **Phase 8: Polish & Gap Closure** - Toast renderer, stale verification fix, DS traceability cleanup
 
 ## Phase Details
 
@@ -160,10 +161,25 @@ Plans:
 - [ ] 07-02-PLAN.md — useOnlineStatus hook, OfflineBanner, LocationSearch disabled when offline (PWA-04, PWA-05)
 - [ ] 07-03-PLAN.md — Install prompt bottom sheet with Android native + iOS manual instructions (PWA-01)
 
+### Phase 8: Polish & Gap Closure
+**Goal**: All user actions produce visible feedback; milestone documentation is accurate and complete
+**Depends on**: Phase 7
+**Requirements**: ACT-02, DS-05
+**Gap Closure**: Closes gaps from v1.0 audit — toast renderer missing, stale Phase 5 verification, DS traceability checkboxes
+**Skills**: frontend-design + vercel-react-best-practices
+**Success Criteria** (what must be TRUE):
+  1. Tapping "Przeszedlem!" on TrailDetail shows a visible toast "Zapisano spacer!" that auto-dismisses — user receives confirmation
+  2. DS-01 through DS-06 traceability checkboxes are marked complete in REQUIREMENTS.md
+  3. Phase 5 VERIFICATION.md status reflects current reality (ONBR-04 resolved)
+**Plans**: TBD
+
+Plans:
+- [ ] 08-01: Toast renderer component, stale docs fix, traceability update
+
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 0 → 1 → 2 → 3 → 4 → 5 → 6 → 7
+Phases execute in numeric order: 0 → 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
@@ -175,3 +191,4 @@ Phases execute in numeric order: 0 → 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 5. Auth and Onboarding | 3/3 | Complete   | 2026-03-14 |
 | 6. Favorites and Activity | 3/3 | Complete   | 2026-03-14 |
 | 7. PWA Hardening | 3/3 | Complete   | 2026-03-14 |
+| 8. Polish & Gap Closure | 0/1 | Not started | - |
