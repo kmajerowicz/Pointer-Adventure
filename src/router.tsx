@@ -4,12 +4,11 @@ import { AuthLayout } from './components/layout/AuthLayout'
 import { MapView, MapErrorBoundary } from './features/map'
 import { TrailList } from './features/trails/TrailList'
 import { TrailDetail } from './features/trails/TrailDetail'
+import { FavoritesList } from './features/favorites'
 import { InvitePage } from './features/auth/InvitePage'
 import { AuthPage } from './features/auth/AuthPage'
 import { OnboardingFlow } from './features/onboarding/OnboardingFlow'
-
-const FavoritesPage = () => <div className="flex-1 flex items-center justify-center text-text-secondary">Ulubione</div>
-const ProfilePage = () => <div className="flex-1 flex items-center justify-center text-text-secondary">Profil</div>
+import { ProfileView } from './features/profile'
 
 export const router = createBrowserRouter([
   {
@@ -21,8 +20,8 @@ export const router = createBrowserRouter([
         children: [
           { index: true, element: <MapErrorBoundary><MapView /></MapErrorBoundary> },
           { path: 'trails', element: <TrailList /> },
-          { path: 'favorites', element: <FavoritesPage /> },
-          { path: 'profile', element: <ProfilePage /> },
+          { path: 'favorites', element: <FavoritesList /> },
+          { path: 'profile', element: <ProfileView /> },
         ],
       },
       { path: '/invite', element: <InvitePage /> },
