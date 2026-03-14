@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { ArrowLeft, Droplet, Heart, MapPin } from 'lucide-react'
 import { useTrailsStore } from '../../stores/trails'
@@ -6,6 +7,7 @@ import { useGeolocation } from '../../hooks/useGeolocation'
 import { useFavorites } from '../../hooks/useFavorites'
 import { useActivity } from '../../hooks/useActivity'
 import { useAuthStore } from '../../stores/auth'
+import { useUIStore } from '../../stores/ui'
 import { haversineKm } from '../../lib/haversine'
 import type { Route } from '../../lib/types'
 import { TrailDetailMap } from './TrailDetailMap'
@@ -119,6 +121,11 @@ export function TrailDetail() {
 
   // Auth
   const profile = useAuthStore((s) => s.profile)
+
+  // Increment trail view count for install prompt threshold
+  useEffect(() => {
+    useUIStore.getState().incrementTrailViewCount()
+  }, [])
 
   if (!route) {
     return <TrailNotFound />

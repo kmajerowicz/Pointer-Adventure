@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import { BottomTabBar } from '../ui/BottomTabBar'
 import { FilterTooltip } from '../../features/onboarding/FilterTooltip'
+import { InstallPrompt } from '../ui/InstallPrompt'
 import { useOnlineStatus } from '../../hooks/useOnlineStatus'
 
 export function AppLayout() {
@@ -12,6 +13,7 @@ export function AppLayout() {
         <Outlet />
       </main>
       <FilterTooltip />
+      <InstallPrompt />
       <BottomTabBar />
     </div>
   )
