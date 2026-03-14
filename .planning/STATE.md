@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 07-03-PLAN.md
-last_updated: "2026-03-14T10:40:29.846Z"
+stopped_at: Completed 08-01-PLAN.md
+last_updated: "2026-03-14T11:02:46.000Z"
 last_activity: 2026-03-13 — Plan 01-01 complete (map core, geolocation, error boundary)
 progress:
-  total_phases: 8
-  completed_phases: 8
-  total_plans: 20
-  completed_plans: 20
+  total_phases: 9
+  completed_phases: 9
+  total_plans: 21
+  completed_plans: 21
   percent: 75
 ---
 
@@ -69,6 +69,7 @@ Progress: [████████░░] 75%
 | Phase 07-pwa-hardening P02 | 2 | 2 tasks | 6 files |
 | Phase 07-pwa-hardening P01 | 2 | 2 tasks | 6 files |
 | Phase 07-pwa-hardening P03 | 2m | 2 tasks | 5 files |
+| Phase 08-polish-and-gap-closure P01 | 3m | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -140,6 +141,8 @@ Recent decisions affecting current work:
 - [Phase 07-pwa-hardening]: BeforeInstallPromptEvent declared in vite-env.d.ts alongside ImportMetaEnv — single file for all global type augmentations
 - [Phase 07-pwa-hardening]: trailViewCount in UIStore resets on reload intentionally — avoids surfacing install prompt on cold start to first-time visitors
 - [Phase 07-pwa-hardening]: InstallPrompt positioned via CSS bottom: var(--spacing-tab-bar) to stay in sync with tab bar height token
+- [Phase 08-01]: ToastRenderer placed in AuthLayout (not AppLayout) so toast visible on standalone routes like TrailDetail
+- [Phase 08-01]: Added --animate-fade-in and --animate-slide-up tokens to index.css @theme — required by Tailwind v4 animate- classes
 
 ### Pending Todos
 
@@ -152,6 +155,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-14T10:36:18.442Z
-Stopped at: Completed 07-03-PLAN.md
+Last session: 2026-03-14T11:02:45.996Z
+Stopped at: Completed 08-01-PLAN.md
 Resume file: None

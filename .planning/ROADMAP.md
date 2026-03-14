@@ -18,7 +18,7 @@ Starting from a complete Phase 0 scaffolding, this roadmap builds the app in str
 - [x] **Phase 5: Auth and Onboarding** - Invite-only magic link auth, 4-step onboarding, dog-name personalization, route guarding (completed 2026-03-14)
 - [x] **Phase 6: Favorites and Activity** - Heart toggle with optimistic UI, private notes, "Przeszedlem!" log, profile page (completed 2026-03-14)
 - [x] **Phase 7: PWA Hardening** - Fixed Workbox tile cache, offline banner, NetworkFirst trail cache, PNG icons (completed 2026-03-14)
-- [ ] **Phase 8: Polish & Gap Closure** - Toast renderer, stale verification fix, DS traceability cleanup
+- [x] **Phase 8: Polish & Gap Closure** - Toast renderer, stale verification fix, DS traceability cleanup (completed 2026-03-14)
 
 ## Phase Details
 
@@ -191,4 +191,4 @@ Phases execute in numeric order: 0 → 1 → 2 → 3 → 4 → 5 → 6 → 7 →
 | 5. Auth and Onboarding | 3/3 | Complete   | 2026-03-14 |
 | 6. Favorites and Activity | 3/3 | Complete   | 2026-03-14 |
 | 7. PWA Hardening | 3/3 | Complete   | 2026-03-14 |
-| 8. Polish & Gap Closure | 0/1 | Not started | - |
+| 8. Polish & Gap Closure | 1/1 | Complete   | 2026-03-14 |
