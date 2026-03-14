@@ -145,6 +145,10 @@ None — no external service configuration required for this plan. The validate-
 - /onboarding route stub ready for Plan 03 (OnboardingFlow)
 - Invite token in sessionStorage ready for App.tsx consume_invite call (Plan 01 wired this)
 
+## Self-Check: PASSED
+
+All files found. Both task commits verified in git log.
+
 ---
 *Phase: 05-auth-and-onboarding*
 *Completed: 2026-03-14*
