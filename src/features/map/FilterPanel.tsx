@@ -257,7 +257,7 @@ export function FilterPanel({ isOpen, onClose, scrollToCategory }: FilterPanelPr
             onClick={handleResetDraft}
             className="text-accent text-sm font-medium hover:underline"
           >
-            Wyczysc wszystko
+            Wyczyść wszystko
           </button>
         </div>
 
@@ -266,8 +266,8 @@ export function FilterPanel({ isOpen, onClose, scrollToCategory }: FilterPanelPr
           {/* Divider */}
           <div className="h-px bg-bg-elevated mb-2" />
 
-          {/* 1. Dlugosci */}
-          <FilterSection title="Dlugosci" sectionRef={lengthRef}>
+          {/* 1. Długości */}
+          <FilterSection title="Długości" sectionRef={lengthRef}>
             <PillGroup
               options={LENGTH_OPTIONS}
               selected={draft.length}
@@ -286,8 +286,8 @@ export function FilterPanel({ isOpen, onClose, scrollToCategory }: FilterPanelPr
           </FilterSection>
           <div className="h-px bg-bg-elevated" />
 
-          {/* 3. Dostep do wody */}
-          <FilterSection title="Dostep do wody" sectionRef={waterRef}>
+          {/* 3. Dostęp do wody */}
+          <FilterSection title="Dostęp do wody" sectionRef={waterRef}>
             <div className="flex flex-wrap gap-2">
               {WATER_OPTIONS.map((opt) => {
                 const isSelected = draft.water === opt.value
@@ -312,7 +312,7 @@ export function FilterPanel({ isOpen, onClose, scrollToCategory }: FilterPanelPr
                     </button>
                     {opt.value === 'preferred' && (
                       <span className="text-text-muted text-[0.65rem] px-1">
-                        Trasy z woda wyzej
+                        Trasy z wodą wyżej
                       </span>
                     )}
                   </div>
@@ -322,8 +322,8 @@ export function FilterPanel({ isOpen, onClose, scrollToCategory }: FilterPanelPr
           </FilterSection>
           <div className="h-px bg-bg-elevated" />
 
-          {/* 4. Trudnosc */}
-          <FilterSection title="Trudnosc" sectionRef={difficultyRef}>
+          {/* 4. Trudność */}
+          <FilterSection title="Trudność" sectionRef={difficultyRef}>
             <PillGroup
               options={difficultyOptions}
               selected={draft.difficulty}
@@ -332,8 +332,8 @@ export function FilterPanel({ isOpen, onClose, scrollToCategory }: FilterPanelPr
           </FilterSection>
           <div className="h-px bg-bg-elevated" />
 
-          {/* 5. Odleglosc */}
-          <FilterSection title="Odleglosc" sectionRef={distanceRef}>
+          {/* 5. Odległość */}
+          <FilterSection title="Odległość" sectionRef={distanceRef}>
             {!gpsAvailable && (
               <p className="text-text-muted text-xs mb-2">
                 Wymaga lokalizacji

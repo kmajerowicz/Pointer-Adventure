@@ -2,6 +2,12 @@ import { useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 import { useAuthStore } from '../stores/auth'
+import { useTrailsStore } from '../stores/trails'
+import { useFavoritesStore } from '../stores/favorites'
+import { useFiltersStore } from '../stores/filters'
+import { useViewportStore } from '../stores/viewport'
+import { useActivityStore } from '../stores/activity'
+import { useInvitesStore } from '../stores/invites'
 import type { User as AppUser } from '../lib/types'
 
 async function fetchProfile(userId: string): Promise<AppUser | null> {
@@ -86,6 +92,14 @@ export function useAuthInit() {
         }
       } else if (event === 'SIGNED_OUT') {
         clear()
+        useTrailsStore.getState().reset()
+        useFavoritesStore.getState().reset()
+        useFiltersStore.getState().resetAll()
+        useViewportStore.getState().setCenter([19.145, 51.919])
+        useViewportStore.getState().setZoom(6)
+        useViewportStore.getState().setBounds(null)
+        useActivityStore.getState().reset()
+        useInvitesStore.getState().reset()
         hasRedirected.current = false
         navigate('/auth')
       }

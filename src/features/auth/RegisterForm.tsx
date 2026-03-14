@@ -25,6 +25,12 @@ export function RegisterForm({ invitationId, token }: RegisterFormProps) {
     setLoading(true)
     setError(null)
 
+    // Store invite token in sessionStorage BEFORE the auth flow starts,
+    // so useAuthInit's SIGNED_IN handler can always find it.
+    if (token) {
+      sessionStorage.setItem('pending_invite_token', token)
+    }
+
     const { error: otpError } = await supabase.auth.signInWithOtp({
       email: email.trim(),
       options: {
@@ -37,7 +43,7 @@ export function RegisterForm({ invitationId, token }: RegisterFormProps) {
     setLoading(false)
 
     if (otpError) {
-      setError('Nie mozna wyslac emaila. Upewnij sie, ze adres jest poprawny i sprobuj ponownie.')
+      setError('Nie można wysłać emaila. Upewnij się, że adres jest poprawny i spróbuj ponownie.')
       return
     }
 
@@ -48,23 +54,23 @@ export function RegisterForm({ invitationId, token }: RegisterFormProps) {
   return (
     <div className="w-full max-w-sm space-y-8">
       <div className="space-y-2">
-        <h1 className="text-2xl font-semibold text-text-primary">Dolacz do Psi Szlak</h1>
+        <h1 className="text-2xl font-semibold text-text-primary">Dołącz do Psi Szlak</h1>
         <p className="text-text-secondary text-sm">
-          Wypelnij formularz, aby dolaczyc do spolecznosci milosnikow tras z psem.
+          Wypełnij formularz, aby dołączyć do społeczności miłośników tras z psem.
         </p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="space-y-1.5">
           <label htmlFor="display-name" className="text-sm font-medium text-text-secondary">
-            Twoje imie
+            Twoje imię
           </label>
           <input
             id="display-name"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Jak masz na imie?"
+            placeholder="Jak masz na imię?"
             required
             className="w-full h-12 px-4 rounded-xl bg-bg-surface border border-bg-elevated text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors"
           />
@@ -94,7 +100,7 @@ export function RegisterForm({ invitationId, token }: RegisterFormProps) {
           disabled={loading || !name.trim() || !email.trim()}
           className="w-full min-h-[48px] rounded-xl bg-accent text-bg-base font-semibold text-base hover:opacity-90 active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {loading ? 'Wysylanie...' : 'Dolacz do Psi Szlak'}
+          {loading ? 'Wysyłanie...' : 'Dołącz do Psi Szlak'}
         </button>
       </form>
     </div>

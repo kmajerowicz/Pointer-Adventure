@@ -20,6 +20,8 @@ export function useActivity() {
       .eq('user_id', user.id)
     if (!error && data) {
       store.setWalkedIds(data.map((d: { route_id: string }) => d.route_id))
+    } else if (error) {
+      console.error('Failed to load activity:', error)
     }
   }
 
@@ -32,6 +34,8 @@ export function useActivity() {
       .order('walked_at', { ascending: false })
     if (!error && data) {
       store.setEntries(data as unknown as ActivityHistoryEntry[])
+    } else if (error) {
+      console.error('Failed to load activity history:', error)
     }
   }
 
@@ -56,7 +60,7 @@ export function useActivity() {
       store.appendEntry(data as ActivityHistoryEntry)
       showToast('Zapisano spacer!')
     } else {
-      showToast('Nie udalo sie zapisac spaceru')
+      showToast('Nie udało się zapisać spaceru')
     }
   }
 

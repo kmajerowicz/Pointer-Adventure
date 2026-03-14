@@ -27,9 +27,9 @@ describe('InvitePage', () => {
     vi.clearAllMocks()
   })
 
-  it('shows "Dostep tylko przez zaproszenie" when no token param', () => {
+  it('shows "Dostęp tylko przez zaproszenie" when no token param', () => {
     renderWithRouter()
-    expect(screen.getByText('Dostep tylko przez zaproszenie')).toBeTruthy()
+    expect(screen.getByText('Dostęp tylko przez zaproszenie')).toBeTruthy()
   })
 
   it('shows loading spinner during token validation', () => {
@@ -46,9 +46,9 @@ describe('InvitePage', () => {
     invokeMock.mockResolvedValue({ data: { valid: false, reason: 'expired' }, error: null } as never)
 
     renderWithRouter('?token=expired-token')
-    const heading = await screen.findByText('Zaproszenie wygaslo')
+    const heading = await screen.findByText('Zaproszenie wygasło')
     expect(heading).toBeTruthy()
-    expect(screen.getByText(/Popros znajomego o nowe zaproszenie/)).toBeTruthy()
+    expect(screen.getByText(/Poproś znajomego o nowe zaproszenie/)).toBeTruthy()
   })
 
   it('shows Polish error for used token', async () => {
@@ -56,7 +56,7 @@ describe('InvitePage', () => {
     invokeMock.mockResolvedValue({ data: { valid: false, reason: 'used' }, error: null } as never)
 
     renderWithRouter('?token=used-token')
-    const heading = await screen.findByText('Zaproszenie wygaslo')
+    const heading = await screen.findByText('Zaproszenie wygasło')
     expect(heading).toBeTruthy()
   })
 
@@ -65,7 +65,7 @@ describe('InvitePage', () => {
     invokeMock.mockResolvedValue({ data: { valid: false, reason: 'not_found' }, error: null } as never)
 
     renderWithRouter('?token=bad-token')
-    const heading = await screen.findByText('Nieprawidlowy link zaproszenia')
+    const heading = await screen.findByText('Nieprawidłowy link zaproszenia')
     expect(heading).toBeTruthy()
   })
 

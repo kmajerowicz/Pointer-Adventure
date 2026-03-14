@@ -20,14 +20,14 @@ export function ProfileView() {
       <div className="flex-1 flex items-center justify-center">
         <div className="text-center px-4">
           <p className="text-text-secondary mb-4">
-            Zaloguj sie, aby zobaczyc swoj profil
+            Zaloguj się, aby zobaczyć swój profil
           </p>
           <button
             type="button"
             onClick={() => navigate('/auth')}
             className="px-6 py-3 rounded-full bg-accent text-bg-base font-semibold min-h-[48px] active:bg-accent/80 transition-colors"
           >
-            Zaloguj sie
+            Zaloguj się
           </button>
         </div>
       </div>
@@ -46,7 +46,7 @@ export function ProfileView() {
           </div>
           <div className="min-w-0">
             <h2 className="text-lg font-semibold text-text-primary truncate">
-              {profile.display_name ?? 'Uzytkownik'}
+              {profile.display_name ?? 'Użytkownik'}
             </h2>
             {profile.dog_name && (
               <p className="text-sm text-text-secondary truncate">
@@ -59,12 +59,12 @@ export function ProfileView() {
         {/* Activity history card */}
         <div className="bg-bg-surface rounded-xl overflow-hidden">
           <div className="px-4 pt-4 pb-2">
-            <h3 className="text-base font-semibold text-text-primary">Historia spacerow</h3>
+            <h3 className="text-base font-semibold text-text-primary">Historia spacerów</h3>
           </div>
           {entries.length === 0 ? (
             <div className="px-4 pb-4">
               <p className="text-sm text-text-secondary">
-                Nie masz jeszcze zadnych spacerow. Wybierz trase i kliknij &quot;Przeszedlem!&quot;
+                Nie masz jeszcze żadnych spacerów. Wybierz trasę i kliknij &quot;Przeszedłem!&quot;
               </p>
             </div>
           ) : (

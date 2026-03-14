@@ -24,10 +24,19 @@ export function useTrails() {
       setLoading(true)
       setError(null)
       setRetry(null)
+
+      const timeoutMs = 15_000
+      const timeoutPromise = new Promise<never>((_, reject) => {
+        setTimeout(() => reject(new Error('Request timeout')), timeoutMs)
+      })
+
       try {
-        const { data, error } = await supabase.functions.invoke('search-trails', {
-          body: { north: b.north, south: b.south, east: b.east, west: b.west },
-        })
+        const { data, error } = await Promise.race([
+          supabase.functions.invoke('search-trails', {
+            body: { north: b.north, south: b.south, east: b.east, west: b.west },
+          }),
+          timeoutPromise,
+        ])
         if (error) throw error
         const routes = data?.routes ?? []
         if (replace) {
@@ -37,7 +46,7 @@ export function useTrails() {
         }
         setLastFetched(new Date().toISOString())
       } catch {
-        setError('Nie udalo sie pobrac tras')
+        setError('Nie udało się pobrać tras')
         const currentBounds = boundsRef.current
         const retryFn = () => {
           if (currentBounds) {

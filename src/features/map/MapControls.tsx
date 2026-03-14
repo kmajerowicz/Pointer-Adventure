@@ -41,10 +41,10 @@ export function MapControls({ mapRef, onGpsDenied }: MapControlsProps) {
       }
     } else if (state.status === 'error') {
       if (state.code === 1) {
-        showToast('Brak dostepu do lokalizacji. Wlacz usluge lokalizacji w ustawieniach przegladarki i sprobuj ponownie.')
+        showToast('Brak dostępu do lokalizacji. Włącz usługę lokalizacji w ustawieniach przeglądarki i spróbuj ponownie.')
         onGpsDenied?.()
       } else if (state.code === 2 || state.code === 3) {
-        showToast('Nie udalo sie znalezc lokalizacji')
+        showToast('Nie udało się znaleźć lokalizacji')
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -63,7 +63,7 @@ export function MapControls({ mapRef, onGpsDenied }: MapControlsProps) {
       {/* Geolocation button — floating bottom-right above tab bar */}
       <button
         onClick={locate}
-        aria-label="Znajdz moja lokalizacje"
+        aria-label="Znajdź moją lokalizację"
         className={[
           'absolute bottom-4 right-4',
           'w-12 h-12 rounded-full',

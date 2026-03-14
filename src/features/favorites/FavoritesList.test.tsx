@@ -125,7 +125,7 @@ describe('FavoritesList', () => {
     expect(screen.getByText('Szlak Testowy')).toBeDefined()
   })
 
-  it('renders "Brak tras pasujacych do filtrow" when favorites exist but filters yield 0', () => {
+  it('renders "Brak tras pasujących do filtrów" when favorites exist but filters yield 0', () => {
     mockUseAuthStore.mockReturnValue({ id: 'u1', dog_name: 'Pucia', display_name: null, avatar_url: null, walk_preferences: null, created_at: '' })
     mockUseTrailsStore.mockReturnValue([mockRoute])
     mockUseFavorites.mockReturnValue({
@@ -138,6 +138,6 @@ describe('FavoritesList', () => {
 
     render(<FavoritesList />)
 
-    expect(screen.getByText(/Brak tras pasujacych do filtrow/)).toBeDefined()
+    expect(screen.getByText(/Brak tras pasujących do filtrów/)).toBeDefined()
   })
 })

@@ -35,7 +35,7 @@ export function AuthPage() {
     setLoading(false)
 
     if (otpError) {
-      setError('Nie mozna wyslac emaila. Upewnij sie, ze adres jest poprawny i sprobuj ponownie.')
+      setError('Nie można wysłać emaila. Upewnij się, że adres jest poprawny i spróbuj ponownie.')
       return
     }
 
@@ -47,9 +47,9 @@ export function AuthPage() {
       <div className="w-full max-w-sm space-y-8">
         <div className="text-center space-y-2">
           <div className="text-4xl">🐾</div>
-          <h1 className="text-2xl font-semibold text-text-primary">Zaloguj sie</h1>
+          <h1 className="text-2xl font-semibold text-text-primary">Zaloguj się</h1>
           <p className="text-text-secondary text-sm">
-            Dostep tylko przez zaproszenie
+            Dostęp tylko przez zaproszenie
           </p>
         </div>
 
@@ -78,7 +78,7 @@ export function AuthPage() {
             disabled={loading || !email.trim()}
             className="w-full min-h-[48px] rounded-xl bg-accent text-bg-base font-semibold text-base hover:opacity-90 active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {loading ? 'Wysylanie...' : 'Wyslij link logowania'}
+            {loading ? 'Wysyłanie...' : 'Wyślij link logowania'}
           </button>
         </form>
       </div>

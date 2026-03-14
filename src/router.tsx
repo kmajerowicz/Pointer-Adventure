@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, Navigate } from 'react-router-dom'
 import { AppLayout } from './components/layout/AppLayout'
 import { AuthLayout } from './components/layout/AuthLayout'
 import { MapView, MapErrorBoundary } from './features/map'
@@ -10,6 +10,13 @@ import { AuthPage } from './features/auth/AuthPage'
 import { OnboardingFlow } from './features/onboarding/OnboardingFlow'
 import { ProfileView } from './features/profile'
 import { WelcomePage } from './features/auth/WelcomePage'
+import { useAuthStore } from './stores/auth'
+
+function ProtectedRoute({ children }: { children: React.ReactNode }) {
+  const session = useAuthStore((s) => s.session)
+  if (!session) return <Navigate to="/auth" replace />
+  return <>{children}</>
+}
 
 export const router = createBrowserRouter([
   {
@@ -29,7 +36,7 @@ export const router = createBrowserRouter([
       { path: '/invite', element: <InvitePage /> },
       { path: '/auth', element: <AuthPage /> },
       { path: '/trails/:id', element: <TrailDetail /> },
-      { path: '/onboarding', element: <OnboardingFlow /> },
+      { path: '/onboarding', element: <ProtectedRoute><OnboardingFlow /></ProtectedRoute> },
     ],
   },
 ])

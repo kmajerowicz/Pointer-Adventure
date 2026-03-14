@@ -3,7 +3,7 @@ import type { SurfaceType, Difficulty } from '../../lib/types'
 /** Polish surface type labels for filter UI */
 export const SURFACE_LABELS: Record<SurfaceType, string> = {
   dirt: 'Ziemia',
-  gravel: 'Zwir',
+  gravel: 'Żwir',
   asphalt: 'Asfalt',
   mixed: 'Mieszana',
   unknown: 'Nieznana',
@@ -11,8 +11,8 @@ export const SURFACE_LABELS: Record<SurfaceType, string> = {
 
 /** Polish difficulty labels for filter UI */
 export const DIFFICULTY_LABELS: Record<Difficulty, string> = {
-  easy: 'Latwa',
-  moderate: 'Srednia',
+  easy: 'Łatwa',
+  moderate: 'Średnia',
   hard: 'Trudna',
   unknown: 'Nieznana',
 }

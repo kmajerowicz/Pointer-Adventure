@@ -121,7 +121,7 @@ describe('ProfileView', () => {
 
     renderProfile()
 
-    expect(screen.getAllByText(/Zaloguj sie/i).length).toBeGreaterThan(0)
+    expect(screen.getAllByText(/Zaloguj się/i).length).toBeGreaterThan(0)
   })
 
   it('renders activity history entries with route names and dates', () => {
@@ -199,6 +199,6 @@ describe('ProfileView', () => {
 
     renderProfile()
 
-    expect(screen.getByText(/Nie masz jeszcze zadnych spacerow/i)).toBeInTheDocument()
+    expect(screen.getByText(/Nie masz jeszcze żadnych spacerów/i)).toBeInTheDocument()
   })
 })

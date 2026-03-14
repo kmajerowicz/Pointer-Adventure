@@ -7,15 +7,36 @@ import { DogStep } from './DogStep'
 import { PreferencesStep } from './PreferencesStep'
 import { GeolocationStep } from './GeolocationStep'
 
+const STEP_KEY = 'psi_szlak_onboarding_step'
+
+function getInitialStep(hasDogName: boolean): number {
+  try {
+    const saved = sessionStorage.getItem(STEP_KEY)
+    if (saved) {
+      const n = Number(saved)
+      if (n >= 1 && n <= 4) return n
+    }
+  } catch { /* ignore */ }
+  // Skip DogStep if dog_name is already saved (partial completion)
+  if (hasDogName) return 3
+  return 1
+}
+
 export function OnboardingFlow() {
-  const [step, setStep] = useState(1)
-  const navigate = useNavigate()
   const profile = useAuthStore((s) => s.profile)
+  const [step, setStep] = useState(() => getInitialStep(Boolean(profile?.dog_name)))
+  const navigate = useNavigate()
   const setShowFilterTooltip = useUIStore((s) => s.setShowFilterTooltip)
 
   const totalSteps = 4
 
+  function goToStep(n: number) {
+    setStep(n)
+    try { sessionStorage.setItem(STEP_KEY, String(n)) } catch { /* ignore */ }
+  }
+
   function handleComplete() {
+    try { sessionStorage.removeItem(STEP_KEY) } catch { /* ignore */ }
     setShowFilterTooltip(true)
     navigate('/')
   }
@@ -40,16 +61,16 @@ export function OnboardingFlow() {
         {step === 1 && (
           <WelcomeStep
             name={profile?.display_name ?? null}
-            onNext={() => setStep(2)}
+            onNext={() => goToStep(2)}
           />
         )}
         {step === 2 && (
-          <DogStep onNext={() => setStep(3)} />
+          <DogStep onNext={() => goToStep(3)} />
         )}
         {step === 3 && (
           <PreferencesStep
-            onNext={() => setStep(4)}
-            onSkip={() => setStep(4)}
+            onNext={() => goToStep(4)}
+            onSkip={() => goToStep(4)}
           />
         )}
         {step === 4 && (

@@ -8,6 +8,7 @@ interface ActivityState {
   addWalkedId: (id: string) => void
   appendEntry: (entry: ActivityLogEntry) => void
   setEntries: (entries: ActivityLogEntry[]) => void
+  reset: () => void
 }
 
 export const useActivityStore = create<ActivityState>((set) => ({
@@ -25,4 +26,6 @@ export const useActivityStore = create<ActivityState>((set) => ({
 
   setEntries: (entries) =>
     set({ entries }),
+
+  reset: () => set({ walkedIds: new Set<string>(), entries: [] }),
 }))

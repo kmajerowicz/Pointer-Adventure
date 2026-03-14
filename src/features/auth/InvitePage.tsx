@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams, Link } from 'react-router-dom'
 import { supabase } from '../../lib/supabase'
 import { RegisterForm } from './RegisterForm'
 
@@ -77,12 +77,18 @@ export function InvitePage() {
           <div className="text-center space-y-4">
             <div className="text-4xl">🐾</div>
             <h1 className="text-xl font-semibold text-text-primary">
-              Dostep tylko przez zaproszenie
+              Dostęp tylko przez zaproszenie
             </h1>
             <p className="text-text-secondary text-sm">
-              Psi Szlak jest dostepny wylacznie dla zaproszonych uzytkownikow.
-              Popros znajomego o link zaproszenia.
+              Psi Szlak jest dostępny wyłącznie dla zaproszonych użytkowników.
+              Poproś znajomego o link zaproszenia.
             </p>
+            <Link
+              to="/"
+              className="inline-block mt-2 px-6 py-3 min-h-[48px] bg-bg-elevated text-text-primary text-sm font-medium rounded-lg hover:bg-bg-surface transition-colors"
+            >
+              Wróć na stronę główną
+            </Link>
           </div>
         )}
 
@@ -90,11 +96,17 @@ export function InvitePage() {
           <div className="text-center space-y-4">
             <div className="text-4xl">⏰</div>
             <h1 className="text-xl font-semibold text-text-primary">
-              Zaproszenie wygaslo
+              Zaproszenie wygasło
             </h1>
             <p className="text-text-secondary text-sm">
-              Popros znajomego o nowe zaproszenie do Psi Szlak.
+              Poproś znajomego o nowe zaproszenie do Psi Szlak.
             </p>
+            <Link
+              to="/"
+              className="inline-block mt-2 px-6 py-3 min-h-[48px] bg-bg-elevated text-text-primary text-sm font-medium rounded-lg hover:bg-bg-surface transition-colors"
+            >
+              Wróć na stronę główną
+            </Link>
           </div>
         )}
 
@@ -102,11 +114,17 @@ export function InvitePage() {
           <div className="text-center space-y-4">
             <div className="text-4xl">❌</div>
             <h1 className="text-xl font-semibold text-text-primary">
-              Nieprawidlowy link zaproszenia
+              Nieprawidłowy link zaproszenia
             </h1>
             <p className="text-text-secondary text-sm">
-              Sprawdz czy link jest poprawny lub popros o nowe zaproszenie.
+              Sprawdź czy link jest poprawny lub poproś o nowe zaproszenie.
             </p>
+            <Link
+              to="/"
+              className="inline-block mt-2 px-6 py-3 min-h-[48px] bg-bg-elevated text-text-primary text-sm font-medium rounded-lg hover:bg-bg-surface transition-colors"
+            >
+              Wróć na stronę główną
+            </Link>
           </div>
         )}
 

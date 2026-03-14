@@ -13,6 +13,7 @@ interface TrailsState {
   setError: (error: string | null) => void
   setLastFetched: (ts: string | null) => void
   setRetry: (fn: (() => void) | null) => void
+  reset: () => void
 }
 
 export const useTrailsStore = create<TrailsState>((set) => ({
@@ -32,4 +33,5 @@ export const useTrailsStore = create<TrailsState>((set) => ({
   setError: (error) => set({ error }),
   setLastFetched: (lastFetched) => set({ lastFetched }),
   setRetry: (retry) => set({ retry }),
+  reset: () => set({ routes: [], loading: false, error: null, lastFetched: null, retry: null }),
 }))

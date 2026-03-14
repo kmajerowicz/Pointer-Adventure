@@ -47,15 +47,13 @@ export function MagicLinkSent({ email, token, invitationId }: MagicLinkSentProps
     try {
       const { error } = await supabase.auth.verifyOtp({ email, token: code, type: 'email' })
       if (error) {
-        setOtpError('Nieprawidlowy kod. Sprobuj ponownie.')
+        setOtpError('Nieprawidłowy kod. Spróbuj ponownie.')
         setOtp(Array(OTP_LENGTH).fill(''))
         inputRefs.current[0]?.focus()
       } else {
-        // Session established via onAuthStateChange in App.tsx
-        // Store invite token for post-session consume
-        if (token) {
-          sessionStorage.setItem('pending_invite_token', token)
-        }
+        // Session established via onAuthStateChange — invite token was already
+        // stored in sessionStorage by RegisterForm before the OTP flow started.
+        // Store invitation ID for any post-session handling.
         if (invitationId) {
           sessionStorage.setItem('pending_invitation_id', invitationId)
         }
@@ -102,7 +100,7 @@ export function MagicLinkSent({ email, token, invitationId }: MagicLinkSentProps
       options: { shouldCreateUser: true, emailRedirectTo: window.location.origin },
     })
     if (error) {
-      setResendError('Nie mozna wyslac emaila. Sprobuj pozniej.')
+      setResendError('Nie można wysłać emaila. Spróbuj później.')
     } else {
       setResendCount((c) => c + 1)
       startCooldown()
@@ -114,9 +112,9 @@ export function MagicLinkSent({ email, token, invitationId }: MagicLinkSentProps
       <div className="w-full max-w-sm space-y-8">
         <div className="text-center space-y-3">
           <div className="text-4xl">📬</div>
-          <h1 className="text-2xl font-semibold text-text-primary">Sprawdz swoj email</h1>
+          <h1 className="text-2xl font-semibold text-text-primary">Sprawdź swój email</h1>
           <p className="text-text-secondary text-sm">
-            Wyslalismy link i kod weryfikacyjny na adres
+            Wysłaliśmy link i kod weryfikacyjny na adres
           </p>
           <p className="text-accent font-medium break-all">{email}</p>
         </div>
@@ -160,18 +158,18 @@ export function MagicLinkSent({ email, token, invitationId }: MagicLinkSentProps
 
         <div className="space-y-3 pt-4 border-t border-bg-elevated">
           <p className="text-text-muted text-xs text-center">
-            Nie dostales emaila? Sprawdz folder spam lub
+            Nie dostałeś emaila? Sprawdź folder spam lub
           </p>
 
           {resendCount >= MAX_RESENDS ? (
-            <p className="text-text-muted text-sm text-center">Sprobuj pozniej</p>
+            <p className="text-text-muted text-sm text-center">Spróbuj później</p>
           ) : (
             <button
               onClick={handleResend}
               disabled={cooldown > 0}
               className="w-full min-h-[48px] rounded-xl border border-bg-elevated text-text-secondary hover:text-text-primary hover:border-text-muted transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium"
             >
-              {cooldown > 0 ? `Wyslij ponownie (${cooldown}s)` : 'Wyslij ponownie'}
+              {cooldown > 0 ? `Wyślij ponownie (${cooldown}s)` : 'Wyślij ponownie'}
             </button>
           )}
 

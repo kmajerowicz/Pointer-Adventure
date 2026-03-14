@@ -21,13 +21,13 @@ export function WelcomePage() {
           onClick={() => navigate('/auth')}
           className="w-full h-12 rounded-lg bg-accent text-bg-base font-semibold text-base active:scale-[0.97] transition-transform"
         >
-          Zaloguj sie
+          Zaloguj się
         </button>
         <button
           onClick={handleBrowse}
           className="w-full h-12 rounded-lg border border-text-muted text-text-secondary text-base active:scale-[0.97] transition-transform"
         >
-          Najpierw rozgladam sie
+          Najpierw rozglądam się
         </button>
       </div>
     </div>

@@ -22,15 +22,15 @@ const TRAIL_COLOR_BORDER: Record<NonNullable<Route['trail_color']>, string> = {
 
 const SURFACE_LABEL: Record<Route['surface_type'], string> = {
   dirt: 'Ziemia',
-  gravel: 'Zwir',
+  gravel: 'Żwir',
   asphalt: 'Asfalt',
   mixed: 'Mieszana',
   unknown: 'Nieznana',
 }
 
 const DIFFICULTY_LABEL: Record<Route['difficulty'], string | null> = {
-  easy: 'Latwa',
-  moderate: 'Srednia',
+  easy: 'Łatwa',
+  moderate: 'Średnia',
   hard: 'Trudna',
   unknown: null,
 }
@@ -73,7 +73,7 @@ export function TrailCard({
             {route.name ?? 'Trasa bez nazwy'}
           </span>
           {isWalked && (
-            <span title="Przeszedlem te trase" className="shrink-0">
+            <span title="Przeszedłem tę trasę" className="shrink-0">
               <Check size={14} className="text-success" />
             </span>
           )}
@@ -134,7 +134,7 @@ export function TrailCard({
           <button
             type="button"
             onClick={(e) => { e.stopPropagation(); onFavoriteToggle?.(e) }}
-            aria-label="Usun z ulubionych"
+            aria-label="Usuń z ulubionych"
             className="flex items-center justify-center size-12 text-accent"
           >
             <Heart size={18} fill="currentColor" />

@@ -29,16 +29,16 @@ export class MapErrorBoundary extends Component<Props, State> {
         <div className="w-full h-full flex flex-col items-center justify-center bg-bg-surface gap-4 px-6 text-center">
           <AlertTriangle className="w-12 h-12 text-error" strokeWidth={1.5} />
           <h2 className="text-text-primary text-xl font-semibold">
-            Nie udalo sie zaladowac mapy
+            Nie udało się załadować mapy
           </h2>
           <p className="text-text-secondary text-sm max-w-xs">
-            Sprawdz polaczenie internetowe i odswierz strone
+            Sprawdź połączenie internetowe i odśwież stronę
           </p>
           <button
             onClick={() => window.location.reload()}
             className="mt-2 px-6 py-3 rounded-full bg-accent text-bg-base font-semibold text-sm active:scale-95 transition-transform"
           >
-            Sprobuj ponownie
+            Spróbuj ponownie
           </button>
         </div>
       )

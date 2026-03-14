@@ -51,7 +51,7 @@ export function InviteGenerator() {
       {invitations.length === 0 ? (
         <div className="px-4 pb-4">
           <p className="text-sm text-text-secondary">
-            Zapros znajomych do Psi Szlak
+            Zaproś znajomych do Psi Szlak
           </p>
         </div>
       ) : (
@@ -63,8 +63,8 @@ export function InviteGenerator() {
             const statusLabel = isUsed
               ? 'Wykorzystane'
               : isExpired
-                ? 'Wygaslo'
-                : 'Oczekujace'
+                ? 'Wygasło'
+                : 'Oczekujące'
             const statusColor = isUsed
               ? 'text-success'
               : isExpired

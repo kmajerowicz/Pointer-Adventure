@@ -31,21 +31,21 @@ describe('RegisterForm', () => {
 
   it('renders name and email fields', () => {
     renderForm()
-    expect(screen.getByLabelText('Twoje imie')).toBeTruthy()
+    expect(screen.getByLabelText('Twoje imię')).toBeTruthy()
     expect(screen.getByLabelText('Adres email')).toBeTruthy()
   })
 
   it('submit button is disabled when fields are empty', () => {
     renderForm()
-    const button = screen.getByRole('button', { name: /Dolacz do Psi Szlak/i })
+    const button = screen.getByRole('button', { name: /Dołącz do Psi Szlak/i })
     expect((button as HTMLButtonElement).disabled).toBe(true)
   })
 
   it('submit button enabled when both fields filled', () => {
     renderForm()
-    fireEvent.change(screen.getByLabelText('Twoje imie'), { target: { value: 'Jan' } })
+    fireEvent.change(screen.getByLabelText('Twoje imię'), { target: { value: 'Jan' } })
     fireEvent.change(screen.getByLabelText('Adres email'), { target: { value: 'jan@test.pl' } })
-    const button = screen.getByRole('button', { name: /Dolacz do Psi Szlak/i })
+    const button = screen.getByRole('button', { name: /Dołącz do Psi Szlak/i })
     expect((button as HTMLButtonElement).disabled).toBe(false)
   })
 

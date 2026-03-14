@@ -1,16 +1,7 @@
 import mapboxgl, { type Map as MapboxMap, type GeoJSONSource } from 'mapbox-gl'
 import type { FeatureCollection, Point, Feature } from 'geojson'
 import type { Route } from '../../lib/types'
-
-const TRAIL_COLOR_MAP: Record<string, string> = {
-  red: '#C0392B',
-  blue: '#2980B9',
-  yellow: '#F1C40F',
-  green: '#27AE60',
-  black: '#2C3E50',
-}
-const ACCENT_GOLD = '#C9A84C'
-const DARK_CASING = '#1a1a1a'
+import { TRAIL_COLOR_MAP, ACCENT_GOLD, DARK_CASING } from '../../lib/trailColors'
 
 export function routesToPointFeatures(routes: Route[]): FeatureCollection<Point> {
   const features: Feature<Point>[] = routes.map((r, i) => ({

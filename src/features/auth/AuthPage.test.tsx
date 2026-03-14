@@ -27,14 +27,14 @@ describe('AuthPage', () => {
 
   it('shows email login form for returning users', () => {
     renderAuthPage()
-    expect(screen.getByText('Zaloguj sie')).toBeTruthy()
+    expect(screen.getByText('Zaloguj się')).toBeTruthy()
     expect(screen.getByLabelText('Adres email')).toBeTruthy()
-    expect(screen.getByRole('button', { name: /Wyslij link logowania/i })).toBeTruthy()
+    expect(screen.getByRole('button', { name: /Wyślij link logowania/i })).toBeTruthy()
   })
 
-  it('shows "Dostep tylko przez zaproszenie" subtitle', () => {
+  it('shows "Dostęp tylko przez zaproszenie" subtitle', () => {
     renderAuthPage()
-    expect(screen.getByText('Dostep tylko przez zaproszenie')).toBeTruthy()
+    expect(screen.getByText('Dostęp tylko przez zaproszenie')).toBeTruthy()
   })
 
   it.todo('shows invite-only gate when no from=invite param')

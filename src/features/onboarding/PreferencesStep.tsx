@@ -65,24 +65,31 @@ export function PreferencesStep({ onNext, onSkip }: PreferencesStepProps) {
   const [water, setWater] = useState<WaterPref>('any')
   const [surface, setSurface] = useState<SurfaceType | null>(null)
   const [saving, setSaving] = useState(false)
+  const [saveError, setSaveError] = useState<string | null>(null)
 
   const { session } = useAuthStore()
   const { setLength: setFilterLength, setWater: setFilterWater, setSurface: setFilterSurface } = useFiltersStore()
 
   async function handleNext() {
     setSaving(true)
+    setSaveError(null)
 
     if (session) {
-      await supabase
+      const { error } = await supabase
         .from('users')
         .update({ walk_preferences: { length, water, surface } })
         .eq('id', session.user.id)
-        .then(() => {
-          // Apply as default filters
-          if (length) setFilterLength(length)
-          setFilterWater(water)
-          if (surface) setFilterSurface(surface)
-        })
+
+      if (error) {
+        setSaving(false)
+        setSaveError('Nie udało się zapisać preferencji. Spróbuj ponownie.')
+        return
+      }
+
+      // Apply as default filters
+      if (length) setFilterLength(length)
+      setFilterWater(water)
+      if (surface) setFilterSurface(surface)
     }
 
     setSaving(false)
@@ -128,6 +135,9 @@ export function PreferencesStep({ onNext, onSkip }: PreferencesStepProps) {
       </div>
 
       <div className="mt-8 flex flex-col gap-3">
+        {saveError && (
+          <p className="text-error text-sm text-center">{saveError}</p>
+        )}
         <button
           onClick={handleNext}
           disabled={saving}

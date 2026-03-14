@@ -4,23 +4,31 @@ import type { Favorite } from '../lib/types'
 interface FavoritesState {
   favoriteIds: Set<string>
   favorites: Favorite[]
+  loadError: string | null
   setFavorites: (favs: Favorite[]) => void
+  setLoadError: (error: string | null) => void
   addFavoriteId: (id: string) => void
   removeFavoriteId: (id: string) => void
   addFavorite: (fav: Favorite) => void
   removeFavorite: (routeId: string) => void
   updateNote: (routeId: string, note: string | null) => void
+  reset: () => void
 }
 
 export const useFavoritesStore = create<FavoritesState>((set) => ({
   favoriteIds: new Set<string>(),
   favorites: [],
+  loadError: null,
 
   setFavorites: (favs) =>
     set({
       favorites: favs,
       favoriteIds: new Set(favs.map((f) => f.route_id)),
+      loadError: null,
     }),
+
+  setLoadError: (error) =>
+    set({ loadError: error }),
 
   addFavoriteId: (id) =>
     set((s) => ({ favoriteIds: new Set([...s.favoriteIds, id]) })),
@@ -44,4 +52,6 @@ export const useFavoritesStore = create<FavoritesState>((set) => ({
         f.route_id === routeId ? { ...f, note } : f
       ),
     })),
+
+  reset: () => set({ favoriteIds: new Set<string>(), favorites: [] }),
 }))

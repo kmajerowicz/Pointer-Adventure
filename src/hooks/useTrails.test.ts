@@ -159,7 +159,7 @@ describe('useTrails', () => {
       await Promise.resolve()
     })
 
-    expect(mockSetError).toHaveBeenCalledWith('Nie udalo sie pobrac tras')
+    expect(mockSetError).toHaveBeenCalledWith('Nie udało się pobrać tras')
     expect(mockSetRetry).toHaveBeenCalledWith(expect.any(Function))
   })
 

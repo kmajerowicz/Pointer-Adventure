@@ -7,6 +7,7 @@ interface InvitesState {
   setInvitations: (invites: Invitation[]) => void
   addInvitation: (invite: Invitation) => void
   setLoading: (loading: boolean) => void
+  reset: () => void
 }
 
 export const useInvitesStore = create<InvitesState>((set) => ({
@@ -21,4 +22,6 @@ export const useInvitesStore = create<InvitesState>((set) => ({
 
   setLoading: (loading) =>
     set({ loading }),
+
+  reset: () => set({ invitations: [], loading: false }),
 }))

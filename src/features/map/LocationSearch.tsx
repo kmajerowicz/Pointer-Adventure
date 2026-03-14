@@ -148,8 +148,8 @@ export function LocationSearch({ mapRef, searchHighlighted = false, disabled = f
           type="search"
           value={query}
           onChange={handleInputChange}
-          placeholder={disabled ? 'Wyszukiwanie niedostepne offline' : 'Szukaj miejscowosci...'}
-          aria-label="Szukaj miejscowosci"
+          placeholder={disabled ? 'Wyszukiwanie niedostępne offline' : 'Szukaj miejscowości...'}
+          aria-label="Szukaj miejscowości"
           aria-autocomplete="list"
           aria-expanded={isOpen}
           autoComplete="off"
@@ -159,7 +159,7 @@ export function LocationSearch({ mapRef, searchHighlighted = false, disabled = f
         {query && (
           <button
             onClick={handleClear}
-            aria-label="Wyczysc wyszukiwanie"
+            aria-label="Wyczyść wyszukiwanie"
             className="text-text-muted hover:text-text-primary transition-colors p-0.5 -mr-0.5"
           >
             <X size={16} strokeWidth={1.75} />

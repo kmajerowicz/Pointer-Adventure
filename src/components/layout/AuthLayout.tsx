@@ -15,9 +15,9 @@ export function AuthLayout() {
           <div
             className="w-10 h-10 rounded-full border-2 border-bg-elevated border-t-accent animate-spin"
             role="status"
-            aria-label="Ladowanie..."
+            aria-label="Ładowanie..."
           />
-          <p className="text-text-muted text-sm">Ladowanie...</p>
+          <p className="text-text-muted text-sm">Ładowanie...</p>
         </div>
       </div>
     )

@@ -57,10 +57,10 @@ export function AuthGateSheet({ isOpen, onClose }: AuthGateSheetProps) {
 
           <div className="space-y-1.5">
             <h2 className="text-lg font-semibold text-text-primary">
-              Zaloguj sie, aby zapisac ulubione trasy
+              Zaloguj się, aby zapisać ulubione trasy
             </h2>
             <p className="text-sm text-text-secondary">
-              Dostep tylko przez zaproszenie
+              Dostęp tylko przez zaproszenie
             </p>
           </div>
 
@@ -68,7 +68,7 @@ export function AuthGateSheet({ isOpen, onClose }: AuthGateSheetProps) {
             onClick={handleLogin}
             className="w-full min-h-[48px] rounded-xl bg-accent text-bg-base font-semibold text-base hover:opacity-90 active:scale-[0.98] transition-all mt-2"
           >
-            Zaloguj sie
+            Zaloguj się
           </button>
         </div>
       </div>

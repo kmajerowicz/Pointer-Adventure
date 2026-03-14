@@ -1,6 +1,6 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { ArrowLeft, Droplet, Heart, MapPin } from 'lucide-react'
+import { ArrowLeft, Droplet, Heart, MapPin, Loader2 } from 'lucide-react'
 import { useTrailsStore } from '../../stores/trails'
 import { useViewportStore } from '../../stores/viewport'
 import { useGeolocation } from '../../hooks/useGeolocation'
@@ -9,6 +9,7 @@ import { useActivity } from '../../hooks/useActivity'
 import { useAuthStore } from '../../stores/auth'
 import { useUIStore } from '../../stores/ui'
 import { haversineKm } from '../../lib/haversine'
+import { supabase } from '../../lib/supabase'
 import type { Route } from '../../lib/types'
 import { TrailDetailMap } from './TrailDetailMap'
 import { FavoriteNote } from '../favorites/FavoriteNote'
@@ -17,15 +18,15 @@ import { FavoriteNote } from '../favorites/FavoriteNote'
 
 const SURFACE_LABEL: Record<Route['surface_type'], string> = {
   dirt: 'Ziemia',
-  gravel: 'Zwir',
+  gravel: 'Żwir',
   asphalt: 'Asfalt',
   mixed: 'Mieszana',
   unknown: 'Nieznana',
 }
 
 const DIFFICULTY_LABEL: Record<Route['difficulty'], string | null> = {
-  easy: 'Latwa',
-  moderate: 'Srednia',
+  easy: 'Łatwa',
+  moderate: 'Średnia',
   hard: 'Trudna',
   unknown: null,
 }
@@ -55,7 +56,7 @@ const TRAIL_COLOR_BORDER: Record<NonNullable<Route['trail_color']>, string> = {
 const TRAIL_COLOR_LABEL: Record<NonNullable<Route['trail_color']>, string> = {
   red: 'Czerwony',
   blue: 'Niebieski',
-  yellow: 'Zolty',
+  yellow: 'Żółty',
   green: 'Zielony',
   black: 'Czarny',
 }
@@ -78,7 +79,7 @@ function TrailNotFound() {
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-bg-base gap-4 px-8 text-center">
       <MapPin size={40} className="text-text-muted" />
-      <h1 className="text-xl font-semibold text-text-primary">Trasa niedostepna</h1>
+      <h1 className="text-xl font-semibold text-text-primary">Trasa niedostępna</h1>
       <p className="text-sm text-text-secondary">
         Nie znaleziono trasy o podanym identyfikatorze.
       </p>
@@ -88,7 +89,7 @@ function TrailNotFound() {
         className="mt-2 flex items-center gap-2 px-4 py-2 rounded-full bg-bg-elevated text-text-primary text-sm font-medium min-h-[48px] active:bg-bg-surface transition-colors"
       >
         <ArrowLeft size={16} />
-        Wroc do mapy
+        Wróć do mapy
       </button>
     </div>
   )
@@ -100,7 +101,42 @@ export function TrailDetail() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
 
-  const route = useTrailsStore((s) => s.routes.find((r) => r.id === id || r.source_id === id))
+  const storeRoute = useTrailsStore((s) => s.routes.find((r) => r.id === id || r.source_id === id))
+
+  // Deep link support: if route is not in store, fetch from Supabase
+  const [fetchedRoute, setFetchedRoute] = useState<Route | null>(null)
+  const [fetchLoading, setFetchLoading] = useState(false)
+  const [fetchDone, setFetchDone] = useState(false)
+
+  useEffect(() => {
+    if (storeRoute || !id || fetchDone) return
+
+    let cancelled = false
+    setFetchLoading(true)
+
+    const fetchRoute = async () => {
+      const { data } = await supabase
+        .from('routes')
+        .select('*')
+        .or(`id.eq.${id},source_id.eq.${id}`)
+        .limit(1)
+        .maybeSingle()
+
+      if (!cancelled) {
+        if (data) {
+          setFetchedRoute(data as Route)
+          useTrailsStore.getState().appendRoutes([data as Route])
+        }
+        setFetchLoading(false)
+        setFetchDone(true)
+      }
+    }
+
+    fetchRoute()
+    return () => { cancelled = true }
+  }, [id, storeRoute, fetchDone])
+
+  const route = storeRoute ?? fetchedRoute
 
   // Distance computation — same origin logic as TrailList
   const { state: geoState } = useGeolocation()
@@ -127,6 +163,16 @@ export function TrailDetail() {
     useUIStore.getState().incrementTrailViewCount()
   }, [])
 
+  // Show loading state while fetching from Supabase
+  if (!route && fetchLoading) {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen bg-bg-base gap-4">
+        <Loader2 size={32} className="text-accent animate-spin" />
+        <p className="text-sm text-text-secondary">Ładowanie trasy...</p>
+      </div>
+    )
+  }
+
   if (!route) {
     return <TrailNotFound />
   }
@@ -149,7 +195,7 @@ export function TrailDetail() {
         <button
           type="button"
           onClick={() => navigate(-1)}
-          aria-label="Wroc"
+          aria-label="Wróć"
           className="absolute top-4 left-4 z-10 flex items-center justify-center size-11 rounded-full bg-bg-elevated/80 text-text-primary backdrop-blur-sm active:bg-bg-elevated transition-colors shadow-md"
         >
           <ArrowLeft size={20} />
@@ -159,7 +205,7 @@ export function TrailDetail() {
         <button
           type="button"
           onClick={() => route && toggleFavorite(route.id)}
-          aria-label={isFavorited ? 'Usun z ulubionych' : 'Dodaj do ulubionych'}
+          aria-label={isFavorited ? 'Usuń z ulubionych' : 'Dodaj do ulubionych'}
           className="absolute top-4 right-4 z-10 flex items-center justify-center size-11 rounded-full bg-bg-elevated/80 text-text-primary backdrop-blur-sm active:bg-bg-elevated transition-colors shadow-md"
         >
           <Heart
@@ -182,7 +228,7 @@ export function TrailDetail() {
           <div className="bg-bg-surface rounded-xl px-4 mb-4">
             {/* Length */}
             {route.length_km != null && (
-              <AttributeRow label="Dlugos">
+              <AttributeRow label="Długość">
                 {route.length_km.toFixed(1)} km
               </AttributeRow>
             )}
@@ -196,7 +242,7 @@ export function TrailDetail() {
 
             {/* Difficulty */}
             {difficultyLabel && (
-              <AttributeRow label="Trudnosc">
+              <AttributeRow label="Trudność">
                 <span className={`text-xs bg-bg-elevated px-2 py-1 rounded ${DIFFICULTY_COLOR[route.difficulty]}`}>
                   {difficultyLabel}
                 </span>
@@ -239,7 +285,7 @@ export function TrailDetail() {
             )}
 
             {/* Distance from user */}
-            <AttributeRow label="Odleglosc od Ciebie">
+            <AttributeRow label="Odległość od Ciebie">
               {distanceKm < 1
                 ? `${Math.round(distanceKm * 1000)} m`
                 : `${distanceKm.toFixed(1)} km`}
@@ -274,7 +320,7 @@ export function TrailDetail() {
             onClick={() => route && logWalk(route.id)}
             className="w-full py-3 rounded-xl bg-accent text-bg-base font-semibold text-base min-h-[48px] active:bg-accent/80 transition-colors"
           >
-            {isWalked ? 'Przeszedlem! (ponownie)' : 'Przeszedlem!'}
+            {isWalked ? 'Przeszedłem! (ponownie)' : 'Przeszedłem!'}
           </button>
         </div>
       )}

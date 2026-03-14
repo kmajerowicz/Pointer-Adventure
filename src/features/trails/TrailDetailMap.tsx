@@ -2,17 +2,7 @@ import { useEffect, useRef } from 'react'
 import mapboxgl from 'mapbox-gl'
 import type { Geometry, Position } from 'geojson'
 import type { Route } from '../../lib/types'
-
-// Mirrors TRAIL_COLOR_MAP from TrailLayers.ts — duplicated intentionally
-// (TrailLayers.ts does not export these constants)
-const TRAIL_COLOR_MAP: Record<string, string> = {
-  red: '#C0392B',
-  blue: '#2980B9',
-  yellow: '#F1C40F',
-  green: '#27AE60',
-  black: '#2C3E50',
-}
-const ACCENT_GOLD = '#C9A84C'
+import { TRAIL_COLOR_MAP, ACCENT_GOLD } from '../../lib/trailColors'
 
 interface TrailDetailMapProps {
   route: Route

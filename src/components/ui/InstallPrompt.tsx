@@ -27,7 +27,7 @@ export function InstallPrompt() {
       style={{ bottom: 'var(--spacing-tab-bar)' }}
       role="dialog"
       aria-modal="true"
-      aria-label="Zainstaluj aplikacje"
+      aria-label="Zainstaluj aplikację"
     >
       {/* Close button */}
       <button
@@ -46,7 +46,7 @@ export function InstallPrompt() {
 
       {/* Subtitle */}
       <p className="text-text-secondary text-sm mt-1 mb-3">
-        Dodaj do ekranu glownego, by miec szybki dostep do tras
+        Dodaj do ekranu głównego, by mieć szybki dostęp do tras
       </p>
 
       {/* Android/Chrome path */}
@@ -65,9 +65,9 @@ export function InstallPrompt() {
         <p className="text-text-secondary text-sm flex items-center gap-1 flex-wrap">
           Kliknij{' '}
           <Share2 size={16} className="inline-block shrink-0 text-text-primary" />
-          {' '}Udostepnij{' '}
+          {' '}Udostępnij{' '}
           <span className="text-text-muted">&rarr;</span>{' '}
-          Dodaj do ekranu glownego
+          Dodaj do ekranu głównego
         </p>
       )}
     </div>

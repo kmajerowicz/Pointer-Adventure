@@ -21,6 +21,8 @@ export function useInvites() {
       .order('created_at', { ascending: false })
     if (!error && data) {
       store.setInvitations(data as Invitation[])
+    } else if (error) {
+      console.error('Failed to load invites:', error)
     }
   }
 
@@ -48,7 +50,7 @@ export function useInvites() {
       store.addInvitation(invite)
       return `${window.location.origin}/invite?token=${invite.token}`
     } catch {
-      showToast('Nie udalo sie utworzyc zaproszenia')
+      showToast('Nie udało się utworzyć zaproszenia')
       return null
     } finally {
       store.setLoading(false)

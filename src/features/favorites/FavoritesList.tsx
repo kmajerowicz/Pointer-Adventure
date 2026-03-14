@@ -73,31 +73,31 @@ export function FavoritesList() {
           <Heart size={48} className="text-text-muted" />
           <h2 className="text-lg font-semibold text-text-primary">Brak ulubionych tras</h2>
           <p className="text-sm text-text-secondary">
-            Nie masz jeszcze ulubionych tras. Znajdz cos dla {dogName}!
+            Nie masz jeszcze ulubionych tras. Znajdź coś dla {dogName}!
           </p>
           <button
             type="button"
             onClick={() => navigate('/')}
             className="mt-2 px-6 py-3 rounded-full bg-accent text-bg-base font-semibold text-sm min-h-[48px] active:bg-accent/80 transition-colors"
           >
-            Przegladaj trasy
+            Przeglądaj trasy
           </button>
         </div>
       ) : filteredRoutes.length === 0 ? (
         /* Favorites exist but filters yield 0 results */
         <div className="flex-1 flex flex-col items-center justify-center px-8 text-center gap-4">
           <h2 className="text-base font-semibold text-text-primary">
-            Brak tras pasujacych do filtrow
+            Brak tras pasujących do filtrów
           </h2>
           <p className="text-sm text-text-secondary">
-            Sprobuj zmienic lub wyczysc filtry.
+            Spróbuj zmienić lub wyczyść filtry.
           </p>
           <button
             type="button"
             onClick={() => setFilterOpen(true)}
             className="mt-2 px-6 py-3 rounded-full bg-bg-elevated text-text-primary text-sm font-medium min-h-[48px] active:bg-bg-surface transition-colors"
           >
-            Zmien filtry
+            Zmień filtry
           </button>
         </div>
       ) : (

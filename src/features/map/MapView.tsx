@@ -180,7 +180,7 @@ export function MapView() {
             onClick={handleRetry}
             className="text-accent font-medium hover:underline shrink-0"
           >
-            Sprobuj ponownie
+            Spróbuj ponownie
           </button>
         </div>
       )}
