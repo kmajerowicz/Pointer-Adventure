@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import { BottomTabBar } from '../ui/BottomTabBar'
+import { FilterTooltip } from '../../features/onboarding/FilterTooltip'
 
 export function AppLayout() {
   return (
@@ -7,6 +8,7 @@ export function AppLayout() {
       <main className="flex-1 overflow-hidden flex flex-col">
         <Outlet />
       </main>
+      <FilterTooltip />
       <BottomTabBar />
     </div>
   )
