@@ -43,10 +43,13 @@ export function AuthPage() {
 
     if (otpError) {
       const isSignupBlocked = mode === 'login' && otpError.status === 422
+      const isRateLimited = otpError.status === 429
       setError(
-        isSignupBlocked
-          ? 'Nie znaleziono konta z tym adresem. Może chcesz założyć konto?'
-          : 'Nie można wysłać emaila. Upewnij się, że adres jest poprawny i spróbuj ponownie.'
+        isRateLimited
+          ? 'Zbyt wiele prób. Odczekaj chwilę i spróbuj ponownie.'
+          : isSignupBlocked
+            ? 'Nie znaleziono konta z tym adresem. Może chcesz założyć konto?'
+            : `Nie można wysłać emaila. Upewnij się, że adres jest poprawny i spróbuj ponownie. (${otpError.message})`
       )
       return
     }
