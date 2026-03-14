@@ -22,6 +22,20 @@
   --color-error: #EF4444;
   --color-warning: #F59E0B;
 
+  /* Logo-derived nature palette */
+  --color-forest: #2D5A3D;
+  --color-forest-light: #3B7A4A;
+  --color-earth: #8B6F3A;
+  --color-sky: #A8C4D4;
+  --color-topo: #D4D8DC;
+
+  /* Landing page (light theme) */
+  --color-page-bg: #F7F5F0;
+  --color-page-bg-alt: #EBE8E0;
+  --color-text-dark: #1A1A1A;
+  --color-text-body: #4A4A4A;
+  --color-cta-hover-light: #B8963F;
+
   /* Trail colors (PTTK) */
   --color-trail-red: #E53E3E;
   --color-trail-blue: #3B82F6;

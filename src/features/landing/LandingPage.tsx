@@ -1,215 +1,265 @@
 import { Link } from 'react-router-dom'
-import { MapPin, SlidersHorizontal, Heart, WifiOff, Route, PawPrint } from 'lucide-react'
+import { MapPin, SlidersHorizontal, Heart, WifiOff, ArrowRight } from 'lucide-react'
 
-const trailColors = [
-  { name: 'Czerwony', color: 'bg-trail-red' },
-  { name: 'Niebieski', color: 'bg-trail-blue' },
-  { name: 'Żółty', color: 'bg-trail-yellow' },
-  { name: 'Zielony', color: 'bg-trail-green' },
-  { name: 'Czarny', color: 'bg-[#444]' },
-]
+/* ── Inline SVG topo pattern (brand element from logo) ── */
+const topoPatternSvg = `url("data:image/svg+xml,%3Csvg width='400' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23D4D8DC' stroke-width='1' opacity='0.35'%3E%3Cpath d='M0 80 Q100 60 200 90 T400 70'/%3E%3Cpath d='M0 140 Q80 120 180 150 T400 130'/%3E%3Cpath d='M0 200 Q120 180 220 210 T400 190'/%3E%3Cpath d='M0 260 Q90 240 190 270 T400 250'/%3E%3Cpath d='M0 320 Q110 300 210 330 T400 310'/%3E%3Cpath d='M0 380 Q100 360 200 390 T400 370'/%3E%3Cpath d='M0 40 Q60 20 160 50 T400 30'/%3E%3C/g%3E%3C/svg%3E")`
 
 const features = [
   {
     icon: MapPin,
     title: 'Interaktywna mapa',
-    desc: 'Przeglądaj szlaki w okolicy na mapie topograficznej z oznaczeniami PTTK.',
+    desc: 'Przeglądaj szlaki turystyczne na mapie topograficznej. Włącz lokalizację i zobacz trasy w&nbsp;okolicy.',
+    color: 'bg-forest/10 text-forest',
   },
   {
     icon: SlidersHorizontal,
-    title: 'Inteligentne filtry',
-    desc: 'Filtruj po kolorze szlaku, długości, nawierzchni — znajdź idealną trasę na spacer.',
+    title: 'Filtry szlaków',
+    desc: 'Filtruj po kolorze oznaczenia PTTK, długości trasy i&nbsp;nawierzchni. Znajdź idealny spacer.',
+    color: 'bg-amber-500/10 text-earth',
   },
   {
     icon: Heart,
-    title: 'Ulubione trasy',
-    desc: 'Zapisuj i organizuj trasy, dodawaj notatki, śledź historię swoich spacerów.',
+    title: 'Ulubione i historia',
+    desc: 'Zapisuj trasy do ulubionych, dodawaj notatki i&nbsp;śledź historię swoich wędrówek z&nbsp;psem.',
+    color: 'bg-red-500/10 text-trail-red',
   },
   {
     icon: WifiOff,
-    title: 'Działa offline',
-    desc: 'Zainstaluj jako aplikację na telefonie — korzystaj nawet bez internetu.',
+    title: 'Tryb offline',
+    desc: 'Zainstaluj Psi Szlak jako aplikację na telefonie — korzystaj nawet bez zasięgu na szlaku.',
+    color: 'bg-sky/20 text-sky',
   },
+]
+
+const trailColors = [
+  { name: 'Czerwony', bg: 'bg-trail-red', text: 'Popularne trasy główne' },
+  { name: 'Niebieski', bg: 'bg-trail-blue', text: 'Szlaki o średniej długości' },
+  { name: 'Żółty', bg: 'bg-trail-yellow', text: 'Krótkie szlaki lokalne' },
+  { name: 'Zielony', bg: 'bg-trail-green', text: 'Łączniki i warianty' },
+  { name: 'Czarny', bg: 'bg-text-dark', text: 'Dojścia do schronisk' },
 ]
 
 const steps = [
   {
     num: '1',
-    title: 'Dostań zaproszenie',
-    desc: 'Poproś znajomego o link — Psi Szlak działa na zaproszenia.',
+    title: 'Otrzymaj zaproszenie',
+    desc: 'Poproś znajomego o link — Psi Szlak działa na zaproszenia, żeby społeczność rosła organicznie.',
   },
   {
     num: '2',
-    title: 'Przeglądaj mapę',
-    desc: 'Otwórz mapę, włącz lokalizację i zobacz szlaki wokół siebie.',
+    title: 'Odkryj szlaki w okolicy',
+    desc: 'Otwórz mapę, włącz GPS i przeglądaj oznaczone trasy. Filtruj po tym co ważne dla Ciebie i psa.',
   },
   {
     num: '3',
-    title: 'Ruszaj na szlak',
-    desc: 'Wybierz trasę, zabierz psa i odkrywaj nowe miejsca razem.',
+    title: 'Ruszaj na przygodę',
+    desc: 'Wybierz trasę, weź psa i idźcie razem. Zapisuj ulubione szlaki i wracaj do nich kiedy chcesz.',
   },
 ]
 
 export function LandingPage() {
   return (
-    <div className="min-h-screen bg-bg-base text-text-primary overflow-x-hidden">
-      {/* ─── Hero ─── */}
-      <section className="relative flex flex-col items-center px-6 pt-16 pb-20 text-center">
-        {/* Subtle radial glow behind logo */}
-        <div className="absolute top-8 left-1/2 -translate-x-1/2 w-72 h-72 bg-accent/8 rounded-full blur-3xl pointer-events-none" />
-
-        <img
-          src="/icons/icon-192.png"
-          alt="Psi Szlak — pies na szlaku"
-          width={120}
-          height={120}
-          className="relative rounded-3xl shadow-lg shadow-black/40 animate-[fade-in_600ms_ease-out]"
+    <div className="min-h-screen font-sans">
+      {/* ═══════════ HERO ═══════════ */}
+      <section
+        className="relative overflow-hidden"
+        style={{
+          background: 'linear-gradient(180deg, #A8C4D4 0%, #c8d8e2 35%, #F7F5F0 100%)',
+        }}
+      >
+        {/* Topo pattern overlay */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ backgroundImage: topoPatternSvg, backgroundSize: '400px 400px' }}
         />
 
-        <h1 className="relative mt-6 text-4xl font-bold tracking-tight sm:text-5xl animate-[slide-up_500ms_ease-out]">
-          Psi Szlak
-        </h1>
-
-        <p className="relative mt-3 text-lg text-text-secondary max-w-sm leading-relaxed animate-[slide-up_500ms_ease-out_100ms_both]">
-          Szlaki turystyczne w Polsce, wybrane z myślą o spacerach z&nbsp;psem
-        </p>
-
-        {/* Trail color dots */}
-        <div className="relative flex items-center gap-2 mt-5 animate-[slide-up_500ms_ease-out_200ms_both]">
-          {trailColors.map((t) => (
-            <span
-              key={t.name}
-              title={t.name}
-              className={`w-3 h-3 rounded-full ${t.color} ring-1 ring-white/10`}
-            />
-          ))}
-          <span className="ml-1 text-xs text-text-muted">oznaczenia PTTK</span>
-        </div>
-
-        <div className="relative flex flex-col items-center gap-3 mt-10 w-full max-w-xs animate-[slide-up_500ms_ease-out_300ms_both]">
-          <Link
-            to="/app"
-            className="w-full inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-accent text-bg-base font-semibold text-base min-h-[48px] hover:bg-accent-hover active:scale-[0.98] transition-all"
-          >
-            <Route size={18} strokeWidth={2.2} />
-            Otwórz aplikację
-          </Link>
-          <Link
-            to="/app/auth"
-            className="text-sm text-text-secondary hover:text-text-primary transition-colors"
-          >
-            Mam już konto — zaloguj się
-          </Link>
-        </div>
-      </section>
-
-      {/* ─── Social proof strip ─── */}
-      <div className="flex items-center justify-center gap-6 py-5 bg-bg-surface/50 border-y border-bg-elevated/50">
-        <div className="flex items-center gap-1.5 text-sm text-text-secondary">
-          <Route size={14} className="text-accent" />
-          <span>Szlaki PTTK</span>
-        </div>
-        <div className="w-px h-4 bg-bg-elevated" />
-        <div className="flex items-center gap-1.5 text-sm text-text-secondary">
-          <MapPin size={14} className="text-accent" />
-          <span>Cała Polska</span>
-        </div>
-        <div className="w-px h-4 bg-bg-elevated" />
-        <div className="flex items-center gap-1.5 text-sm text-text-secondary">
-          <PawPrint size={14} className="text-accent" />
-          <span>Dla psiarzy</span>
-        </div>
-      </div>
-
-      {/* ─── Features ─── */}
-      <section className="px-6 py-16 max-w-lg mx-auto">
-        <h2 className="text-2xl font-bold text-center mb-3">
-          Wszystko czego potrzebujesz na szlaku
-        </h2>
-        <p className="text-text-secondary text-sm text-center mb-10 max-w-sm mx-auto">
-          Psi Szlak łączy dane o szlakach PTTK z narzędziami, które ułatwiają planowanie spacerów z czworonogiem.
-        </p>
-
-        <div className="space-y-6">
-          {features.map(({ icon: Icon, title, desc }, i) => (
-            <div
-              key={title}
-              className="flex gap-4 items-start p-4 rounded-2xl bg-bg-surface border border-bg-elevated/60"
-              style={{ animationDelay: `${i * 80}ms` }}
-            >
-              <div className="shrink-0 w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
-                <Icon size={20} className="text-accent" />
+        <div className="relative max-w-5xl mx-auto px-6 pt-16 pb-20 md:pt-24 md:pb-28">
+          <div className="flex flex-col items-center text-center md:flex-row md:text-left md:items-start md:gap-16">
+            {/* Text content */}
+            <div className="flex-1 max-w-xl">
+              <div className="flex items-center gap-3 justify-center md:justify-start mb-6">
+                <img
+                  src="/icons/icon-192.png"
+                  alt="Psi Szlak"
+                  width={64}
+                  height={64}
+                  className="rounded-2xl shadow-md shadow-black/15"
+                />
+                <span className="text-lg font-semibold text-text-dark tracking-tight">Psi Szlak</span>
               </div>
-              <div>
-                <h3 className="font-semibold text-text-primary">{title}</h3>
-                <p className="text-sm text-text-secondary mt-0.5 leading-relaxed">{desc}</p>
+
+              <h1 className="text-4xl font-bold tracking-tight text-text-dark leading-[1.15] sm:text-5xl lg:text-[3.5rem]">
+                Odkryj szlaki
+                <br />
+                <span className="text-forest">dla Ciebie i&nbsp;Twojego psa</span>
+              </h1>
+
+              <p className="mt-5 text-lg text-text-body leading-relaxed max-w-md mx-auto md:mx-0">
+                Psi Szlak to aplikacja, która pomaga właścicielom psów znajdować najlepsze szlaki turystyczne w&nbsp;Polsce. Mapa, filtry, ulubione — wszystko w&nbsp;jednym miejscu.
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-center gap-3 mt-8">
+                <Link
+                  to="/app"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg bg-accent text-white font-semibold text-base min-h-[48px] shadow-md shadow-accent/20 hover:bg-cta-hover-light active:scale-[0.98] transition-all"
+                >
+                  Otwórz aplikację
+                  <ArrowRight size={18} strokeWidth={2.2} />
+                </Link>
+                <Link
+                  to="/app/auth"
+                  className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-lg border-2 border-accent text-accent font-semibold text-sm min-h-[48px] hover:bg-accent/10 active:scale-[0.98] transition-all"
+                >
+                  Mam już konto
+                </Link>
               </div>
             </div>
-          ))}
+
+            {/* Logo showcase — large on desktop */}
+            <div className="mt-12 md:mt-0 shrink-0">
+              <img
+                src="/icons/icon-512.png"
+                alt="Wyżeł niemiecki szorstkowłosy na leśnym szlaku"
+                width={280}
+                height={280}
+                className="rounded-3xl shadow-xl shadow-black/20 md:w-[340px] md:h-[340px] lg:w-[380px] lg:h-[380px]"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* ─── How it works ─── */}
-      <section className="px-6 py-16 bg-bg-surface/30">
-        <div className="max-w-lg mx-auto">
-          <h2 className="text-2xl font-bold text-center mb-10">
-            Jak zacząć?
-          </h2>
+      {/* ═══════════ FEATURES ═══════════ */}
+      <section className="bg-page-bg">
+        <div className="max-w-5xl mx-auto px-6 py-16 md:py-24">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2 className="text-3xl font-bold text-text-dark tracking-tight sm:text-4xl">
+              Wszystko czego potrzebujesz na szlaku
+            </h2>
+            <p className="mt-3 text-text-body leading-relaxed">
+              Psi Szlak łączy dane o szlakach PTTK z narzędziami ułatwiającymi planowanie spacerów z&nbsp;czworonogiem.
+            </p>
+          </div>
 
-          <ol className="relative space-y-8">
-            {/* Connecting line */}
-            <div className="absolute left-[1.15rem] top-10 bottom-4 w-px bg-gradient-to-b from-accent/40 via-accent/20 to-transparent" />
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {features.map(({ icon: Icon, title, desc, color }) => (
+              <div
+                key={title}
+                className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+              >
+                <div className={`w-11 h-11 rounded-lg flex items-center justify-center mb-4 ${color}`}>
+                  <Icon size={22} />
+                </div>
+                <h3 className="font-semibold text-text-dark text-lg">{title}</h3>
+                <p
+                  className="mt-1.5 text-sm text-text-body leading-relaxed"
+                  dangerouslySetInnerHTML={{ __html: desc }}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
+      {/* ═══════════ HOW IT WORKS ═══════════ */}
+      <section className="bg-page-bg-alt">
+        <div className="max-w-5xl mx-auto px-6 py-16 md:py-24">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2 className="text-3xl font-bold text-text-dark tracking-tight sm:text-4xl">
+              Jak zacząć?
+            </h2>
+            <p className="mt-3 text-text-body leading-relaxed">
+              Trzy kroki dzielą Cię od pierwszego spaceru z Psi Szlak.
+            </p>
+          </div>
+
+          <div className="grid gap-8 sm:grid-cols-3 max-w-3xl mx-auto">
             {steps.map((s) => (
-              <li key={s.num} className="relative flex gap-5 items-start">
-                <span className="relative shrink-0 w-10 h-10 rounded-full bg-accent text-bg-base flex items-center justify-center text-sm font-bold shadow-md shadow-accent/20">
+              <div key={s.num} className="text-center sm:text-left">
+                <span className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-forest text-white text-lg font-bold mb-4 shadow-md shadow-forest/20">
                   {s.num}
                 </span>
-                <div className="pt-1.5">
-                  <h3 className="font-semibold text-text-primary">{s.title}</h3>
-                  <p className="text-sm text-text-secondary mt-0.5 leading-relaxed">{s.desc}</p>
-                </div>
-              </li>
+                <h3 className="font-semibold text-text-dark text-lg">{s.title}</h3>
+                <p className="mt-1.5 text-sm text-text-body leading-relaxed">{s.desc}</p>
+              </div>
             ))}
-          </ol>
+          </div>
         </div>
       </section>
 
-      {/* ─── Trail colors showcase ─── */}
-      <section className="px-6 py-16 max-w-lg mx-auto">
-        <h2 className="text-2xl font-bold text-center mb-3">
-          Szlaki we wszystkich kolorach
-        </h2>
-        <p className="text-text-secondary text-sm text-center mb-8 max-w-sm mx-auto">
-          Filtruj trasy po kolorach oznaczeń PTTK — czerwony, niebieski, żółty, zielony i czarny.
-        </p>
+      {/* ═══════════ TRAIL COLORS ═══════════ */}
+      <section className="bg-page-bg">
+        <div className="max-w-5xl mx-auto px-6 py-16 md:py-24">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2 className="text-3xl font-bold text-text-dark tracking-tight sm:text-4xl">
+              Szlaki we wszystkich kolorach
+            </h2>
+            <p className="mt-3 text-text-body leading-relaxed">
+              Filtruj trasy po oficjalnych oznaczeniach PTTK — od głównych czerwonych szlaków po lokalne żółte ścieżki.
+            </p>
+          </div>
 
-        <div className="flex justify-center gap-3">
-          {trailColors.map((t) => (
-            <div key={t.name} className="flex flex-col items-center gap-2">
-              <div className={`w-12 h-12 rounded-xl ${t.color} shadow-lg`} />
-              <span className="text-xs text-text-muted">{t.name}</span>
-            </div>
-          ))}
+          <div className="flex flex-wrap justify-center gap-4 max-w-2xl mx-auto">
+            {trailColors.map((t) => (
+              <div
+                key={t.name}
+                className="flex items-center gap-3 bg-white rounded-xl px-5 py-3.5 shadow-sm border border-gray-100 min-w-[200px]"
+              >
+                <span className={`shrink-0 w-5 h-5 rounded-full ${t.bg} ring-2 ring-black/5`} />
+                <div>
+                  <span className="font-semibold text-text-dark text-sm">{t.name}</span>
+                  <p className="text-xs text-text-body">{t.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ─── Bottom CTA ─── */}
-      <section className="px-6 pt-8 pb-20 text-center">
-        <div className="max-w-sm mx-auto bg-bg-surface rounded-2xl p-8 border border-bg-elevated/60">
-          <PawPrint size={32} className="text-accent mx-auto mb-4" />
-          <h2 className="text-xl font-bold mb-2">Gotowy na szlak?</h2>
-          <p className="text-sm text-text-secondary mb-6">
-            Otwórz aplikację i znajdź pierwszą trasę dla siebie i swojego psa.
+      {/* ═══════════ BOTTOM CTA (dark) ═══════════ */}
+      <section className="relative bg-bg-base overflow-hidden">
+        {/* Topo pattern on dark */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.04]"
+          style={{ backgroundImage: topoPatternSvg, backgroundSize: '400px 400px' }}
+        />
+
+        <div className="relative max-w-3xl mx-auto px-6 py-20 md:py-28 text-center">
+          <img
+            src="/icons/icon-192.png"
+            alt="Psi Szlak"
+            width={80}
+            height={80}
+            className="rounded-2xl shadow-lg shadow-black/40 mx-auto mb-6"
+          />
+          <h2 className="text-3xl font-bold text-text-primary tracking-tight sm:text-4xl">
+            Gotowy na szlak?
+          </h2>
+          <p className="mt-3 text-text-secondary leading-relaxed max-w-md mx-auto">
+            Otwórz aplikację, znajdź trasę w okolicy i ruszaj na przygodę z&nbsp;Twoim psem.
           </p>
           <Link
             to="/app"
-            className="w-full inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-accent text-bg-base font-semibold text-base min-h-[48px] hover:bg-accent-hover active:scale-[0.98] transition-all"
+            className="mt-8 inline-flex items-center justify-center gap-2 px-10 py-4 rounded-lg bg-accent text-bg-base font-semibold text-lg min-h-[48px] hover:bg-accent-hover active:scale-[0.98] transition-all"
           >
             Otwórz Psi Szlak
+            <ArrowRight size={20} strokeWidth={2.2} />
           </Link>
         </div>
       </section>
+
+      {/* ═══════════ FOOTER ═══════════ */}
+      <footer className="bg-bg-base border-t border-bg-elevated">
+        <div className="max-w-5xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <img src="/icons/icon-192.png" alt="" width={28} height={28} className="rounded-lg" />
+            <span className="text-sm font-medium text-text-secondary">Psi Szlak</span>
+          </div>
+          <p className="text-xs text-text-muted">
+            &copy; {new Date().getFullYear()} Psi Szlak. Dane szlaków na podstawie OpenStreetMap.
+          </p>
+        </div>
+      </footer>
     </div>
   )
 }
