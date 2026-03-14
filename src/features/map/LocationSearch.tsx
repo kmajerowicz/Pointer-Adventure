@@ -6,9 +6,10 @@ import { searchLocations, type GeocodingFeature } from './geocoding'
 interface LocationSearchProps {
   mapRef: RefObject<mapboxgl.Map | null>
   searchHighlighted?: boolean
+  disabled?: boolean
 }
 
-export function LocationSearch({ mapRef, searchHighlighted = false }: LocationSearchProps) {
+export function LocationSearch({ mapRef, searchHighlighted = false, disabled = false }: LocationSearchProps) {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<GeocodingFeature[]>([])
   const [isOpen, setIsOpen] = useState(false)
@@ -122,7 +123,7 @@ export function LocationSearch({ mapRef, searchHighlighted = false }: LocationSe
   return (
     <div
       ref={containerRef}
-      className="absolute top-4 left-4 right-4 z-10"
+      className={`absolute top-4 left-4 right-4 z-10${disabled ? ' opacity-50 pointer-events-none' : ''}`}
     >
       {/* Search input wrapper */}
       <div
@@ -147,12 +148,13 @@ export function LocationSearch({ mapRef, searchHighlighted = false }: LocationSe
           type="search"
           value={query}
           onChange={handleInputChange}
-          placeholder="Szukaj miejscowosci..."
+          placeholder={disabled ? 'Wyszukiwanie niedostepne offline' : 'Szukaj miejscowosci...'}
           aria-label="Szukaj miejscowosci"
           aria-autocomplete="list"
           aria-expanded={isOpen}
           autoComplete="off"
-          className="flex-1 bg-transparent text-sm text-text-primary placeholder:text-text-muted outline-none min-w-0"
+          disabled={disabled}
+          className={`flex-1 bg-transparent text-sm outline-none min-w-0 ${disabled ? 'text-text-muted placeholder:text-text-muted cursor-not-allowed' : 'text-text-primary placeholder:text-text-muted'}`}
         />
         {query && (
           <button

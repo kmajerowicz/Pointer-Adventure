@@ -14,6 +14,7 @@ import { FilterButton } from './FilterButton'
 import { FilterPanel } from './FilterPanel'
 import { ActiveFilterChips } from './ActiveFilterChips'
 import { useUIStore } from '../../stores/ui'
+import { useOnlineStatus } from '../../hooks/useOnlineStatus'
 
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN
 
@@ -40,6 +41,7 @@ export function MapView() {
   const isFilterOpen = useUIStore((s) => s.isFilterOpen)
   const setFilterOpen = useUIStore((s) => s.setFilterOpen)
   const [scrollToCategory, setScrollToCategory] = useState<string | null>(null)
+  const isOnline = useOnlineStatus()
 
   // Check WebGL support at render time — throw so MapErrorBoundary catches it
   if (!mapboxgl.supported()) {
@@ -149,7 +151,7 @@ export function MapView() {
     <div className="relative w-full flex-1 h-full">
       <LoadingBar visible={loading} />
       <div ref={containerRef} className="absolute inset-0 w-full h-full" />
-      <LocationSearch mapRef={mapRef} searchHighlighted={searchHighlighted} />
+      <LocationSearch mapRef={mapRef} searchHighlighted={searchHighlighted} disabled={!isOnline} />
       {/* Active filter chips — positioned below the search bar */}
       <div className="absolute top-[4.5rem] left-4 right-4 z-10">
         <ActiveFilterChips onChipTap={handleChipTap} />

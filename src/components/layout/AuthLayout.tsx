@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import { useAuthInit } from '../../hooks/useAuthInit'
 import { useAuthStore } from '../../stores/auth'
+import { OfflineBanner } from '../ui/OfflineBanner'
 
 export function AuthLayout() {
   useAuthInit()
@@ -21,5 +22,10 @@ export function AuthLayout() {
     )
   }
 
-  return <Outlet />
+  return (
+    <>
+      <OfflineBanner />
+      <Outlet />
+    </>
+  )
 }
